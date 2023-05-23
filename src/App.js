@@ -4,8 +4,8 @@ import './App.css';
 
 import { useState } from 'react';
  import {Routes, Route} from 'react-router-dom';
- import Home from './Pages/Home';
- import Quiz from './Pages/Quiz';
+ import HostGameLobby from './Pages/HostGameLobby';
+ import GameRoom from './Pages/GameRoom';
 
 const App = () => {
   const [category, setCategory] = useState(null);
@@ -20,13 +20,13 @@ const App = () => {
      <div>
        <h1>Robo Trivia</h1>
        {category && difficulty ? (
-        <Quiz category={category} difficulty={difficulty} />
+        <GameRoom category={category} difficulty={difficulty} />
       ) : (
-        <Home handleStartQuiz={handleStartQuiz} />
+        <HostGameLobby handleStartQuiz={handleStartQuiz} />
        )}
        <Routes>
-         <Route path="/home" element={<Home />}/> 
-        <Route path="/quiz" element={<Quiz />}/>
+         <Route path="/hostgamelobby" element={<HostGameLobby />}/> 
+        <Route path="/gameroom" element={<GameRoom />}/>
        </Routes>
      </div>
   );
