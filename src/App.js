@@ -10,17 +10,19 @@ import { useState } from 'react';
 const App = () => {
   const [category, setCategory] = useState(null);
   const [difficulty, setDifficulty] = useState(null);
+  const [type, setType] = useState(null);
 
-   const handleStartQuiz = (selectedCategory, selectedDifficulty) => {
+   const handleStartQuiz = (selectedCategory, selectedDifficulty, selectedType) => {
     setCategory(selectedCategory);
-     setDifficulty(selectedDifficulty);
+    setDifficulty(selectedDifficulty);
+    setType(selectedType);
    };
 
   return (
      <div>
        <h1>Robo Trivia</h1>
        {category && difficulty ? (
-        <GameRoom category={category} difficulty={difficulty} />
+        <GameRoom category={category} difficulty={difficulty} type={type} />
       ) : (
         <HostGameLobby handleStartQuiz={handleStartQuiz} />
        )}
