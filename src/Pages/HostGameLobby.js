@@ -4,9 +4,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Home = ({ handleStartQuiz }) => {
-  const [selectedCategory, setSelectedCategory] = useState(9); // Default category ID for General Knowledge
-  const [selectedDifficulty, setSelectedDifficulty] = useState('medium'); // Default difficulty level
-  // console.log(selectedCategory+ "|" +selectedDifficulty);
+  const [selectedCategory, setSelectedCategory] = useState(9); 
+  const [selectedDifficulty, setSelectedDifficulty] = useState('medium'); 
+  const [selectedType, setSelectedType] = useState('multiple');
+  
   const handleCategoryChange = (event) => {
     const category = event.target.value;
     setSelectedCategory(category);
@@ -17,8 +18,13 @@ const Home = ({ handleStartQuiz }) => {
     setSelectedDifficulty(difficulty);
   };
 
+  const handleTypeChange = (event) => {
+    const type = event.target.value;
+    setSelectedType(type);
+  }
+
   const handleQuizStart = () => {
-    handleStartQuiz(selectedCategory, selectedDifficulty);
+    handleStartQuiz(selectedCategory, selectedDifficulty, selectedType);
   };
 
   return (
@@ -58,6 +64,13 @@ const Home = ({ handleStartQuiz }) => {
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
           <option value="hard">Hard</option>
+        </select>
+      </div>
+      <div>
+        <label htmlFor="type">Type:</label>
+        <select id="type" value={selectedType} onChange={handleTypeChange}>
+          <option value="multiple">Multiple Choice</option>
+          <option value="boolean">True/False</option>
         </select>
       </div>
       {/* <Link to="/quiz"> */}

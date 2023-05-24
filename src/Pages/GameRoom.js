@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const Quiz = ({ category, difficulty }) => {
+const Quiz = ({ category, difficulty, type }) => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
@@ -11,12 +11,12 @@ const Quiz = ({ category, difficulty }) => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetchData(category, difficulty);
-  }, [category, difficulty]);
+    fetchData(category, difficulty, type);
+  }, [category, difficulty, type]);
 
-  const fetchData = (category, difficulty) => {
+  const fetchData = (category, difficulty, type) => {
     axios
-      .get(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}`)
+      .get(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=${type}`)
       .then(response => {
         setQuestions(response.data.results);
         setLoading(false);
@@ -42,19 +42,27 @@ const Quiz = ({ category, difficulty }) => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        {/* Loading... icon */}
+      </div>
+    );
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return (
+      <div>
+        {error}
+        <button onClick={ () => fetchData(category, difficulty, type)}>Retry</button>
+      </div>
+    );
   }
 
   const currentQuestionObj = questions[currentQuestion];
-  //  console.log(currentQuestionObj.question);
   const options = [...currentQuestionObj.incorrect_answers, currentQuestionObj.correct_answer];
   //Its going to shuffle options.We can call the sort() method, which accepts a function that returns a value between -0.5 and 0.5:
   options.sort(() => Math.random() - 0.5);
-  // console.log(options);
+  
 
   return (
     <div>
