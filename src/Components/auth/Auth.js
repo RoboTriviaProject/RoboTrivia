@@ -2,7 +2,7 @@ import GuestLogin from './GuestLogin';
 import UserLogIn from './UserLogIn';
 import { useState } from 'react';
 
-const Auth = () => {
+const Auth = ({ setIsLoggedIn }) => {
   const [user, setUser] = useState(true);
 
   const handleGuest = () => {
@@ -17,7 +17,7 @@ const Auth = () => {
     <div>
       <button onClick={handleRegular}>Regular Player Login</button>
       <button onClick={handleGuest}>Guest Player Login</button>
-      {user ? <UserLogIn /> : <GuestLogin />}
+      {user ? <UserLogIn /> : <GuestLogin setIsLoggedIn={setIsLoggedIn} />}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import './App.css';
-import Auth from './Components/Auth';
-import SignUp from './Components/SignUp';
+import Auth from './Components/auth/Auth';
+
+import SignUp from './Components/auth/SignUp';
 import Welcome from './Components/Welcome';
 import { auth } from './firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';

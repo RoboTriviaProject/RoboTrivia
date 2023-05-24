@@ -4,7 +4,7 @@ import { initializeApp } from 'firebase/app';
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { getDatabase } from 'firebase/database';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -21,5 +21,5 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 
-// With this we have a connection to our firestore database
-export const db = getFirestore(app);
+// With this we have a connection to our Realtime Database
+export const db = getDatabase(app);
