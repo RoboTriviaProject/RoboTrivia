@@ -76,11 +76,15 @@ const GameRoom = ({ category, difficulty, type }) => {
       <h3>Question {currentQuestion + 1}</h3>
       <p dangerouslySetInnerHTML={{ __html: currentQuestionObj.question }} />
       <ul>
-        {options.map((option, index) => (
-          <li key={uuidv4} onClick={() => handleAnswer(option)}>
-            {option}
-          </li>
-        ))}
+        {options.map((option) => {
+          const optionId = uuidv4();
+          // console.log(`Option: ${option}, ID: ${optionId}`);
+          return (
+            <li key={optionId} onClick={() => handleAnswer(option)}>
+              {option} 
+            </li>
+          );
+        })}
       </ul>
       <p>Score: {score}</p>
       {currentQuestion === questions.length - 1 ? (
