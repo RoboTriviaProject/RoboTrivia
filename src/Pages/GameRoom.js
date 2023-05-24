@@ -1,9 +1,10 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
 
-const Quiz = ({ category, difficulty, type }) => {
+const GameRoom = ({ category, difficulty, type }) => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
@@ -18,8 +19,13 @@ const Quiz = ({ category, difficulty, type }) => {
     axios
       .get(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=${type}`)
       .then(response => {
-        setQuestions(response.data.results);
+        const questionsWithUniqueIds = response.data.results.map(question => ({
+          ...question,
+          id: uuidv4(),
+        }));
+        setQuestions(questionsWithUniqueIds);
         setLoading(false);
+        console.log(questionsWithUniqueIds);
       })
       .catch(error => {
         setError('Failed to fetch questions. Please try again later.');
@@ -44,7 +50,7 @@ const Quiz = ({ category, difficulty, type }) => {
   if (loading) {
     return (
       <div>
-        {/* Loading... icon */}
+        {/* Loading... icon (react spinners package)*/}
       </div>
     );
   }
@@ -71,7 +77,7 @@ const Quiz = ({ category, difficulty, type }) => {
       <p dangerouslySetInnerHTML={{ __html: currentQuestionObj.question }} />
       <ul>
         {options.map((option, index) => (
-          <li key={index} onClick={() => handleAnswer(option)}>
+          <li key={uuidv4} onClick={() => handleAnswer(option)}>
             {option}
           </li>
         ))}
@@ -87,4 +93,4 @@ const Quiz = ({ category, difficulty, type }) => {
   );
 };
 
-export default Quiz;
+export default GameRoom;

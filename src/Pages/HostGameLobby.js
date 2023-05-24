@@ -3,7 +3,7 @@ import '../App.css';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Home = ({ handleStartQuiz }) => {
+const HostGameLobby = ({ handleStartQuiz }) => {
   const [selectedCategory, setSelectedCategory] = useState(9); 
   const [selectedDifficulty, setSelectedDifficulty] = useState('medium'); 
   const [selectedType, setSelectedType] = useState('multiple');
@@ -21,6 +21,7 @@ const Home = ({ handleStartQuiz }) => {
   const handleTypeChange = (event) => {
     const type = event.target.value;
     setSelectedType(type);
+    console.log("selected type", type);
   }
 
   const handleQuizStart = () => {
@@ -80,6 +81,6 @@ const Home = ({ handleStartQuiz }) => {
   );
 };
 
-export default Home;
+export default HostGameLobby;
 
 
