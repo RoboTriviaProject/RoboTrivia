@@ -1,16 +1,27 @@
 import '../App.css';
 
+import { push, ref, set, update } from 'firebase/database';
+import { db } from '../firebase-config';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { auth } from '../firebase-config';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const HostGameLobby = ({ handleStartQuiz }) => {
-  const [selectedCategory, setSelectedCategory] = useState(9); 
-  const [selectedDifficulty, setSelectedDifficulty] = useState('medium'); 
+  const [user] = useAuthState(auth);
+  const uid = user.uid;
+  const [selectedCategory, setSelectedCategory] = useState(9);
+  const [selectedDifficulty, setSelectedDifficulty] = useState('medium');
   const [selectedType, setSelectedType] = useState('multiple');
-  
+  const [subject, setSubject] = useState('');
+
   const handleCategoryChange = (event) => {
     const category = event.target.value;
+    const selectedIndex = event.target.options.selectedIndex;
+    const categoryText = event.target.options[selectedIndex].text;
+
     setSelectedCategory(category);
+    setSubject(categoryText);
   };
 
   const handleDifficultyChange = (event) => {
@@ -21,18 +32,53 @@ const HostGameLobby = ({ handleStartQuiz }) => {
   const handleTypeChange = (event) => {
     const type = event.target.value;
     setSelectedType(type);
-    console.log("selected type", type);
-  }
+    console.log('selected type', type);
+  };
 
   const handleQuizStart = () => {
-    handleStartQuiz(selectedCategory, selectedDifficulty, selectedType);
+    console.log(selectedCategory, selectedDifficulty, selectedType);
+    if (!uid) console.log('nothing here');
+    // Firebase databse setup
+    const gameSessionRef = ref(db, 'gameSessions');
+    const newGameSessionRef = push(gameSessionRef);
+    const gameSessionID = newGameSessionRef.key;
+    // Database node structure setup
+    const gameSessionData = {
+      host: uid,
+      players: {
+        [uid]: {
+          username: user.displayName,
+          avatar: 'ROBOhere',
+          score: 0,
+        },
+      },
+      category: subject,
+      level: selectedDifficulty,
+      type: selectedType,
+      questions: [],
+    };
+    // Sending all the data to the firebase
+    set(newGameSessionRef, gameSessionData)
+      .then(() => console.log('Game session created successfully'))
+      .catch((error) => console.log('Failed to create game session: ', error));
+
+    handleStartQuiz(
+      selectedCategory,
+      selectedDifficulty,
+      selectedType,
+      gameSessionID
+    );
   };
 
   return (
     <div>
       <div>
         <label htmlFor="category">Category:</label>
-        <select id="category" value={selectedCategory} onChange={handleCategoryChange}>
+        <select
+          id="category"
+          value={selectedCategory}
+          onChange={handleCategoryChange}
+        >
           <option value={9}>General Knowledge</option>
           <option value={10}>Books</option>
           <option value={11}>Films</option>
@@ -61,7 +107,11 @@ const HostGameLobby = ({ handleStartQuiz }) => {
       </div>
       <div>
         <label htmlFor="difficulty">Difficulty:</label>
-        <select id="difficulty" value={selectedDifficulty} onChange={handleDifficultyChange}>
+        <select
+          id="difficulty"
+          value={selectedDifficulty}
+          onChange={handleDifficultyChange}
+        >
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
           <option value="hard">Hard</option>
@@ -75,12 +125,10 @@ const HostGameLobby = ({ handleStartQuiz }) => {
         </select>
       </div>
       {/* <Link to="/quiz"> */}
-        <button onClick={handleQuizStart}>Start Quiz</button>
+      <button onClick={handleQuizStart}>Start Quiz</button>
       {/* </Link> */}
     </div>
   );
 };
 
 export default HostGameLobby;
-
-

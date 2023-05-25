@@ -14,15 +14,17 @@ const App = () => {
   const [category, setCategory] = useState(null);
   const [difficulty, setDifficulty] = useState(null);
   const [type, setType] = useState(null);
-
+  const [gameId, setgameId] = useState('');
   const handleStartQuiz = (
     selectedCategory,
     selectedDifficulty,
-    selectedType
+    selectedType,
+    gameSessionID
   ) => {
     setCategory(selectedCategory);
     setDifficulty(selectedDifficulty);
     setType(selectedType);
+    setgameId(gameSessionID);
   };
 
   return (
@@ -34,7 +36,12 @@ const App = () => {
         <div>
           <Welcome />
           {category && difficulty && type ? (
-            <GameRoom category={category} difficulty={difficulty} type={type} />
+            <GameRoom
+              category={category}
+              difficulty={difficulty}
+              type={type}
+              gameId={gameId}
+            />
           ) : (
             <HostGameLobby handleStartQuiz={handleStartQuiz} />
           )}
