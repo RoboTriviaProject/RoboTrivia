@@ -1,4 +1,4 @@
-import './App.css';
+
 import Auth from './Components/auth/Auth';
 
 import Welcome from './Components/Welcome';
@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HostGameLobby from './Pages/HostGameLobby';
 import GameRoom from './Pages/GameRoom';
+import Loading from './Pages/Loading';
 
 const App = () => {
   const [user] = useAuthState(auth);
@@ -26,25 +27,29 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Robo Trivia App</h1>
-      {!user ? (
-        <Auth />
-      ) : (
-        <div>
-          <Welcome />
-          {category && difficulty && type ? (
-            <GameRoom category={category} difficulty={difficulty} type={type} />
-          ) : (
-            <HostGameLobby handleStartQuiz={handleStartQuiz} />
-          )}
-          <Routes>
-            <Route path="/hostgamelobby" element={<HostGameLobby />} />
-            <Route path="/gameroom" element={<GameRoom />} />
-          </Routes>
-        </div>
-      )}
-    </div>
+    <>
+      <Loading />
+
+      <div>
+        <h1>Robo Trivia App</h1>
+        {!user ? (
+          <Auth />
+        ) : (
+          <div>
+            <Welcome />
+            {category && difficulty && type ? (
+              <GameRoom category={category} difficulty={difficulty} type={type} />
+            ) : (
+              <HostGameLobby handleStartQuiz={handleStartQuiz} />
+            )}
+            <Routes>
+              <Route path="/hostgamelobby" element={<HostGameLobby />} />
+              <Route path="/gameroom" element={<GameRoom />} />
+            </Routes>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

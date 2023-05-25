@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
+import Loading from './Loading';
 
 const GameRoom = ({ category, difficulty, type }) => {
   const [questions, setQuestions] = useState([]);
@@ -88,29 +89,34 @@ const GameRoom = ({ category, difficulty, type }) => {
   options.sort(() => Math.random() - 0.5);
 
   return (
-    <div>
-      <h2>Quiz App</h2>
-      <h3>Question {currentQuestion + 1}</h3>
-      <p dangerouslySetInnerHTML={{ __html: currentQuestionObj.question }} />
-      <ul>
-        {options.map((option) => {
-          const optionId = uuidv4();
-          console.log(`Option: ${option}, ID: ${optionId}`);
-          return (
-            <li key={optionId} onClick={() => handleAnswer(option)}>
-              {option}
-            </li>
-          );
-        })}
-      </ul>
-      <p>Score: {score}</p>
-      {currentQuestion === questions.length - 1 ? (
-        // <Link to="/">
-        //   <button>Finish Quiz</button>
-        // </Link>
-        <Link to="/">Go to Home</Link>
-      ) : null}
-    </div>
+    <>
+      <Loading />
+
+
+      <div>
+        <h2>Quiz App</h2>
+        <h3>Question {currentQuestion + 1}</h3>
+        <p dangerouslySetInnerHTML={{ __html: currentQuestionObj.question }} />
+        <ul>
+          {options.map((option) => {
+            const optionId = uuidv4();
+            console.log(`Option: ${option}, ID: ${optionId}`);
+            return (
+              <li key={optionId} onClick={() => handleAnswer(option)}>
+                {option}
+              </li>
+            );
+          })}
+        </ul>
+        <p>Score: {score}</p>
+        {currentQuestion === questions.length - 1 ? (
+          // <Link to="/">
+          //   <button>Finish Quiz</button>
+          // </Link>
+          <Link to="/">Go to Home</Link>
+        ) : null}
+      </div>
+    </>
   );
 };
 

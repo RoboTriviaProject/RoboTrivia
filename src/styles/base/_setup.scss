@@ -5,38 +5,3 @@ html { box-sizing: border-box;}
 *, *:before, *:after {box-sizing: inherit}
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
-
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.App {
-  text-align: center;
-}
-
-h1{
-  font-size: 50px;
-}
-
-input{
-  width: 50%;
-}
-
-.settingsSelect{
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  width: 100%;
-  flex:0.8;
-  justify-content: space-evenly;
-}
-
-.name{
-  margin-bottom: 50px;
-}
-
-.category{
-  margin-bottom: 30px;
-}
