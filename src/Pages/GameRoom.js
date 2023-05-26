@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
 import { ref, set, get } from 'firebase/database';
 import { db } from '../firebase-config';
+import '../App.css';
 
 const GameRoom = ({ category, difficulty, type, gameId }) => {
   const [questions, setQuestions] = useState([]);
