@@ -28,7 +28,8 @@ const SignUp = () => {
       );
       // Registration successful, handle the response or navigate to another page
       const user = userCredential.user;
-      await updateProfile(user, { displayName });
+      const photoURL = `http://robohash.org/${displayName}.png?set=any&size=200*200`;
+      await updateProfile(user, { displayName, photoURL });
 
       console.log('Registration successful:', user);
     } catch (error) {

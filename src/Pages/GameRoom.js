@@ -2,46 +2,78 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
+import { ref, set, get } from 'firebase/database';
+import { db } from '../firebase-config';
 
-const GameRoom = ({ category, difficulty, type }) => {
+const GameRoom = ({ category, difficulty, type, gameId }) => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [quizCompleted, setQuizCompleted] = useState(false);
-  // console.log(category, difficulty, type);
+  console.log('game id:', gameId);
 
   useEffect(() => {
     fetchData(category, difficulty, type);
   }, [category, difficulty, type]);
 
   const fetchData = (category, difficulty, type) => {
-    axios
-      .get(
-        `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=${type}`
-      )
-      .then((response) => {
-        const questionsWithUniqueIds = response.data.results.map(
-          (question) => ({
-            ...question,
-            id: uuidv4(),
-          })
-        );
-        setQuestions(questionsWithUniqueIds);
-        setLoading(false);
-        console.log(questionsWithUniqueIds);
+    // Reference to the game session data in Firebase
+    const gameSessionRef = ref(db, `gameSessions/${gameId}/questions`);
+    console.log(gameId);
+    //Tries to Fetch the data from Firebase if it exist then use it otherwise make API call and then save it
+    get(gameSessionRef)
+      .then((snapshot) => {
+        // .exists is a firebase method used to check the existence of data. it returns true or false.
+        if (snapshot.exists()) {
+          // If the data exists in Firebase, use it
+          const data = snapshot.val();
+          setQuestions(data);
+          setLoading(false);
+        } else {
+          // If the data does not exist in Firebase make the API call
+          axios
+            .get(
+              `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=${type}`
+            )
+            .then((response) => {
+              const questionsWithUniqueIds = response.data.results.map(
+                (question) => ({
+                  ...question,
+                  id: uuidv4(),
+                })
+              );
+              // Save the data in Firebase
+              set(gameSessionRef, questionsWithUniqueIds)
+                .then(() => {
+                  // Set the local state with the fetched data
+                  setQuestions(questionsWithUniqueIds);
+                  setLoading(false);
+                })
+                .catch((error) => {
+                  setError(
+                    'Failed to save questions to Firebase. Please try again later.'
+                  );
+                  setLoading(false);
+                });
+            })
+            .catch((error) => {
+              setError('Failed to fetch questions. Please try again later.');
+              setLoading(false);
+            });
+        }
       })
       .catch((error) => {
-        setError('Failed to fetch questions. Please try again later.');
+        setError('Failed to fetch data from Firebase. Please try again later.');
         setLoading(false);
-        console.log(error);
       });
   };
 
   const handleAnswer = (answer) => {
     if (quizCompleted) {
-      return; // Don't update the score if the quiz is completed
+      // Don't update the score if the quiz is completed
+      return;
     }
 
     const currentQuestionObj = questions[currentQuestion];
@@ -95,7 +127,7 @@ const GameRoom = ({ category, difficulty, type }) => {
       <ul>
         {options.map((option) => {
           const optionId = uuidv4();
-          console.log(`Option: ${option}, ID: ${optionId}`);
+          // console.log(`Option: ${option}, ID: ${optionId}`);
           return (
             <li key={optionId} onClick={() => handleAnswer(option)}>
               {option}
