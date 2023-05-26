@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { auth } from '../../firebase-config';
 import { signInAnonymously, updateProfile } from 'firebase/auth';
 
-const GuestLogin = () => {
+const GuestLogin = ({ setUserProf }) => {
   const [input, setInput] = useState('');
 
   const handleLogin = (e) => {
@@ -16,8 +16,10 @@ const GuestLogin = () => {
       const userCredential = await signInAnonymously(auth);
       const user = userCredential.user;
       const displayName = input;
-      await updateProfile(user, { displayName });
-      // console.log(' guest Login successful:', user);
+      const photoURL = `http://robohash.org/${input}.png?set=any&size=200x200`;
+      await updateProfile(user, { displayName, photoURL });
+      console.log(' guest Login successful:', user);
+      setUserProf(user);
     } catch (error) {
       console.error('Error during login:', error);
     }
