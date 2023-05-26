@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
 import { ref, set, get } from 'firebase/database';
 import { db } from '../firebase-config';
+import '../App.css';
 
 const GameRoom = ({ category, difficulty, type, gameId }) => {
   const [questions, setQuestions] = useState([]);
@@ -106,7 +107,7 @@ const GameRoom = ({ category, difficulty, type, gameId }) => {
       </div>
     );
   }
-  // Rayan Added this for temporary erro hnading
+
   if (questions.length === 0) {
     return <p>Loading...</p>;
   }
@@ -121,7 +122,12 @@ const GameRoom = ({ category, difficulty, type, gameId }) => {
 
   return (
     <div>
-      <h2>Quiz App</h2>
+      <div className="quizInfo">
+          <h3>{questions[currentQuestion].category}</h3>
+          <p>Score: {score}</p>
+      </div>
+
+      <div className="questionFromAPI">
       <h3>Question {currentQuestion + 1}</h3>
       <p dangerouslySetInnerHTML={{ __html: currentQuestionObj.question }} />
       <ul>
@@ -135,11 +141,9 @@ const GameRoom = ({ category, difficulty, type, gameId }) => {
           );
         })}
       </ul>
-      <p>Score: {score}</p>
+      </div>
+     
       {currentQuestion === questions.length - 1 ? (
-        // <Link to="/">
-        //   <button>Finish Quiz</button>
-        // </Link>
         <Link to="/">Go to Home</Link>
       ) : null}
     </div>

@@ -78,7 +78,8 @@ const HostGameLobby = ({ handleStartQuiz }) => {
 
   return (
     <div>
-      <div>
+      <div className="selectOptions">
+      <div className="chooseCategory">
         <label htmlFor="category">Category:</label>
         <select
           id="category"
@@ -111,7 +112,8 @@ const HostGameLobby = ({ handleStartQuiz }) => {
           <option value={32}>Cartoon and Animations</option>
         </select>
       </div>
-      <div>
+      
+      <div className="chooseDifficulty">
         <label htmlFor="difficulty">Difficulty:</label>
         <select
           id="difficulty"
@@ -123,16 +125,17 @@ const HostGameLobby = ({ handleStartQuiz }) => {
           <option value="hard">Hard</option>
         </select>
       </div>
-      <div>
-        <label htmlFor="type">Type:</label>
+      <div className="chooseType">
+        <label htmlFor="type">Type: </label>
         <select id="type" value={selectedType} onChange={handleTypeChange}>
           <option value="multiple">Multiple Choice</option>
           <option value="boolean">True/False</option>
         </select>
       </div>
       {/* <Link to="/quiz"> */}
-      <button onClick={handleQuizStart}>Start Quiz</button>
+      <button onClick={handleQuizStart} className="startQuizButton">Start Quiz</button>
       {/* </Link> */}
+      </div>
     </div>
   );
 };

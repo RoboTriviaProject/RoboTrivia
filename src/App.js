@@ -16,6 +16,8 @@ const App = () => {
   const [category, setCategory] = useState(null);
   const [difficulty, setDifficulty] = useState(null);
   const [type, setType] = useState(null);
+ 
+
   const [gameId, setgameId] = useState('');
   const handleStartQuiz = (
     selectedCategory,
@@ -30,8 +32,8 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Robo Trivia App</h1>
+    <div className="hostLobby">
+      <h1>Robo Trivia</h1>
       {!user ? (
         <Auth setUserProf={setUserProf} />
       ) : (
