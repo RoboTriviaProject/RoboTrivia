@@ -9,6 +9,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 const HostGameLobby = ({ handleStartQuiz }) => {
   const [user] = useAuthState(auth);
+  // storing the user's id in uid variable
   const uid = user.uid;
   const [selectedCategory, setSelectedCategory] = useState(9);
   const [selectedDifficulty, setSelectedDifficulty] = useState('medium');
@@ -17,10 +18,13 @@ const HostGameLobby = ({ handleStartQuiz }) => {
 
   const handleCategoryChange = (event) => {
     const category = event.target.value;
+    // This gives me the index number of the category
     const selectedIndex = event.target.options.selectedIndex;
+    // I use that to access the text of the category
     const categoryText = event.target.options[selectedIndex].text;
 
     setSelectedCategory(category);
+    // Save the category text in a state so I can display it later
     setSubject(categoryText);
   };
 
@@ -37,6 +41,7 @@ const HostGameLobby = ({ handleStartQuiz }) => {
 
   const handleQuizStart = () => {
     console.log(selectedCategory, selectedDifficulty, selectedType);
+    // temporary check . will remove later
     if (!uid) console.log('nothing here');
     // Firebase databse setup
     const gameSessionRef = ref(db, 'gameSessions');
@@ -66,6 +71,7 @@ const HostGameLobby = ({ handleStartQuiz }) => {
       selectedCategory,
       selectedDifficulty,
       selectedType,
+      // now Game ID will be accessible to all components from the App
       gameSessionID
     );
   };

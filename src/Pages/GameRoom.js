@@ -12,7 +12,7 @@ const GameRoom = ({ category, difficulty, type, gameId }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [quizCompleted, setQuizCompleted] = useState(false);
-  // console.log(category, difficulty, type);
+  console.log('game id:', gameId);
 
   useEffect(() => {
     fetchData(category, difficulty, type);
@@ -21,10 +21,11 @@ const GameRoom = ({ category, difficulty, type, gameId }) => {
   const fetchData = (category, difficulty, type) => {
     // Reference to the game session data in Firebase
     const gameSessionRef = ref(db, `gameSessions/${gameId}/questions`);
-
+    console.log(gameId);
     //Tries to Fetch the data from Firebase if it exist then use it otherwise make API call and then save it
     get(gameSessionRef)
       .then((snapshot) => {
+        // .exists is a firebase method used to check the existence of data. it returns true or false.
         if (snapshot.exists()) {
           // If the data exists in Firebase, use it
           const data = snapshot.val();
@@ -126,7 +127,7 @@ const GameRoom = ({ category, difficulty, type, gameId }) => {
       <ul>
         {options.map((option) => {
           const optionId = uuidv4();
-          console.log(`Option: ${option}, ID: ${optionId}`);
+          // console.log(`Option: ${option}, ID: ${optionId}`);
           return (
             <li key={optionId} onClick={() => handleAnswer(option)}>
               {option}
