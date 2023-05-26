@@ -1,7 +1,7 @@
 import '../App.css';
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 const HostGameLobby = ({ handleStartQuiz }) => {
   const [selectedCategory, setSelectedCategory] = useState(9); 
@@ -21,17 +21,17 @@ const HostGameLobby = ({ handleStartQuiz }) => {
   const handleTypeChange = (event) => {
     const type = event.target.value;
     setSelectedType(type);
-    console.log("selected type", type);
+    // console.log("selected type", type);
   }
 
   const handleQuizStart = () => {
-    handleStartQuiz(selectedCategory, selectedDifficulty, selectedType);
+    handleStartQuiz(selectedCategory, selectedDifficulty, selectedType);  
   };
 
   return (
-    <div>
-      <div>
-        <label htmlFor="category">Category:</label>
+    <div className="selectOptions">
+      <div className="chooseCategory">
+        <label htmlFor="category" >Category: </label>
         <select id="category" value={selectedCategory} onChange={handleCategoryChange}>
           <option value={9}>General Knowledge</option>
           <option value={10}>Books</option>
@@ -59,23 +59,23 @@ const HostGameLobby = ({ handleStartQuiz }) => {
           <option value={32}>Cartoon and Animations</option>
         </select>
       </div>
-      <div>
-        <label htmlFor="difficulty">Difficulty:</label>
+      <div className="chooseDifficulty">
+        <label htmlFor="difficulty">Difficulty: </label>
         <select id="difficulty" value={selectedDifficulty} onChange={handleDifficultyChange}>
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
           <option value="hard">Hard</option>
         </select>
       </div>
-      <div>
-        <label htmlFor="type">Type:</label>
+      <div className="chooseType">
+        <label htmlFor="type">Type: </label>
         <select id="type" value={selectedType} onChange={handleTypeChange}>
           <option value="multiple">Multiple Choice</option>
           <option value="boolean">True/False</option>
         </select>
       </div>
       {/* <Link to="/quiz"> */}
-        <button onClick={handleQuizStart}>Start Quiz</button>
+        <button onClick={handleQuizStart} className="startQuizButton">Start Quiz</button>
       {/* </Link> */}
     </div>
   );

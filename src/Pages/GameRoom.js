@@ -30,7 +30,7 @@ const GameRoom = ({ category, difficulty, type }) => {
         );
         setQuestions(questionsWithUniqueIds);
         setLoading(false);
-        console.log(questionsWithUniqueIds);
+        // console.log(questionsWithUniqueIds);
       })
       .catch((error) => {
         setError('Failed to fetch questions. Please try again later.');
@@ -74,7 +74,7 @@ const GameRoom = ({ category, difficulty, type }) => {
       </div>
     );
   }
-  // Rayan Added this for temporary erro hnading
+
   if (questions.length === 0) {
     return <p>Loading...</p>;
   }
@@ -89,13 +89,18 @@ const GameRoom = ({ category, difficulty, type }) => {
 
   return (
     <div>
-      <h2>Quiz App</h2>
+      <div className="quizInfo">
+          <h3>{questions[currentQuestion].category}</h3>
+          <p>Score: {score}</p>
+      </div>
+
+      <div className="questionFromAPI">
       <h3>Question {currentQuestion + 1}</h3>
       <p dangerouslySetInnerHTML={{ __html: currentQuestionObj.question }} />
       <ul>
         {options.map((option) => {
           const optionId = uuidv4();
-          console.log(`Option: ${option}, ID: ${optionId}`);
+          // console.log(`Option: ${option}, ID: ${optionId}`);
           return (
             <li key={optionId} onClick={() => handleAnswer(option)}>
               {option}
@@ -103,11 +108,9 @@ const GameRoom = ({ category, difficulty, type }) => {
           );
         })}
       </ul>
-      <p>Score: {score}</p>
+      </div>
+     
       {currentQuestion === questions.length - 1 ? (
-        // <Link to="/">
-        //   <button>Finish Quiz</button>
-        // </Link>
         <Link to="/">Go to Home</Link>
       ) : null}
     </div>

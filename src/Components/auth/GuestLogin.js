@@ -17,7 +17,7 @@ const GuestLogin = () => {
       const user = userCredential.user;
       const displayName = input;
       await updateProfile(user, { displayName });
-      console.log(' guest Login successful:', user);
+      // console.log(' guest Login successful:', user);
     } catch (error) {
       console.error('Error during login:', error);
     }
