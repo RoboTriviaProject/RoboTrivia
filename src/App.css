@@ -19,7 +19,7 @@ html { box-sizing: border-box;}
 }
 
 .hostLobby{
-  background: url('./assets/images/png/chalkBackground.png');
+  background: url('./assets/images/chalkBackground-min.png');
   height: 100vh;
 }
 
@@ -27,25 +27,34 @@ h1{
   font-size: 50px;
 }
 
+/* 
+  COLOUR PALETTE:
 
-/******************** HOSTGAME LOBBY ************************/
-.selectOptions{
-  background: darkmagenta;
-  height: 55vh;
-  width: 70vh;
+  magenta: #b91372
+  teal: #41ead4
+  red: #ff0022
+  yellow: #fcd24f
+  off-white: #fefaf0
+*/
+
+/******************** HOST GAME LOBBY ************************/
+.selectOptions {
+  background: #b91372;
+  height: 100%;
+  width: 50%;
   text-align: center;
   margin: auto;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  border :10px solid white
+  border :10px solid #fefaf0;
 
 }
 
 .chooseCategory,
 .chooseDifficulty,
-.chooseType{
-  background:#ff0;
+.chooseType {
+  background:#fcd24f;
   padding: 10px;
   width: 65%;
   border-radius: 10px;
@@ -53,57 +62,57 @@ h1{
   font-size: 20px ;
 }
 
-.startQuizButton{
+.startQuizButton {
     border-radius: 50px;
     width: 30%;
-    background: aquamarine;
-    box-shadow: magenta;
+    background: #41ead4;
+    box-shadow: #b91372;
     margin: 0 0 0 30%;
     padding: 10px;
     box-shadow: 4px 4px 4px navy;
 }
 
 /************* GAMEROOM.js CSS *******************/
-.questionFromAPI{
+.questionFromAPI {
      text-align: center;
      margin: auto;
-     border :10px solid white;
+     border :10px solid #fefaf0;
      padding: 15px;
-     color: white;
+     color: #fefaf0;
      font-size: 20px;
      width: 80%;
      height: 50%;
 }
 
-.quizInfo{
+.quizInfo {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
   margin: 10px;
-  color: white;
+  color: #fefaf0;
   font-size: 25px;
 }
 
-.questionFromAPI h3{
+.questionFromAPI h3 {
   padding: 10px;
 }
 
-.questionFromAPI p{
+.questionFromAPI p {
    padding: 10px;
 }
 
-.questionFromAPI ul{
+.questionFromAPI ul {
   padding: 10px;
 }
 
-.questionFromAPI li{
+.questionFromAPI li {
   padding: 10px;
   width: 85%;
   
 }
 
-.questionFromAPI li:hover{
+.questionFromAPI li:hover {
   cursor: pointer;
-  background-color: aliceblue;
+  background-color: #fefaf0;
   color: black;
 }
