@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { ref, set, get } from 'firebase/database';
 import { db } from '../firebase-config';
 import CountdownTimer from '../Components/CountdownTimer';
 import '../App.css';
 
-const GameRoom = ({ category, difficulty, type, gameId }) => {
+const GameRoom = ({ category, difficulty, type }) => {
   // Array to hold quiz questions
   const [questions, setQuestions] = useState([]);
   // Index for the current question
@@ -22,6 +22,8 @@ const GameRoom = ({ category, difficulty, type, gameId }) => {
   const [quizCompleted, setQuizCompleted] = useState(false);
   // State to control timer reset
   const [resetTimer, setResetTimer] = useState(null);
+  // Grabs the game id from the URL
+  const { gameId } = useParams();
 
   // Effect hook to fetch data on initial render and on changes to category, difficulty, type
   useEffect(() => {
