@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { auth } from '../../firebase-config';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -66,7 +67,9 @@ const SignUp = () => {
             onChange={(e) => setDisplayname(e.target.value)}
           />
         </div>
-        <button type="submit">Register</button>
+        <Link to="/">
+          <button type="submit">Register</button>
+        </Link>
       </form>
     </div>
   );

@@ -13,6 +13,7 @@ const GameRoom = ({ category, difficulty, type, gameId }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [quizCompleted, setQuizCompleted] = useState(false);
+  const [finalScore, setFinalScore] = useState(0);
   console.log('game id:', gameId);
 
   useEffect(() => {
@@ -90,6 +91,7 @@ const GameRoom = ({ category, difficulty, type, gameId }) => {
       // Quiz completed
       // console.log('Quiz completed');
       setQuizCompleted(true);
+      setFinalScore(score);
     }
   };
 
@@ -143,9 +145,14 @@ const GameRoom = ({ category, difficulty, type, gameId }) => {
       </ul>
       </div>
      
-      {currentQuestion === questions.length - 1 ? (
-        <Link to="/">Go to Home</Link>
-      ) : null}
+      {quizCompleted && (
+        <div>
+          <Link to="/results">
+            <button>Show Results</button>
+          </Link>
+          <Link to="/">Go to Home</Link>
+        </div>
+      )}
     </div>
   );
 };

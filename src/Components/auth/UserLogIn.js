@@ -1,6 +1,7 @@
 import { auth } from '../../firebase-config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const UserLogIn = () => {
   const [email, setEmail] = useState('');
@@ -51,7 +52,7 @@ const UserLogIn = () => {
         <button type="submit">Login</button>
       </form>
 
-      <a href="#">New player ? create a new profile</a>
+      <Link to="/signup">New player? Create a profile now!</Link>
     </>
   );
 };
