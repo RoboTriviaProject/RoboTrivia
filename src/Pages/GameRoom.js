@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
 import { ref, set, get } from 'firebase/database';
 import { db } from '../firebase-config';
-// import Timer from '../Components/Timer';
 import '../App.css';
 
 const GameRoom = ({ category, difficulty, type, gameId }) => {
@@ -124,8 +123,8 @@ const GameRoom = ({ category, difficulty, type, gameId }) => {
     ...currentQuestionObj.incorrect_answers,
     currentQuestionObj.correct_answer,
   ];
-  // //Its going to shuffle options.We can call the sort() method, which accepts a function that returns a value between -0.5 and 0.5:
-  options.sort(() => Math.random() - 0.5);
+  // Its going to shuffle options.We can call the sort() method, which accepts a function that returns a value between -0.5 and 0.5:
+  // options.sort(() => Math.random() - 0.5);
 
 
 
