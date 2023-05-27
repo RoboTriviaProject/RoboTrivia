@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
 import { ref, set, get } from 'firebase/database';
 import { db } from '../firebase-config';
+// import Timer from '../Components/Timer';
 import '../App.css';
 
 const GameRoom = ({ category, difficulty, type, gameId }) => {
@@ -13,11 +14,17 @@ const GameRoom = ({ category, difficulty, type, gameId }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [quizCompleted, setQuizCompleted] = useState(false);
+  const [counter, setCounter] = useState(15);
+
   console.log('game id:', gameId);
 
   useEffect(() => {
     fetchData(category, difficulty, type);
   }, [category, difficulty, type]);
+
+  useEffect(() => {
+    counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+  }, [counter]);
 
   const fetchData = (category, difficulty, type) => {
     // Reference to the game session data in Firebase
@@ -120,11 +127,14 @@ const GameRoom = ({ category, difficulty, type, gameId }) => {
   // //Its going to shuffle options.We can call the sort() method, which accepts a function that returns a value between -0.5 and 0.5:
   options.sort(() => Math.random() - 0.5);
 
+
+
   return (
     <div>
       <div className="quizInfo">
+          <p>Score: {score}/10</p>
           <h3>{questions[currentQuestion].category}</h3>
-          <p>Score: {score}</p>
+          <p>Countdown: {counter}</p>
       </div>
 
       <div className="questionFromAPI">
