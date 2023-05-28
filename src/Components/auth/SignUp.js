@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { auth } from '../../firebase-config';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import './../../App.css';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -39,11 +40,11 @@ const SignUp = () => {
   };
 
   return (
-    <div>
+    <div className='registration'>
       <h2>Registration</h2>
       <form onSubmit={handleRegistration}>
         <div>
-          <label>Email</label>
+          <label>Email:</label>
           <input
             type="email"
             value={email}

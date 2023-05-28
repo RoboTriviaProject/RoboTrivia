@@ -13,6 +13,15 @@ html { box-sizing: border-box;}
   overflow-x: hidden;
 }
 
+body {
+  font-family: 'Hind Siliguri', sans-serif;
+  /* font-family: 'Poiret One', cursive; */
+}
+
+/* a {
+  text-decoration: none;
+} */
+
 /************ App.js CSS  ************/
 .App {
   text-align: center;
@@ -24,7 +33,42 @@ html { box-sizing: border-box;}
 }
 
 h1{
-  font-size: 50px;
+  font-size: 5rem;
+  color: #fefaf0;
+  text-align: center;
+  font-family: 'Poiret One', cursive;
+  overflow: hidden;
+  margin: 2rem;
+}
+
+input {
+  width: 50%;
+}
+
+.settingsSelect {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 100%;
+  flex: 0.8;
+  justify-content: space-evenly;
+}
+
+.name {
+  margin-bottom: 50px;
+}
+
+.category {
+  margin-bottom: 30px;
+}
+
+.imgContainer {
+  width: 140px;
+  height: 140px;
+}
+
+img {
+  width: 100%;
 }
 
 /* 
@@ -37,6 +81,103 @@ h1{
   off-white: #fefaf0
 */
 
+/******************** HOME / SIGN IN ************************/
+.signIn {
+  background-color: #fefaf0;
+  margin: 2rem 5rem;
+  text-align: center;
+  /* width: 65%; */
+  /* height: 100%; */
+  border-radius: 10px;
+  border :7px solid #41ead4;
+  
+}
+
+.userButton {
+  background:#000;
+  padding: 10px;
+  margin: 2rem 2rem;
+  color: #fefaf0;
+  border-radius: 50px;
+  font-weight: 700;
+  border: none;
+}
+
+.userButton:hover,
+.userButton:focus {
+  background:#b91372;
+  color: #fefaf0;
+}
+
+.logIn {
+  margin: 1rem;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logInInput {
+  margin: 1rem;
+}
+
+.logIn button {
+  border-radius: 50px;
+  background: #b91372;
+  color: #fefaf0;
+  padding: 10px 20px;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 3px;
+  border: none;
+}
+
+.logIn button:hover,
+.logIn button:focus {
+  background: rgba(185, 19, 113, 0.607);
+}
+
+
+.logIn form {
+  margin-bottom: 1rem;
+}
+
+.logIn Input {
+  background: #fcd24f;
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.logIn p {
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+.newPlayer {
+  margin-top: 1rem;
+  color: #000;
+}
+
+/********************* WELCOME ***********************/
+
+.welcomeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* text-align: center; */
+}
+
+.welcome {
+  color: #fefaf0;
+  font-family: 'Poiret One', cursive;
+}
+
+
 /******************** HOST GAME LOBBY ************************/
 .selectOptions {
   background: #b91372;
@@ -48,7 +189,6 @@ h1{
   flex-direction: column;
   flex-wrap: wrap;
   border :10px solid #fefaf0;
-
 }
 
 .chooseCategory,
@@ -103,7 +243,7 @@ h1{
 
 .questionFromAPI ul {
   padding: 10px;
-}
+} 
 
 .questionFromAPI li {
   padding: 10px;

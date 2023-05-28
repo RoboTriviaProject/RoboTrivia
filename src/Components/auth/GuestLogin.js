@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { auth } from '../../firebase-config';
 import { signInAnonymously, updateProfile } from 'firebase/auth';
+import './../../App.css'
 
 const GuestLogin = ({ setUserProf }) => {
   const [input, setInput] = useState('');
@@ -26,21 +27,22 @@ const GuestLogin = ({ setUserProf }) => {
   };
 
   return (
-    <>
-      <p>Please login in to play the game</p>
+    <div className='logIn'>
+      <p>Please create a nickname <br></br>to play the game</p>
       <form onSubmit={handleLogin}>
         <div>
-          <label>Choose a name</label>
+          <label className='sr-only'>Choose a name</label>
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            placeholder='Choose a nickname'
           />
         </div>
 
-        <button type="submit">Login</button>
+        <button type="submit">Next</button>
       </form>
-    </>
+    </div>
   );
 };
 

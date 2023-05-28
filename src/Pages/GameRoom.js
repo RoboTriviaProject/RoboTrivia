@@ -2,16 +2,17 @@ import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { Link, useParams } from 'react-router-dom';
+
 import { ref, set, get } from 'firebase/database';
 import { db } from '../firebase-config';
 import CountdownTimer from '../Components/CountdownTimer';
 import '../App.css';
 
-
 const GameRoom = ({ category, difficulty, type }) => {
   // Array to hold quiz questions
   const [questions, setQuestions] = useState([]);
   // Index for the current question
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   // Score of the game
   const [score, setScore] = useState(0);
@@ -20,6 +21,7 @@ const GameRoom = ({ category, difficulty, type }) => {
   // Error message
   const [error, setError] = useState('');
   // Status of the quiz
+
   const [quizCompleted, setQuizCompleted] = useState(false);
   // State to control timer reset
   const [resetTimer, setResetTimer] = useState(null);
@@ -27,6 +29,7 @@ const GameRoom = ({ category, difficulty, type }) => {
   const { gameId } = useParams();
 
   // Effect hook to fetch data on initial render and on changes to category, difficulty, type
+
   useEffect(() => {
     fetchData(category, difficulty, type);
   }, [category, difficulty, type]);
@@ -148,8 +151,7 @@ const GameRoom = ({ category, difficulty, type }) => {
     ...currentQuestionObj.incorrect_answers,
     currentQuestionObj.correct_answer,
   ];
-
-  // It's going to shuffle options.We can call the sort() method, which accepts a function that returns a value between -0.5 and 0.5:
+  //Its going to shuffle options.We can call the sort() method, which accepts a function that returns a value between -0.5 and 0.5:
   options.sort(() => Math.random() - 0.5);
 
   return (
@@ -164,7 +166,6 @@ const GameRoom = ({ category, difficulty, type }) => {
           onReset={handleReset}
         />
       </div>
-
       <div className="questionFromAPI">
         <h3>Question {currentQuestion + 1}</h3>
         <p dangerouslySetInnerHTML={{ __html: currentQuestionObj.question }} />
