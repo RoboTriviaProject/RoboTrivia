@@ -9,8 +9,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import HostGameLobby from './Pages/HostGameLobby';
 import GameRoom from './Pages/GameRoom';
 import Header from './Components/Header';
-import logo from './assets/images/robotLogo-min.png';
-import helpIcon from './assets/images/helpIcon-min.png'
+
 
 const App = () => {
   const [user] = useAuthState(auth);
@@ -36,13 +35,6 @@ const App = () => {
     
     <div className="hostLobby">
     <Header />
-      {/* <header>
-        {/* <h1>Robo Trivia</h1> */}
-
-        {/* <img src={logo} className="logo" title="Home" alt="a yellow robot head" />
-        <h1>Robo Trivia</h1>
-        <img src={helpIcon} className="helpIcon" title="How to play" alt="circular help icon " /> */}
-      {/* </header> */} 
 
       <Routes>
         <Route
