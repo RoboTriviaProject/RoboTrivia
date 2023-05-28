@@ -160,7 +160,7 @@ const GameRoom = ({ category, difficulty, type }) => {
     currentQuestionObj.correct_answer,
   ];
   //Its going to shuffle options.We can call the sort() method, which accepts a function that returns a value between -0.5 and 0.5
-  //options.sort(() => Math.random() - 0.5);
+  //// options.sort(() => Math.random() - 0.5);
 
   return (
     <div>
