@@ -6,6 +6,7 @@ import { Link, useParams } from 'react-router-dom';
 import { ref, set, get } from 'firebase/database';
 import { db } from '../firebase-config';
 import CountdownTimer from '../Components/CountdownTimer';
+import { PacmanLoader } from 'react-spinners';
 import '../App.css';
 
 const GameRoom = ({ category, difficulty, type }) => {
@@ -128,7 +129,11 @@ const GameRoom = ({ category, difficulty, type }) => {
 
   // Rendering based on different states
   if (loading) {
-    return <div>{/* Loading... icon (react spinners package)*/}</div>;
+    return (
+      <div className="spinner">
+        <PacmanLoader color="#fff" size={50} />
+      </div>
+    );
   }
   // Rendering based on different states
   if (error) {
