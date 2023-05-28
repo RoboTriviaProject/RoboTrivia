@@ -130,8 +130,8 @@ const GameRoom = ({ category, difficulty, type }) => {
   // Rendering based on different states
   if (loading) {
     return (
-      <div className="spinner">
-        <PacmanLoader color="#fff" size={50} />
+      <div className="spinnerContainer">
+          <PacmanLoader color="#fff" size={50} />
       </div>
     );
   }

@@ -27,6 +27,11 @@ body {
   text-align: center;
 }
 
+html,
+body {
+  overflow: hidden;
+}
+
 .hostLobby{
   background: url('./assets/images/chalkBackground-min.png');
   height: 100vh;
@@ -256,3 +261,17 @@ img {
   background-color: #fefaf0;
   color: black;
 }
+
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.spinner {
+  overflow: hidden;
+}
+
+

@@ -75,13 +75,17 @@ const App = () => {
                 difficulty={difficulty}
                 type={type}
                 gameId={gameId}
-              >
-                <Route 
-                  path="result"
-                  element={<Result />}
-                />
-              </GameRoom>
+              />
             )
+          }
+        />
+        <Route 
+          path="/gameroom/:gameId/result"
+          element={
+            <Result 
+              gameId={gameId}
+              // score={score}
+            />
           }
         />
       </Routes>
