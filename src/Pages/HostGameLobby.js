@@ -1,9 +1,9 @@
 import '../App.css';
-
+import SignOut from '../Components/auth/SignOut';
 import { push, ref, set, update } from 'firebase/database';
 import { db } from '../firebase-config';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
@@ -15,6 +15,7 @@ const HostGameLobby = ({ handleStartQuiz }) => {
   const [selectedDifficulty, setSelectedDifficulty] = useState('medium');
   const [selectedType, setSelectedType] = useState('multiple');
   const [subject, setSubject] = useState('');
+  const navigate = useNavigate();
 
   const handleCategoryChange = (event) => {
     const category = event.target.value;
@@ -67,14 +68,9 @@ const HostGameLobby = ({ handleStartQuiz }) => {
       .then(() => console.log('Game session created successfully'))
       .catch((error) => console.log('Failed to create game session: ', error));
 
-    handleStartQuiz(
-      selectedCategory,
-      selectedDifficulty,
-      selectedType,
-      // now Game ID will be accessible to all components from the App
-      gameSessionID
-    );
-  };
+      handleStartQuiz(selectedCategory, selectedDifficulty, selectedType);
+      navigate(`/gameroom/${gameSessionID}`);
+    };
 
   return (
     <div>
@@ -113,29 +109,33 @@ const HostGameLobby = ({ handleStartQuiz }) => {
         </select>
       </div>
       
+
       <div className="chooseDifficulty">
-        <label htmlFor="difficulty">Difficulty:</label>
-        <select
-          id="difficulty"
-          value={selectedDifficulty}
-          onChange={handleDifficultyChange}
-        >
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select>
+          <label htmlFor="difficulty">Difficulty:</label>
+          <select
+            id="difficulty"
+            value={selectedDifficulty}
+            onChange={handleDifficultyChange}
+          >
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+        <div className="chooseType">
+          <label htmlFor="type">Type: </label>
+          <select id="type" value={selectedType} onChange={handleTypeChange}>
+            <option value="multiple">Multiple Choice</option>
+            <option value="boolean">True/False</option>
+          </select>
+        </div>
+        {/* <Link to="/quiz"> */}
+        <button onClick={handleQuizStart} className="startQuizButton">
+          Start Quiz
+        </button>
+        {/* </Link> */}
       </div>
-      <div className="chooseType">
-        <label htmlFor="type">Type: </label>
-        <select id="type" value={selectedType} onChange={handleTypeChange}>
-          <option value="multiple">Multiple Choice</option>
-          <option value="boolean">True/False</option>
-        </select>
-      </div>
-      {/* <Link to="/quiz"> */}
-      <button onClick={handleQuizStart} className="startQuizButton">Start Quiz</button>
-      {/* </Link> */}
-      </div>
+      <SignOut />
     </div>
   );
 };
