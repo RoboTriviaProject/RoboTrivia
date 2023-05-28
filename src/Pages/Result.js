@@ -1,48 +1,72 @@
-
-// The useEffect hook is used to fetch the leaderboard data from Firebase when the component mounts and whenever the gameId prop changes
-// It creates a reference to the Firebase Realtime Database based on the gameId.
-// The onValue function listens for changes in the (leaderboard data) and triggers the callback function when the data is updated.
-// Inside the callback function, the data from the snapshot is extracted and transformed into an array of leaderboard entries. (this might not be needed if its already done in firebase, I havent seen the firebase since you updated it)
-// If the data is not null (i.e., leaderboard data exists), it is mapped into an array where each entry includes the playerId and other player data.
-// The leaderboardData array is then set as the new state using the setLeaderboard function. If the data is null, indicating no leaderboard data, an empty array is set as the state.
-// leaderboardListener is assuming we have a leaderboardRef in firebase for each gameId
-
-
-
-
 import React, { useEffect, useState } from 'react';
-import { ref, onValue } from 'firebase/database';
+import { ref, set, get, child, onValue, push } from 'firebase/database';
 import { db } from '../firebase-config';
+import { auth } from '../firebase-config';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useParams } from 'react-router-dom';
+import SignOut from '../Components/auth/SignOut';
 
-const Result = ({ gameId, score, userProf }) => {
+const Result = ({ score }) => {
   const [leaderboard, setLeaderboard] = useState([]);
+  const [user] = useAuthState(auth);
+  const { gameId } = useParams();
+  console.log(user.displayName, gameId, score);
 
   useEffect(() => {
-    const leaderboardRef = ref(db, `gameSessions/${gameId}/leaderboard`);
+    if (gameId && score !== undefined && user) {
+      // Add this check
+      const gameSessionRef = ref(db, `gameSessions/${gameId}`);
+      const leaderboardRef = child(gameSessionRef, 'leaderboard');
 
-    const leaderboardListener = onValue(leaderboardRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        const leaderboardData = Object.entries(data).map(([playerId, playerData]) => ({
-          playerId,
-          ...playerData
-        }));
-        setLeaderboard(leaderboardData);
-      } else {
-        setLeaderboard([]);
-      }
-    });
+      get(leaderboardRef).then((snapshot) => {
+        if (snapshot.exists()) {
+          // Leaderboard exists, add score
+          const playerRef = child(leaderboardRef, user.uid);
+          set(playerRef, {
+            name: user.displayName,
+            score: score,
+            photoURL: user.photoURL,
+          });
+        } else {
+          // Leaderboard does not exist, create it
+          set(leaderboardRef, {
+            [user.uid]: {
+              name: user.displayName,
+              score: score,
+              photoURL: user.photoURL,
+            },
+          });
+        }
+      });
 
-    return () => {
-      // Cleanup the listener when the component is unmounted
-      leaderboardListener();
-    };
-  }, [gameId]);
+      const leaderboardListener = onValue(leaderboardRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          const leaderboardData = Object.entries(data)
+            .map(([playerId, playerData]) => ({
+              playerId,
+              ...playerData,
+            }))
+            // sort the scores in descending order
+            .sort((a, b) => b.score - a.score);
+          setLeaderboard(leaderboardData);
+          console.log(leaderboard);
+        } else {
+          setLeaderboard([]);
+        }
+      });
+
+      return () => {
+        // Cleanup the listener when the component is unmounted
+        leaderboardListener();
+      };
+    }
+  }, [gameId, score, user]);
 
   return (
     <div>
       <h2>Score: {score}</h2>
-      <h3>User: {userProf.displayName}</h3>
+      <h3>User: {user.displayName}</h3>
       <table>
         <thead>
           <tr>
@@ -55,12 +79,15 @@ const Result = ({ gameId, score, userProf }) => {
           {leaderboard.map((player, index) => (
             <tr key={player.playerId}>
               <td>{index + 1}</td>
-              <td><img src={userProf.photoURL} alt="Robo profile picture" /></td>
+              <td>
+                <img src={player.photoURL} alt="Player profile picture" />
+              </td>
               <td>{player.score}</td>
             </tr>
           ))}
         </tbody>
       </table>
+      <SignOut />
     </div>
   );
 };

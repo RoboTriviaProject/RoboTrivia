@@ -2,21 +2,21 @@ import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { Link, useParams } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 import { ref, set, get } from 'firebase/database';
 import { db } from '../firebase-config';
 import CountdownTimer from '../Components/CountdownTimer';
 import { PacmanLoader } from 'react-spinners';
 import '../App.css';
 
-const GameRoom = ({ category, difficulty, type }) => {
+const GameRoom = ({ category, difficulty, type, score, setScore }) => {
   // Array to hold quiz questions
   const [questions, setQuestions] = useState([]);
   // Index for the current question
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   // Score of the game
-  const [score, setScore] = useState(0);
+
   // Loading status
   const [loading, setLoading] = useState(true);
   // Error message
@@ -28,6 +28,8 @@ const GameRoom = ({ category, difficulty, type }) => {
   const [resetTimer, setResetTimer] = useState(null);
   // Grabs the game id from the URL
   const { gameId } = useParams();
+
+  const navigate = useNavigate();
 
   // Effect hook to fetch data on initial render and on changes to category, difficulty, type
 
@@ -44,6 +46,7 @@ const GameRoom = ({ category, difficulty, type }) => {
       setCurrentQuestion(nextQuestion);
     } else {
       setQuizCompleted(true);
+      navigate(`/gameroom/${gameId}/result`);
     }
   }, [currentQuestion, questions.length]);
 
@@ -55,7 +58,8 @@ const GameRoom = ({ category, difficulty, type }) => {
   // Handler for when an answer is selected
   const handleAnswer = (answer) => {
     if (quizCompleted) {
-      // Don't update the score if the quiz is completed
+      // go to results page
+      navigate(`/gameroom/${gameId}/result`);
       return;
     }
 
@@ -77,6 +81,7 @@ const GameRoom = ({ category, difficulty, type }) => {
     } else {
       // Quiz completed
       setQuizCompleted(true);
+      navigate(`/gameroom/${gameId}/result`);
     }
   };
 
@@ -131,7 +136,7 @@ const GameRoom = ({ category, difficulty, type }) => {
   if (loading) {
     return (
       <div className="spinnerContainer">
-          <PacmanLoader color="#fff" size={50} />
+        <PacmanLoader color="#fff" size={50} />
       </div>
     );
   }
@@ -185,10 +190,10 @@ const GameRoom = ({ category, difficulty, type }) => {
           })}
         </ul>
       </div>
-        {currentQuestion === questions.length - 1 ? (
-          <Link to={`/gameroom/${gameId}/result`}>View Score!</Link>
-        ) : null}
-        <Link to="/">Quit Game</Link>
+      {currentQuestion === questions.length - 1 ? (
+        <Link to={`/gameroom/${gameId}/result`}>View Score!</Link>
+      ) : null}
+      <Link to="/">Quit Game</Link>
     </div>
   );
 };

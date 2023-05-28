@@ -17,6 +17,8 @@ const App = () => {
   const [difficulty, setDifficulty] = useState(null);
   const [type, setType] = useState(null);
   const [gameId, setgameId] = useState('');
+  // adding score here
+  const [score, setScore] = useState(0);
 
   const handleStartQuiz = (
     selectedCategory,
@@ -75,18 +77,15 @@ const App = () => {
                 difficulty={difficulty}
                 type={type}
                 gameId={gameId}
+                score={score}
+                setScore={setScore}
               />
             )
           }
         />
-        <Route 
+        <Route
           path="/gameroom/:gameId/result"
-          element={
-            <Result 
-              gameId={gameId}
-              // score={score}
-            />
-          }
+          element={<Result gameId={gameId} score={score} />}
         />
       </Routes>
     </div>
