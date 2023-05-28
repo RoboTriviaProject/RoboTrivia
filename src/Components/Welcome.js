@@ -4,6 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import SignOut from '../Components/auth/SignOut';
 import './../App.css'
+import pinkRobot from './../assets/images/roseRobot-min.png';
 
 const Welcome = ({ userProf }) => {
   const [user] = useAuthState(auth);
@@ -37,47 +38,56 @@ const Welcome = ({ userProf }) => {
     <div>
       {user === null ? (
         <div className='welcomeContainer'>
+          <h2 className='welcome'>{`Welcome ${userProf.displayName} !`}</h2>
           <div className="imgContainer">
             <img
               src={`${userProf.photoURL}`}
               alt={`robo avatar of ${userProf.displayName}`}
             />
           </div>
-          <h2 className='welcome'>{`Welcome ${userProf.displayName}!`}</h2>
-          <form onSubmit={handleCreateSubmit}>
+
+          <form className='welcomeForm' onSubmit={handleCreateSubmit}>
             <input
               type="text"
               name="username"
-              placeholder="paste the game id"
+              placeholder="Enter Game Room ID"
               value={joinUsername}
               onChange={(e) => setJoinUsername(e.target.value)}
               required
             />
-            <input type="submit" value="Join a Game" />
+            <input className='welcomeButton joinButton' type="submit" value="Join a Game" />
           </form>
-          <button>Create a game</button>
+          <button className='welcomeButton createButton'>Create a game</button>
         </div>
       ) : (
         <div className='welcomeContainer'>
+          <h2 className='welcome'>{`Welcome ${user.displayName} !`}</h2>
           <div className="imgContainer">
             <img
               src={`${user.photoURL}`}
               alt={`robo avatar of ${user.displayName}`}
             />
           </div>
-          <h2 className='welcome'>{`Welcome ${user.displayName}!`}</h2>
-          <form onSubmit={handleJoinSubmit}>
-            <input
-              type="text"
-              name="username"
-              placeholder="paste the game id"
-              value={joinUsername}
-              onChange={(e) => setJoinUsername(e.target.value)}
-              required
-            />
-            <input type="submit" value="Join a Game" />
-          </form>
-          <button onClick={handleCreateButtonClick}>Create a game</button>
+
+          <div className="gameOptions">
+            <div className="formContainer">
+              <button className='welcomeButton joinButton' type="submit" value="Join a Game">Join a Game</button>
+              <form className='welcomeForm' onSubmit={handleJoinSubmit}>
+                <input
+                  type="text"
+                  name="username"
+                  placeholder=" Enter Game Room ID"
+                  value={joinUsername}
+                  onChange={(e) => setJoinUsername(e.target.value)}
+                  required
+                />
+              </form>
+            </div>
+            <img src={pinkRobot} className="pinkRobotImg" alt="a pink robot standing" />
+            <div className="createOption">
+              <button className='welcomeButton createButton' onClick={handleCreateButtonClick}>Create a game</button>
+            </div>
+          </div>
         </div>
       )}
       <SignOut />
