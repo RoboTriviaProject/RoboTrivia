@@ -3,6 +3,7 @@ import { auth } from '../firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import SignOut from '../Components/auth/SignOut';
+import './../App.css'
 
 const Welcome = ({ userProf }) => {
   const [user] = useAuthState(auth);
@@ -35,14 +36,14 @@ const Welcome = ({ userProf }) => {
   return (
     <div>
       {user === null ? (
-        <>
+        <div className='welcomeContainer'>
           <div className="imgContainer">
             <img
               src={`${userProf.photoURL}`}
               alt={`robo avatar of ${userProf.displayName}`}
             />
           </div>
-          <h2>{`Welcome ${userProf.displayName}`}</h2>
+          <h2 className='welcome'>{`Welcome ${userProf.displayName}!`}</h2>
           <form onSubmit={handleCreateSubmit}>
             <input
               type="text"
@@ -55,16 +56,16 @@ const Welcome = ({ userProf }) => {
             <input type="submit" value="Join a Game" />
           </form>
           <button>Create a game</button>
-        </>
+        </div>
       ) : (
-        <>
+        <div className='welcomeContainer'>
           <div className="imgContainer">
             <img
               src={`${user.photoURL}`}
               alt={`robo avatar of ${user.displayName}`}
             />
           </div>
-          <h2>{`Welcome ${user.displayName}`}</h2>
+          <h2 className='welcome'>{`Welcome ${user.displayName}!`}</h2>
           <form onSubmit={handleJoinSubmit}>
             <input
               type="text"
@@ -77,7 +78,7 @@ const Welcome = ({ userProf }) => {
             <input type="submit" value="Join a Game" />
           </form>
           <button onClick={handleCreateButtonClick}>Create a game</button>
-        </>
+        </div>
       )}
       <SignOut />
     </div>

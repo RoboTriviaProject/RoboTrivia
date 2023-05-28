@@ -1,6 +1,7 @@
 import GuestLogin from './GuestLogin';
 import UserLogIn from './UserLogIn';
 import { useState } from 'react';
+import './../../App.css'
 
 const Auth = ({ setUserProf }) => {
   const [user, setUser] = useState(true);
@@ -14,9 +15,9 @@ const Auth = ({ setUserProf }) => {
   };
 
   return (
-    <div>
-      <button onClick={handleRegular}>Regular Player Login</button>
-      <button onClick={handleGuest}>Guest Player Login</button>
+    <div className='signIn'>
+      <button className="userButton" onClick={handleRegular}>Regular Player Login</button>
+      <button className="userButton" onClick={handleGuest}>Guest Player Login</button>
       {user ? <UserLogIn /> : <GuestLogin setUserProf={setUserProf} />}
     </div>
   );
