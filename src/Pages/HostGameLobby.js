@@ -37,7 +37,7 @@ const HostGameLobby = ({ handleStartQuiz }) => {
   const handleTypeChange = (event) => {
     const type = event.target.value;
     setSelectedType(type);
-    console.log('selected type', type);
+    // console.log('selected type', type);
   };
 
   const handleQuizStart = () => {
@@ -76,7 +76,7 @@ const HostGameLobby = ({ handleStartQuiz }) => {
     <div>
       <div className="selectOptions">
         <div className="chooseCategory">
-          <label htmlFor="category">Category:</label>
+          <label htmlFor="category">Category: </label>
           <select
             id="category"
             value={selectedCategory}
@@ -110,7 +110,7 @@ const HostGameLobby = ({ handleStartQuiz }) => {
         </div>
 
         <div className="chooseDifficulty">
-          <label htmlFor="difficulty">Difficulty:</label>
+          <label htmlFor="difficulty">Difficulty: </label>
           <select
             id="difficulty"
             value={selectedDifficulty}
