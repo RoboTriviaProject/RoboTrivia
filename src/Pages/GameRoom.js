@@ -28,22 +28,31 @@ const GameRoom = ({ category, difficulty, type }) => {
   // Grabs the game id from the URL
   const { gameId } = useParams();
 
-  // Effect hook to fetch data on initial render and on changes to category, difficulty, type
+  // State for highlighting correct answer
+  const [highlightAnswer, setHighlightAnswer] = useState(false);
+  // State to control timer pause
+  const [paused, setPaused] = useState(false);
 
+  // Effect hook to fetch data on initial render and on changes to category, difficulty, type
   useEffect(() => {
     fetchData(category, difficulty, type);
   }, [category, difficulty, type]);
 
   // function to handle moving to the next question when the countdown timer expires
-
   const handleExpire = useCallback(() => {
-    // Move to the next question when timer expires
-    const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < questions.length) {
-      setCurrentQuestion(nextQuestion);
-    } else {
-      setQuizCompleted(true);
-    }
+    setHighlightAnswer(true);
+    setPaused(true);
+    // Move to the next question after 3 seconds
+    setTimeout(() => {
+      setHighlightAnswer(false);
+      setPaused(false);
+      const nextQuestion = currentQuestion + 1;
+      if (nextQuestion < questions.length) {
+        setCurrentQuestion(nextQuestion);
+      } else {
+        setQuizCompleted(true);
+      }
+    }, 3000);
   }, [currentQuestion, questions.length]);
 
   // Handler for resetting the timer
@@ -53,30 +62,29 @@ const GameRoom = ({ category, difficulty, type }) => {
 
   // Handler for when an answer is selected
   const handleAnswer = (answer) => {
-    if (quizCompleted) {
-      // Don't update the score if the quiz is completed
+    if (quizCompleted || highlightAnswer) {
+      // Don't update the score if the quiz is completed or the highlighted answer is shown
       return;
     }
 
     const currentQuestionObj = questions[currentQuestion];
 
     if (answer === currentQuestionObj.correct_answer) {
-      // Increase score if answer is correct
       setScore(score + 1);
     }
 
-    // Clear timer and move to the next question immediately
-    if (resetTimer) {
-      resetTimer();
-    }
-
-    const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < questions.length) {
-      setCurrentQuestion(nextQuestion);
-    } else {
-      // Quiz completed
-      setQuizCompleted(true);
-    }
+    setHighlightAnswer(true);
+    setPaused(true);
+    setTimeout(() => {
+      setHighlightAnswer(false);
+      setPaused(false);
+      const nextQuestion = currentQuestion + 1;
+      if (nextQuestion < questions.length) {
+        setCurrentQuestion(nextQuestion);
+      } else {
+        setQuizCompleted(true);
+      }
+    }, 3000);
   };
 
   // Function to fetch data for the game
@@ -128,9 +136,9 @@ const GameRoom = ({ category, difficulty, type }) => {
 
   // Rendering based on different states
   if (loading) {
-    return <div>{/* Loading... icon (react spinners package)*/}</div>;
+    return <div>Loading...</div>;
   }
-  // Rendering based on different states
+
   if (error) {
     return (
       <div>
@@ -151,7 +159,7 @@ const GameRoom = ({ category, difficulty, type }) => {
     ...currentQuestionObj.incorrect_answers,
     currentQuestionObj.correct_answer,
   ];
-  //Its going to shuffle options.We can call the sort() method, which accepts a function that returns a value between -0.5 and 0.5:
+  //Its going to shuffle options.We can call the sort() method, which accepts a function that returns a value between -0.5 and 0.5
   options.sort(() => Math.random() - 0.5);
 
   return (
@@ -164,6 +172,7 @@ const GameRoom = ({ category, difficulty, type }) => {
           initialCount={15}
           onExpire={handleExpire}
           onReset={handleReset}
+          paused={paused}
         />
       </div>
       <div className="questionFromAPI">
@@ -172,8 +181,14 @@ const GameRoom = ({ category, difficulty, type }) => {
         <ul>
           {options.map((option) => {
             const optionId = uuidv4();
+            const isCorrectAnswer =
+              highlightAnswer && option === currentQuestionObj.correct_answer;
             return (
-              <li key={optionId} onClick={() => handleAnswer(option)}>
+              <li
+                key={optionId}
+                onClick={() => handleAnswer(option)}
+                className={isCorrectAnswer ? 'correct-answer' : ''}
+              >
                 {option}
               </li>
             );
