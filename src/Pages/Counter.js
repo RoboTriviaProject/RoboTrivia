@@ -6,3 +6,4 @@ const Counter = () => {
     useEffect(() => {
         counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
       }, [counter]);
+    }

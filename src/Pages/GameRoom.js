@@ -160,7 +160,7 @@ const GameRoom = ({ category, difficulty, type }) => {
     currentQuestionObj.correct_answer,
   ];
   //Its going to shuffle options.We can call the sort() method, which accepts a function that returns a value between -0.5 and 0.5
-  // options.sort(() => Math.random() - 0.5);
+  //// options.sort(() => Math.random() - 0.5);
 
   return (
     <div>
@@ -187,7 +187,7 @@ const GameRoom = ({ category, difficulty, type }) => {
               <li
                 key={optionId}
                 onClick={() => handleAnswer(option)}
-                className={isCorrectAnswer ? 'correct-answer' : ''}
+                className={isCorrectAnswer ? 'correct-answer' : 'answer-options'}
               >
                 {option}
               </li>
@@ -195,9 +195,11 @@ const GameRoom = ({ category, difficulty, type }) => {
           })}
         </ul>
       </div>
+
       {currentQuestion === questions.length - 1 ? (
-        <Link to="/">Go to Home</Link>
+        <Link to="/" className="backToHomePage">Go to Home</Link>
       ) : null}
+      
     </div>
   );
 };
