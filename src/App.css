@@ -418,12 +418,12 @@ img {
   font-size: bold;
 }
 
-.startQuizButton:hover{
-  cursor:pointer; 
+.startQuizButton:hover {
+  cursor: pointer;
 }
 
 /***************** Log Out Button from HostGameLobby ****************************/
-.logOutButton{
+.logOutButton {
   border-radius: 50px;
   width: 8%;
   background: #41ead4;
@@ -435,7 +435,7 @@ img {
   font-size: bold;
 }
 
-.logOutButton:hover{
+.logOutButton:hover {
   cursor: pointer;
 }
 
@@ -461,37 +461,37 @@ img {
   font-size: 22px;
 }
 
-.quizInfo p{
+.quizInfo p {
   font-size: 33px;
   font-weight: bold;
   background: #fcd24f;
   color: black;
-  padding: 15px; 
+  padding: 15px;
   border-radius: 20%;
 }
 
-.quizInfo h3{
+.quizInfo h3 {
   font-size: 33px;
   font-weight: bold;
   background: #fcd24f;
   color: black;
-  padding: 15px; 
+  padding: 15px;
   border-radius: 20%;
 }
 
-.quizInfo .countDownCounter{
+.quizInfo .countDownCounter {
   font-size: 33px;
   font-weight: bold;
   background: #fcd24f;
   color: black;
-  padding: 15px; 
+  padding: 15px;
   border-radius: 20%;
 }
 
 .questionFromAPI h3 {
   padding: 10px;
   background: #b91372;
-  color: black; 
+  color: black;
   width: 25%;
   border-radius: 10px;
   margin: auto;
@@ -508,7 +508,6 @@ img {
   display: flex;
   flex-wrap: wrap;
   font-size: 25px;
-
 }
 
 .questionFromAPI li {
@@ -524,13 +523,12 @@ img {
   background-color: #41ead4;
   color: black;
   border-radius: 20px;
-  
 }
 
-.backToHomePage{
+.backToHomePage {
   padding: 10px;
   background: #b91372;
-  color: black; 
+  color: black;
   width: 15%;
   border-radius: 35px;
   margin: 10px auto auto 10px;
@@ -538,11 +536,22 @@ img {
   text-decoration: none;
 }
 
-
 /* turns the correct answer green */
 .correct-answer {
   background-color: green;
 }
 .answer-options {
-  background-color: #fcd24f ;
+  background-color: #fcd24f;
+}
+
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.spinner {
+  overflow: hidden;
 }

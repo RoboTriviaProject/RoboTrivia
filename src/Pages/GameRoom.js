@@ -2,20 +2,21 @@ import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { Link, useParams } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 import { ref, set, get } from 'firebase/database';
 import { db } from '../firebase-config';
 import CountdownTimer from '../Components/CountdownTimer';
+import { PacmanLoader } from 'react-spinners';
 import '../App.css';
 
-const GameRoom = ({ category, difficulty, type }) => {
+const GameRoom = ({ category, difficulty, type, score, setScore }) => {
   // Array to hold quiz questions
   const [questions, setQuestions] = useState([]);
   // Index for the current question
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   // Score of the game
-  const [score, setScore] = useState(0);
+
   // Loading status
   const [loading, setLoading] = useState(true);
   // Error message
@@ -28,6 +29,9 @@ const GameRoom = ({ category, difficulty, type }) => {
   // Grabs the game id from the URL
   const { gameId } = useParams();
 
+  const navigate = useNavigate();
+
+  // Effect hook to fetch data on initial render and on changes to category, difficulty, type
   // State for highlighting correct answer
   const [highlightAnswer, setHighlightAnswer] = useState(false);
   // State to control timer pause
@@ -40,6 +44,14 @@ const GameRoom = ({ category, difficulty, type }) => {
 
   // function to handle moving to the next question when the countdown timer expires
   const handleExpire = useCallback(() => {
+    // Move to the next question when timer expires
+    const nextQuestion = currentQuestion + 1;
+    if (nextQuestion < questions.length) {
+      setCurrentQuestion(nextQuestion);
+    } else {
+      setQuizCompleted(true);
+      navigate(`/gameroom/${gameId}/result`);
+    }
     setHighlightAnswer(true);
     setPaused(true);
     // Move to the next question after 3 seconds
@@ -62,7 +74,11 @@ const GameRoom = ({ category, difficulty, type }) => {
 
   // Handler for when an answer is selected
   const handleAnswer = (answer) => {
-    if (quizCompleted || highlightAnswer) {
+    if (quizCompleted) {
+      navigate(`/gameroom/${gameId}/result`);
+      // Don't update the score if the quiz is completed or the highlighted answer is shown
+    }
+    if (highlightAnswer) {
       // Don't update the score if the quiz is completed or the highlighted answer is shown
       return;
     }
@@ -83,6 +99,7 @@ const GameRoom = ({ category, difficulty, type }) => {
         setCurrentQuestion(nextQuestion);
       } else {
         setQuizCompleted(true);
+        navigate(`/gameroom/${gameId}/result`);
       }
     }, 3000);
   };
@@ -136,7 +153,11 @@ const GameRoom = ({ category, difficulty, type }) => {
 
   // Rendering based on different states
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="spinnerContainer">
+        <PacmanLoader color="#fff" size={50} />
+      </div>
+    );
   }
 
   if (error) {
@@ -187,7 +208,9 @@ const GameRoom = ({ category, difficulty, type }) => {
               <li
                 key={optionId}
                 onClick={() => handleAnswer(option)}
-                className={isCorrectAnswer ? 'correct-answer' : 'answer-options'}
+                className={
+                  isCorrectAnswer ? 'correct-answer' : 'answer-options'
+                }
               >
                 {option}
               </li>
@@ -197,9 +220,9 @@ const GameRoom = ({ category, difficulty, type }) => {
       </div>
 
       {currentQuestion === questions.length - 1 ? (
-        <Link to="/" className="backToHomePage">Go to Home</Link>
+        <Link to={`/gameroom/${gameId}/result`}>View Score!</Link>
       ) : null}
-      
+      <Link to="/">Quit Game</Link>
     </div>
   );
 };
