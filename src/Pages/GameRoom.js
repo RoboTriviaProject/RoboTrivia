@@ -7,7 +7,8 @@ import { db } from '../firebase-config';
 import CountdownTimer from '../Components/CountdownTimer';
 import '../App.css';
 
-const GameRoom = ({ category, difficulty, type, gameId }) => {
+const GameRoom = ({ category, difficulty, type }) => {
+  // Array to hold quiz questions
   const [questions, setQuestions] = useState([]);
   // Index for the current question
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -146,7 +147,6 @@ const GameRoom = ({ category, difficulty, type, gameId }) => {
     ...currentQuestionObj.incorrect_answers,
     currentQuestionObj.correct_answer,
   ];
-  //Its going to shuffle options.We can call the sort() method, which accepts a function that returns a value between -0.5 and 0.5:
   options.sort(() => Math.random() - 0.5);
 
   return (
