@@ -41,6 +41,36 @@ h1{
   margin: 2rem;
 }
 
+input {
+  width: 50%;
+}
+
+.settingsSelect {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 100%;
+  flex: 0.8;
+  justify-content: space-evenly;
+}
+
+.name {
+  margin-bottom: 50px;
+}
+
+.category {
+  margin-bottom: 30px;
+}
+
+.imgContainer {
+  width: 140px;
+  height: 140px;
+}
+
+img {
+  width: 100%;
+}
+
 /* 
   COLOUR PALETTE:
 
@@ -140,10 +170,6 @@ h1{
   align-items: center;
   flex-direction: column;
   /* text-align: center; */
-}
-
-.imgContainer {
-  width: 200px;
 }
 
 .welcome {
