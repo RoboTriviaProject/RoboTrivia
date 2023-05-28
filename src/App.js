@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import HostGameLobby from './Pages/HostGameLobby';
 import GameRoom from './Pages/GameRoom';
+import Result from './Pages/Result';
 
 const App = () => {
   const [user] = useAuthState(auth);
@@ -74,7 +75,12 @@ const App = () => {
                 difficulty={difficulty}
                 type={type}
                 gameId={gameId}
-              />
+              >
+                <Route 
+                  path="result"
+                  element={<Result />}
+                />
+              </GameRoom>
             )
           }
         />

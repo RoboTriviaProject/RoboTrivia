@@ -180,9 +180,10 @@ const GameRoom = ({ category, difficulty, type }) => {
           })}
         </ul>
       </div>
-      {currentQuestion === questions.length - 1 ? (
-        <Link to="/">Go to Home</Link>
-      ) : null}
+        {currentQuestion === questions.length - 1 ? (
+          <Link to={`/gameroom/${gameId}/result`}>View Score!</Link>
+        ) : null}
+        <Link to="/">Quit Game</Link>
     </div>
   );
 };
