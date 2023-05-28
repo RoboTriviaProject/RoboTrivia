@@ -7,8 +7,7 @@ import { db } from '../firebase-config';
 import CountdownTimer from '../Components/CountdownTimer';
 import '../App.css';
 
-const GameRoom = ({ category, difficulty, type }) => {
-  // Array to hold quiz questions
+const GameRoom = ({ category, difficulty, type, gameId }) => {
   const [questions, setQuestions] = useState([]);
   // Index for the current question
   const [currentQuestion, setCurrentQuestion] = useState(0);
