@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ref, set, get, child, onValue, push } from 'firebase/database';
+import { ref, set, get, child, onValue } from 'firebase/database';
 import { db } from '../firebase-config';
 import { auth } from '../firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -10,7 +10,6 @@ const Result = ({ score }) => {
   const [leaderboard, setLeaderboard] = useState([]);
   const [user] = useAuthState(auth);
   const { gameId } = useParams();
-  console.log(user.displayName, gameId, score);
 
   useEffect(() => {
     if (gameId && score !== undefined && user) {
@@ -50,7 +49,6 @@ const Result = ({ score }) => {
             // sort the scores in descending order
             .sort((a, b) => b.score - a.score);
           setLeaderboard(leaderboardData);
-          console.log(leaderboard);
         } else {
           setLeaderboard([]);
         }
