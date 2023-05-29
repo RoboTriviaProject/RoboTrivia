@@ -5,7 +5,7 @@ import { auth } from '../firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
 import SignOut from '../Components/auth/SignOut';
-import Footer from '../Components/Footer'
+import Footer from '../Components/Footer';
 
 const Result = ({ score }) => {
   const [leaderboard, setLeaderboard] = useState([]);
@@ -94,7 +94,7 @@ const Result = ({ score }) => {
               <tr key={player.playerId}>
                 <td>{index + 1}</td>
                 <td>
-                  <img src={player.photoURL} alt="Player profile picture" />
+                  <img src={player.photoURL} alt="Player profile " />
                 </td>
                 <td>{player.name}</td>
                 <td>{player.score}</td>
@@ -103,8 +103,10 @@ const Result = ({ score }) => {
           </tbody>
         </table>
         <div className="twoButtonsContainer">
-        <button className="copyGameIdButton" onClick={handleCopyGameId}>Copy Game ID</button>
-        <SignOut />
+          <button className="copyGameIdButton" onClick={handleCopyGameId}>
+            Copy Game ID
+          </button>
+          <SignOut />
         </div>
       </div>
       <Footer />

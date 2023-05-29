@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const CountdownTimer = ({ initialCount, onExpire, onReset, paused }) => {
+const CountdownTimer = ({ initialCount, onExpire, paused }) => {
   const [counter, setCounter] = useState(initialCount);
 
   useEffect(() => {
@@ -14,11 +14,11 @@ const CountdownTimer = ({ initialCount, onExpire, onReset, paused }) => {
     }
   }, [counter, paused]);
 
-  useEffect(() => {
-    if (onReset) {
-      onReset(() => setCounter(initialCount));
-    }
-  }, [onReset, initialCount]);
+  // useEffect(() => {
+  //   if (onReset) {
+  //     onReset(() => setCounter(initialCount));
+  //   }
+  // }, [onReset, initialCount]);
 
   return <div className="countDownCounter">Countdown: {counter} </div>;
 };
