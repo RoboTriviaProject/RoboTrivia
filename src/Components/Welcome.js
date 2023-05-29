@@ -109,7 +109,7 @@ const Welcome = ({ userProf, error, sendError }) => {
             <div className="createOption">
               <button
                 className="welcomeButton createButton"
-                onSubmit={handleCreateButtonClick}
+                onClick={handleCreateButtonClick}
               >
                 Create a game
               </button>
