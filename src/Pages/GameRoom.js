@@ -163,16 +163,31 @@ const GameRoom = ({ category, difficulty, type, score, setScore }) => {
   if (error) {
     return (
       <div>
-        {error}
+        <div>
+        <div className="spinnerContainer">
+          <PacmanLoader color="#fff" size={50} />
+        </div>
+        <p>{error}</p>
         <button onClick={() => fetchData(category, difficulty, type)}>
-          Retry
+          Please try again
         </button>
+    </div>
       </div>
     );
   }
   // Rendering based on different states
   if (questions.length === 0) {
-    return <p>Loading...</p>;
+    return(
+      <div>
+        <div className="spinnerContainer">
+          <PacmanLoader color="#fff" size={50} />
+        </div>
+        <p>{error}</p>
+        <button onClick={() => fetchData(category, difficulty, type)}>
+          Please try again
+        </button>
+    </div>
+    )
   }
 
   const currentQuestionObj = questions[currentQuestion];
