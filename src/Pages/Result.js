@@ -6,11 +6,13 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
 import SignOut from '../Components/auth/SignOut';
 import Footer from '../Components/Footer';
+import { useNavigate } from 'react-router-dom';
 
 const Result = ({ score }) => {
   const [leaderboard, setLeaderboard] = useState([]);
   const [user] = useAuthState(auth);
   const { gameId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (gameId && score !== undefined && user) {
@@ -61,6 +63,12 @@ const Result = ({ score }) => {
       };
     }
   }, [gameId, score, user]);
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
 
   const handleCopyGameId = () => {
     // Copy the game ID to the clipboard
