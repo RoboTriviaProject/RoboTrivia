@@ -2,28 +2,40 @@ import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { Link, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ref, set, get } from 'firebase/database';
 import { db } from '../firebase-config';
 import CountdownTimer from '../Components/CountdownTimer';
+import { PacmanLoader } from 'react-spinners';
 import '../App.css';
 
-const GameRoom = ({ category, difficulty, type }) => {
+const GameRoom = ({ category, difficulty, type, score, setScore }) => {
   // Array to hold quiz questions
   const [questions, setQuestions] = useState([]);
   // Index for the current question
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   // Score of the game
-  const [score, setScore] = useState(0);
+
   // Loading status
   const [loading, setLoading] = useState(true);
   // Error message
   const [error, setError] = useState('');
   // Status of the quiz
+
   const [quizCompleted, setQuizCompleted] = useState(false);
   // State to control timer reset
   const [resetTimer, setResetTimer] = useState(null);
   // Grabs the game id from the URL
   const { gameId } = useParams();
+
+  const navigate = useNavigate();
+
+  // Effect hook to fetch data on initial render and on changes to category, difficulty, type
+  // State for highlighting correct answer
+  const [highlightAnswer, setHighlightAnswer] = useState(false);
+  // State to control timer pause
+  const [paused, setPaused] = useState(false);
 
   // Effect hook to fetch data on initial render and on changes to category, difficulty, type
   useEffect(() => {
@@ -31,7 +43,6 @@ const GameRoom = ({ category, difficulty, type }) => {
   }, [category, difficulty, type]);
 
   // function to handle moving to the next question when the countdown timer expires
-
   const handleExpire = useCallback(() => {
     // Move to the next question when timer expires
     const nextQuestion = currentQuestion + 1;
@@ -39,7 +50,21 @@ const GameRoom = ({ category, difficulty, type }) => {
       setCurrentQuestion(nextQuestion);
     } else {
       setQuizCompleted(true);
+      navigate(`/gameroom/${gameId}/result`);
     }
+    setHighlightAnswer(true);
+    setPaused(true);
+    // Move to the next question after 3 seconds
+    setTimeout(() => {
+      setHighlightAnswer(false);
+      setPaused(false);
+      const nextQuestion = currentQuestion + 1;
+      if (nextQuestion < questions.length) {
+        setCurrentQuestion(nextQuestion);
+      } else {
+        setQuizCompleted(true);
+      }
+    }, 3000);
   }, [currentQuestion, questions.length]);
 
   // Handler for resetting the timer
@@ -50,29 +75,33 @@ const GameRoom = ({ category, difficulty, type }) => {
   // Handler for when an answer is selected
   const handleAnswer = (answer) => {
     if (quizCompleted) {
-      // Don't update the score if the quiz is completed
+      navigate(`/gameroom/${gameId}/result`);
+      // Don't update the score if the quiz is completed or the highlighted answer is shown
+    }
+    if (highlightAnswer) {
+      // Don't update the score if the quiz is completed or the highlighted answer is shown
       return;
     }
 
     const currentQuestionObj = questions[currentQuestion];
 
     if (answer === currentQuestionObj.correct_answer) {
-      // Increase score if answer is correct
       setScore(score + 1);
     }
 
-    // Clear timer and move to the next question immediately
-    if (resetTimer) {
-      resetTimer();
-    }
-
-    const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < questions.length) {
-      setCurrentQuestion(nextQuestion);
-    } else {
-      // Quiz completed
-      setQuizCompleted(true);
-    }
+    setHighlightAnswer(true);
+    setPaused(true);
+    setTimeout(() => {
+      setHighlightAnswer(false);
+      setPaused(false);
+      const nextQuestion = currentQuestion + 1;
+      if (nextQuestion < questions.length) {
+        setCurrentQuestion(nextQuestion);
+      } else {
+        setQuizCompleted(true);
+        navigate(`/gameroom/${gameId}/result`);
+      }
+    }, 3000);
   };
 
   // Function to fetch data for the game
@@ -124,9 +153,13 @@ const GameRoom = ({ category, difficulty, type }) => {
 
   // Rendering based on different states
   if (loading) {
-    return <div>{/* Loading... icon (react spinners package)*/}</div>;
+    return (
+      <div className="spinnerContainer">
+        <PacmanLoader color="#fff" size={50} />
+      </div>
+    );
   }
-  // Rendering based on different states
+
   if (error) {
     return (
       <div>
@@ -147,7 +180,8 @@ const GameRoom = ({ category, difficulty, type }) => {
     ...currentQuestionObj.incorrect_answers,
     currentQuestionObj.correct_answer,
   ];
-  options.sort(() => Math.random() - 0.5);
+  //Its going to shuffle options.We can call the sort() method, which accepts a function that returns a value between -0.5 and 0.5
+  //// options.sort(() => Math.random() - 0.5);
 
   return (
     <div>
@@ -159,6 +193,7 @@ const GameRoom = ({ category, difficulty, type }) => {
           initialCount={15}
           onExpire={handleExpire}
           onReset={handleReset}
+          paused={paused}
         />
       </div>
       <div className="questionFromAPI">
@@ -167,17 +202,27 @@ const GameRoom = ({ category, difficulty, type }) => {
         <ul>
           {options.map((option) => {
             const optionId = uuidv4();
+            const isCorrectAnswer =
+              highlightAnswer && option === currentQuestionObj.correct_answer;
             return (
-              <li key={optionId} onClick={() => handleAnswer(option)}>
+              <li
+                key={optionId}
+                onClick={() => handleAnswer(option)}
+                className={
+                  isCorrectAnswer ? 'correct-answer' : 'answer-options'
+                }
+              >
                 {option}
               </li>
             );
           })}
         </ul>
       </div>
+
       {currentQuestion === questions.length - 1 ? (
-        <Link to="/">Go to Home</Link>
+        <Link to={`/gameroom/${gameId}/result`}>View Score!</Link>
       ) : null}
+      <Link to="/">Quit Game</Link>
     </div>
   );
 };

@@ -1,12 +1,217 @@
-html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,html [type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}template{display:none}[hidden]{display:none}
+html {
+  line-height: 1.15;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+}
+article,
+aside,
+footer,
+header,
+nav,
+section {
+  display: block;
+}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+figcaption,
+figure,
+main {
+  display: block;
+}
+figure {
+  margin: 1em 40px;
+}
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+a {
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+abbr[title] {
+  border-bottom: none;
+  text-decoration: underline;
+  text-decoration: underline dotted;
+}
+b,
+strong {
+  font-weight: inherit;
+}
+b,
+strong {
+  font-weight: bolder;
+}
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+dfn {
+  font-style: italic;
+}
+mark {
+  background-color: #ff0;
+  color: #000;
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+audio,
+video {
+  display: inline-block;
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+img {
+  border-style: none;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+button,
+input {
+  overflow: visible;
+}
+button,
+select {
+  text-transform: none;
+}
+button,
+html [type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+}
+button::-moz-focus-inner,
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+button:-moz-focusring,
+[type='button']:-moz-focusring,
+[type='reset']:-moz-focusring,
+[type='submit']:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+legend {
+  box-sizing: border-box;
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  white-space: normal;
+}
+progress {
+  display: inline-block;
+  vertical-align: baseline;
+}
+textarea {
+  overflow: auto;
+}
+[type='checkbox'],
+[type='radio'] {
+  box-sizing: border-box;
+  padding: 0;
+}
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
+  height: auto;
+}
+[type='search'] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+[type='search']::-webkit-search-cancel-button,
+[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+details,
+menu {
+  display: block;
+}
+summary {
+  display: list-item;
+}
+canvas {
+  display: inline-block;
+}
+template {
+  display: none;
+}
+[hidden] {
+  display: none;
+}
 
-html { box-sizing: border-box;}
+html {
+  box-sizing: border-box;
+}
 
-*, *:before, *:after {box-sizing: inherit}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 
-.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -27,12 +232,12 @@ body {
   text-align: center;
 }
 
-.hostLobby{
+.hostLobby {
   background: url('./assets/images/chalkBackground-min.png');
   height: 100vh;
 }
 
-h1{
+h1 {
   font-size: 5rem;
   color: #fefaf0;
   text-align: center;
@@ -110,12 +315,11 @@ header {
   /* width: 65%; */
   /* height: 363px; */
   border-radius: 10px;
-  border :7px solid #41ead4;
-  /* overflow: hidden; */
+  border: 7px solid #41ead4;
 }
 
 .userButton {
-  background:#000;
+  background: #000;
   padding: 10px;
   margin: 1rem 1rem;
   color: #fefaf0;
@@ -126,7 +330,7 @@ header {
 
 .userButton:hover,
 .userButton:focus {
-  background:#b91372;
+  background: #b91372;
   color: #fefaf0;
 }
 
@@ -160,7 +364,6 @@ header {
 .logIn button:focus {
   background: rgba(185, 19, 113, 0.607);
 }
-
 
 .logIn form {
   margin-bottom: 1rem;
@@ -364,77 +567,174 @@ header {
 .selectOptions {
   background: #b91372;
   height: 100%;
-  width: 50%;
+  width: 35%;
   text-align: center;
   margin: auto;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  border :10px solid #fefaf0;
+  border: 10px solid #fefaf0;
+  border-radius: 65px;
 }
 
 .chooseCategory,
 .chooseDifficulty,
 .chooseType {
-  background:#fcd24f;
-  padding: 10px;
-  width: 65%;
+  background: #fcd24f;
+  padding: 15px;
+  width: 70%;
   border-radius: 10px;
-  margin: 35px auto 45px 100px;
-  font-size: 20px ;
+  margin: 35px auto 45px 88px;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .startQuizButton {
-    border-radius: 50px;
-    width: 30%;
-    background: #41ead4;
-    box-shadow: #b91372;
-    margin: 0 0 0 30%;
-    padding: 10px;
-    box-shadow: 4px 4px 4px navy;
+  border-radius: 50px;
+  width: 30%;
+  background: #41ead4;
+  box-shadow: #b91372;
+  padding: 10px;
+  box-shadow: 4px 4px 4px navy;
+  margin: 0 0 3% 30%;
+  font-size: 25px;
+  font-size: bold;
+}
+
+.startQuizButton:hover {
+  cursor: pointer;
+}
+
+/***************** Log Out Button from HostGameLobby ****************************/
+.logOutButton {
+  border-radius: 50px;
+  width: 8%;
+  background: #41ead4;
+  box-shadow: #b91372;
+  padding: 10px;
+  box-shadow: 4px 4px 4px navy;
+  margin: 2% 0 0 45%;
+  font-size: 25px;
+  font-size: bold;
+}
+
+.logOutButton:hover {
+  cursor: pointer;
 }
 
 /************* GAMEROOM.js CSS *******************/
 .questionFromAPI {
-     text-align: center;
-     margin: auto;
-     border :10px solid #fefaf0;
-     padding: 15px;
-     color: #fefaf0;
-     font-size: 20px;
-     width: 80%;
-     height: 50%;
+  text-align: center;
+  margin: auto;
+  border: 10px solid #41ead4;
+  padding: 15px;
+  background: #fefaf0;
+  font-size: 20px;
+  width: 75%;
+  height: 50%;
+  border-radius: 20px;
 }
 
 .quizInfo {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-  margin: 10px;
+  margin: 2% auto 2% auto;
   color: #fefaf0;
-  font-size: 25px;
+  font-size: 22px;
+}
+
+.quizInfo p {
+  font-size: 33px;
+  font-weight: bold;
+  background: #fcd24f;
+  color: black;
+  padding: 15px;
+  border-radius: 20%;
+}
+
+.quizInfo h3 {
+  font-size: 33px;
+  font-weight: bold;
+  background: #fcd24f;
+  color: black;
+  padding: 15px;
+  border-radius: 20%;
+}
+
+.quizInfo .countDownCounter {
+  font-size: 33px;
+  font-weight: bold;
+  background: #fcd24f;
+  color: black;
+  padding: 15px;
+  border-radius: 20%;
 }
 
 .questionFromAPI h3 {
   padding: 10px;
+  background: #b91372;
+  color: black;
+  width: 25%;
+  border-radius: 10px;
+  margin: auto;
+  font-size: 32px;
 }
 
 .questionFromAPI p {
-   padding: 10px;
+  padding: 10px;
+  font-size: 35px;
 }
 
 .questionFromAPI ul {
-  padding: 10px;
-} 
+  padding: 21px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 25px;
+}
 
 .questionFromAPI li {
   padding: 10px;
-  width: 85%;
-  
+  width: 50%;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  border: 10px solid #fefaf0;
 }
 
 .questionFromAPI li:hover {
   cursor: pointer;
-  background-color: #fefaf0;
+  background-color: #41ead4;
   color: black;
+  border-radius: 20px;
+}
+
+.backToHomePage {
+  padding: 10px;
+  background: #b91372;
+  color: black;
+  width: 15%;
+  border-radius: 35px;
+  margin: 10px auto auto 10px;
+  font-size: 32px;
+  text-decoration: none;
+}
+
+/* turns the correct answer green */
+.correct-answer {
+  background-color: green;
+}
+.answer-options {
+  background-color: #fcd24f;
+}
+
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.spinner {
+  overflow: hidden;
 }

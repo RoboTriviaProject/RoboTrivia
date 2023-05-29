@@ -9,7 +9,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import HostGameLobby from './Pages/HostGameLobby';
 import GameRoom from './Pages/GameRoom';
 import Header from './Components/Header';
-
+import Result from './Pages/Result';
 
 const App = () => {
   const [user] = useAuthState(auth);
@@ -17,18 +17,18 @@ const App = () => {
   const [category, setCategory] = useState(null);
   const [difficulty, setDifficulty] = useState(null);
   const [type, setType] = useState(null);
-  const [gameId, setgameId] = useState('');
+
+  // adding score here
+  const [score, setScore] = useState(0);
 
   const handleStartQuiz = (
     selectedCategory,
     selectedDifficulty,
-    selectedType,
-    gameSessionID
+    selectedType
   ) => {
     setCategory(selectedCategory);
     setDifficulty(selectedDifficulty);
     setType(selectedType);
-    setgameId(gameSessionID);
   };
 
   return (
@@ -60,7 +60,6 @@ const App = () => {
                 setCategory={setCategory}
                 setDifficulty={setDifficulty}
                 setType={setType}
-                setgameId={setgameId}
               />
             ) : null
           }
@@ -77,10 +76,15 @@ const App = () => {
                 category={category}
                 difficulty={difficulty}
                 type={type}
-                gameId={gameId}
+                score={score}
+                setScore={setScore}
               />
             )
           }
+        />
+        <Route
+          path="/gameroom/:gameId/result"
+          element={<Result score={score} />}
         />
       </Routes>
     </div>

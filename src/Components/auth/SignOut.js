@@ -24,7 +24,7 @@ const SignOut = ({
     });
   };
 
-  return <button onClick={logout}>Logout</button>;
+  return <button onClick={logout} className="logOutButton">Logout</button>;
 };
 
 export default SignOut;
