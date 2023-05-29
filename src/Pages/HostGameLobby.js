@@ -130,7 +130,7 @@ const HostGameLobby = ({ handleStartQuiz }) => {
         </div>
         {/* <Link to="/quiz"> */}
         <button onClick={handleQuizStart} className="startQuizButton">
-          Start Quiz
+          Start ➤
         </button>
         {/* </Link> */}
       </div>

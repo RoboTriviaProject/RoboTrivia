@@ -20,7 +20,7 @@ const CountdownTimer = ({ initialCount, onExpire, onReset, paused }) => {
     }
   }, [onReset, initialCount]);
 
-  return <div className="countDownCounter">Countdown: {counter} </div>;
+  return <div className="countDownCounter">{counter} </div>;
 };
 
 export default CountdownTimer;

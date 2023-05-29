@@ -509,16 +509,6 @@ header {
   
 }
 
-/* .buttonClose {
-  cursor: pointer;
-  border: 1px solid #999;
-  border-radius: 50%;
-  position: fixed;
-  right: calc(25% - 30px);
-  top: 15px;
-  padding: 4px;
-} */
-
 .howContainer h2 {
   color: #ff0022;
   margin-bottom: 1rem;
@@ -568,10 +558,11 @@ header {
 }
 
 .imgContainer {
-  background-color: rgba(255, 251, 240, 0.674);
+  background-color: rgba(255, 251, 240);
   padding: 5px;
   border-radius: 50%;
   overflow: hidden;
+  border: 5px solid #b91372;
 }
 
 .gameOptions {
@@ -583,7 +574,7 @@ header {
   margin: 2rem 5rem;
   padding: 1rem;
   border-radius: 10px;
-  border :2px solid #41ead4;
+  border :3px solid #41ead4;
 }
 
 .formContainer {
@@ -611,6 +602,11 @@ header {
   outline: none;
 }
 
+.welcomeForm input:hover,
+.welcomeForm input:focus {
+  background: rgba(64, 235, 212, 0.8);
+}
+
 .joinButton, 
 .createButton {
   background: #fcd24f;
@@ -634,16 +630,18 @@ header {
 
 /******************** HOST GAME LOBBY ************************/
 .selectOptions {
-  background: #b91372;
-  height: 100%;
-  width: 35%;
+  background: rgba(185, 19, 113, 0.8);
+  width: 750px;
   text-align: center;
-  margin: auto;
+  margin: 2rem auto;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  border: 10px solid #fefaf0;
-  border-radius: 65px;
+  justify-content: center;
+  align-items: center;
+  border: 7px solid #fefaf0;
+  border-radius: 50px;
+
 }
 
 .chooseCategory,
@@ -651,44 +649,52 @@ header {
 .chooseType {
   background: #fcd24f;
   padding: 15px;
-  width: 70%;
+  width: 50%;
   border-radius: 10px;
-  margin: 35px auto 45px 88px;
-  font-size: 25px;
-  font-weight: bold;
+  margin: 1rem;
+  /* margin: 10px auto 20px 88px; */
+  /* font-size: 25px; */
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .startQuizButton {
   border-radius: 50px;
-  width: 30%;
   background: #41ead4;
-  box-shadow: #b91372;
   padding: 10px;
   box-shadow: 4px 4px 4px navy;
-  margin: 0 0 3% 30%;
-  font-size: 25px;
-  font-size: bold;
+  border: none;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .startQuizButton:hover {
   cursor: pointer;
+  background: rgba(65, 234, 212, 0.8);
 }
 
 /***************** Log Out Button from HostGameLobby ****************************/
 .logOutButton {
   border-radius: 50px;
   width: 8%;
-  background: #41ead4;
-  box-shadow: #b91372;
-  padding: 10px;
-  box-shadow: 4px 4px 4px navy;
-  margin: 2% 0 0 45%;
-  font-size: 25px;
-  font-size: bold;
+  background: #b91372;
+  padding: 5px;
+  margin-left: 2rem;
+  font-size: 1rem;
+  font-size: 800;
+  font-family: 'Poiret One', cursive;
+  border: 2px solid #fefaf0;
+  color: #fefaf0;
+  text-transform: uppercase;
 }
 
-.logOutButton:hover {
+.logOutButton:hover,
+.logOutButton:focus {
   cursor: pointer;
+  background: rgba(185, 19, 113, 0.806);
 }
 
 /************* GAMEROOM.js CSS *******************/
@@ -705,68 +711,84 @@ header {
 }
 
 .quizInfo {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   justify-content: space-evenly;
-  margin: 2% auto 2% auto;
-  color: #fefaf0;
-  font-size: 22px;
+  /* margin: 2% auto 2% auto; */
+  margin: 1rem auto;
+  /* color: #fefaf0; */
+  /* font-size: 22px; */
+  /* padding: 0 40px; */
 }
 
 .quizInfo p {
   font-size: 33px;
   font-weight: bold;
-  background: #fcd24f;
+  /* background: #fcd24f; */
   color: black;
   padding: 15px;
   border-radius: 20%;
 }
 
 .quizInfo h3 {
-  font-size: 33px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 600;
   background: #fcd24f;
-  color: black;
-  padding: 15px;
-  border-radius: 20%;
+  color: #000;
+  padding: 10px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
-.quizInfo .countDownCounter {
+/* .quizInfo {
   font-size: 33px;
   font-weight: bold;
   background: #fcd24f;
   color: black;
   padding: 15px;
   border-radius: 20%;
+} */
+
+.countDownCounter {
+  background: #ff0022;
+  border-radius: 50%;
+  padding: 20px;
+  min-width: 60px;
 }
 
 .questionFromAPI h3 {
   padding: 10px;
   background: #b91372;
-  color: black;
+  color: #fefaf0;
   width: 25%;
   border-radius: 10px;
   margin: auto;
-  font-size: 32px;
+  font-size: 1.5rem;
+  font-family: 'Poiret One', cursive;
 }
 
 .questionFromAPI p {
-  padding: 10px;
-  font-size: 35px;
+  padding: 10px 10px 0;
+  font-size: 25px;
+  font-weight: 600;
+  overflow: hidden;
 }
 
 .questionFromAPI ul {
   padding: 21px;
   display: flex;
   flex-wrap: wrap;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .questionFromAPI li {
   padding: 10px;
   width: 50%;
   border-radius: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border: 10px solid #fefaf0;
 }
 
@@ -790,7 +812,7 @@ header {
 
 /* turns the correct answer green */
 .correct-answer {
-  background-color: green;
+  background-color: lightgreen;
 }
 .answer-options {
   background-color: #fcd24f;
@@ -800,7 +822,11 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
+  overflow: hidden;
+}
+
+.spinnerContainer span {
   overflow: hidden;
 }
 
