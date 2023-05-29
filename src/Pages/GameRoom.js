@@ -36,11 +36,11 @@ const GameRoom = ({
 
   const [quizCompleted, setQuizCompleted] = useState(false);
   // State to control timer reset
-  const [resetTimer, setResetTimer] = useState(null);
+  // const [resetTimer, setResetTimer] = useState(null);
   // Grabs the game id from the URL
   const { gameId } = useParams();
 
-  const [redirectMessage, setRedirectMessage] = useState('');
+  // const [redirectMessage, setRedirectMessage] = useState('');
 
   const navigate = useNavigate();
 
@@ -50,40 +50,116 @@ const GameRoom = ({
   // State to control timer pause
   const [paused, setPaused] = useState(false);
 
+  // function to shuffle the answer using Fisher-Yates Algo to increase player's suffering
+  function shuffle(array) {
+    // variable that holds the length of the array
+    let currentIndex = array.length;
+    let temporaryValue, randomIndex;
+
+    // loop continues until we have processed all elements in the array
+    while (0 !== currentIndex) {
+      // generate a random index in the range of unprocessed elements (from 0 to currentIndex - 1)
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      //Decrease the range of unprocessed elements by
+      currentIndex -= 1;
+
+      // swapping the element at currentIndex with the element at randomIndex
+
+      // save the element at currentIndex in temporaryValue
+      temporaryValue = array[currentIndex];
+      // replace the element at currentIndex with the element at randomIndex
+      array[currentIndex] = array[randomIndex];
+      // replace the element at randomIndex with the value saved in temporaryValue
+      array[randomIndex] = temporaryValue;
+    }
+    return array;
+  }
+
+  // Function to fetch data for the game
+  const fetchData = useCallback(
+    (category, difficulty, type) => {
+      const gameSessionRef = ref(db, `gameSessions/${gameId}/questions`);
+      get(gameSessionRef)
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            setQuestions(data);
+            setLoading(false);
+          } else {
+            axios
+              .get(
+                `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=${type}`
+              )
+              .then((response) => {
+                const questionsWithUniqueIds = response.data.results.map(
+                  (question) => ({
+                    ...question,
+                    id: uuidv4(),
+                    options: shuffle([
+                      ...question.incorrect_answers,
+                      question.correct_answer,
+                    ]),
+                  })
+                );
+                set(gameSessionRef, questionsWithUniqueIds)
+                  .then(() => {
+                    setQuestions(questionsWithUniqueIds);
+                    setLoading(false);
+                  })
+                  .catch((error) => {
+                    setError(
+                      'Failed to save questions to Firebase. Please try again later.'
+                    );
+                    setLoading(false);
+                  });
+              })
+              .catch((error) => {
+                setError('Failed to fetch questions. Please try again later.');
+                setLoading(false);
+              });
+          }
+        })
+        .catch((error) => {
+          setError(
+            'Failed to fetch data from Firebase. Please try again later.'
+          );
+          setLoading(false);
+        });
+    },
+    [gameId]
+  );
   // Effect hook to fetch data on initial render and on changes to category, difficulty, type
   useEffect(() => {
     fetchData(category, difficulty, type);
-  }, [category, difficulty, type]);
+  }, [category, difficulty, type, fetchData]);
 
   // function to handle moving to the next question when the countdown timer expires
+  // function to handle moving to the next question when the countdown timer expires
   const handleExpire = useCallback(() => {
-    // Move to the next question when timer expires
-    const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < questions.length) {
-      setCurrentQuestion(nextQuestion);
-    } else {
-      setQuizCompleted(true);
-      navigate(`/gameroom/${gameId}/result`);
-    }
+    // Highlight the correct answer and pause the timer
     setHighlightAnswer(true);
     setPaused(true);
-    // Move to the next question after 3 seconds
+
+    // After 3 seconds, stop highlighting the answer, resume the timer, and move to the next question
     setTimeout(() => {
       setHighlightAnswer(false);
       setPaused(false);
+
       const nextQuestion = currentQuestion + 1;
+
       if (nextQuestion < questions.length) {
         setCurrentQuestion(nextQuestion);
       } else {
         setQuizCompleted(true);
+        navigate(`/gameroom/${gameId}/result`);
       }
     }, 3000);
-  }, [currentQuestion, questions.length]);
+  }, [currentQuestion, questions.length, navigate, gameId]);
 
   // Handler for resetting the timer
-  const handleReset = useCallback((resetFunction) => {
-    setResetTimer(() => resetFunction);
-  }, []);
+  // const handleReset = useCallback((resetFunction) => {
+  //   setResetTimer(() => resetFunction);
+  // }, []);
 
   // Handler for when an answer is selected
   const handleAnswer = (answer) => {
@@ -115,85 +191,6 @@ const GameRoom = ({
         navigate(`/gameroom/${gameId}/result`);
       }
     }, 3000);
-  };
-
-  // function to shuffle the answer using Fisher-Yates Algo to increase player's suffering
-  function shuffle(array) {
-    // variable that holds the length of the array
-    let currentIndex = array.length;
-    let temporaryValue, randomIndex;
-
-    // loop continues until we have processed all elements in the array
-    while (0 !== currentIndex) {
-      // generate a random index in the range of unprocessed elements (from 0 to currentIndex - 1)
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      //Decrease the range of unprocessed elements by
-      currentIndex -= 1;
-
-      // swapping the element at currentIndex with the element at randomIndex
-
-      // save the element at currentIndex in temporaryValue
-      temporaryValue = array[currentIndex];
-      // replace the element at currentIndex with the element at randomIndex
-      array[currentIndex] = array[randomIndex];
-      // replace the element at randomIndex with the value saved in temporaryValue
-      array[randomIndex] = temporaryValue;
-    }
-    return array;
-  }
-
-  // Function to fetch data for the game
-  const fetchData = (category, difficulty, type) => {
-    // Reference to the game session data in Firebase
-    const gameSessionRef = ref(db, `gameSessions/${gameId}/questions`);
-    // Tries to Fetch the data from Firebase, if it exists then use it otherwise make API call and then save it
-    get(gameSessionRef)
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          const data = snapshot.val();
-          setQuestions(data);
-          setLoading(false);
-        } else {
-          // If the data does not exist in Firebase make the API call
-          axios
-            .get(
-              `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=${type}`
-            )
-            .then((response) => {
-              const questionsWithUniqueIds = response.data.results.map(
-                (question) => ({
-                  ...question,
-                  id: uuidv4(),
-                  options: shuffle([
-                    ...question.incorrect_answers,
-                    question.correct_answer,
-                  ]),
-                })
-              );
-              // Save the data in Firebase
-              set(gameSessionRef, questionsWithUniqueIds)
-                .then(() => {
-                  // Set the local state with the fetched data
-                  setQuestions(questionsWithUniqueIds);
-                  setLoading(false);
-                })
-                .catch((error) => {
-                  setError(
-                    'Failed to save questions to Firebase. Please try again later.'
-                  );
-                  setLoading(false);
-                });
-            })
-            .catch((error) => {
-              setError('Failed to fetch questions. Please try again later.');
-              setLoading(false);
-            });
-        }
-      })
-      .catch((error) => {
-        setError('Failed to fetch data from Firebase. Please try again later.');
-        setLoading(false);
-      });
   };
 
   // Rendering based on different states
@@ -260,7 +257,7 @@ const GameRoom = ({
           key={currentQuestion}
           initialCount={15}
           onExpire={handleExpire}
-          onReset={handleReset}
+          // onReset={handleReset}
           paused={paused}
         />
       </div>

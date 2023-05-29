@@ -1,9 +1,9 @@
 import '../App.css';
 import SignOut from '../Components/auth/SignOut';
-import { push, ref, set, update } from 'firebase/database';
+import { push, ref, set } from 'firebase/database';
 import { db } from '../firebase-config';
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
@@ -37,7 +37,6 @@ const HostGameLobby = ({ handleStartQuiz }) => {
   const handleTypeChange = (event) => {
     const type = event.target.value;
     setSelectedType(type);
-    // console.log('selected type', type);
   };
 
   const handleQuizStart = () => {

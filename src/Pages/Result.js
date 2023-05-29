@@ -5,12 +5,14 @@ import { auth } from '../firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
 import SignOut from '../Components/auth/SignOut';
-import Footer from '../Components/Footer'
+import Footer from '../Components/Footer';
+import { useNavigate } from 'react-router-dom';
 
 const Result = ({ score }) => {
   const [leaderboard, setLeaderboard] = useState([]);
   const [user] = useAuthState(auth);
   const { gameId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (gameId && score !== undefined && user) {
@@ -62,6 +64,13 @@ const Result = ({ score }) => {
     }
   }, [gameId, score, user]);
 
+  useEffect(() => {
+    if (!user) {
+      console.log('boooom');
+      navigate('/');
+    }
+  }, [user, navigate]);
+
   const handleCopyGameId = () => {
     // Copy the game ID to the clipboard
     const gameIdInput = document.createElement('input');
@@ -79,7 +88,7 @@ const Result = ({ score }) => {
     <div className="resultFooter">
       <div className="resultContainer">
         <h2>Score: {score}</h2>
-        <h3>User: {user.displayName}</h3>
+        <h3>User: {user ? user.displayName : 'Loading...'}</h3>
         <table>
           <thead>
             <tr>
@@ -94,7 +103,7 @@ const Result = ({ score }) => {
               <tr key={player.playerId}>
                 <td>{index + 1}</td>
                 <td>
-                  <img src={player.photoURL} alt="Player profile picture" />
+                  <img src={player.photoURL} alt="Player profile " />
                 </td>
                 <td>{player.name}</td>
                 <td>{player.score}</td>
@@ -103,8 +112,10 @@ const Result = ({ score }) => {
           </tbody>
         </table>
         <div className="twoButtonsContainer">
-        <button className="copyGameIdButton" onClick={handleCopyGameId}>Copy Game ID</button>
-        <SignOut />
+          <button className="copyGameIdButton" onClick={handleCopyGameId}>
+            Copy Game ID
+          </button>
+          <SignOut />
         </div>
       </div>
       <Footer />
