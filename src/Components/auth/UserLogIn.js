@@ -2,6 +2,7 @@ import { auth } from '../../firebase-config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import './../../App.css';
+import { Link } from 'react-router-dom';
 
 const UserLogIn = () => {
   const [email, setEmail] = useState('');
@@ -54,7 +55,8 @@ const UserLogIn = () => {
         <button type="submit">Next</button>
       </form>
 
-      <a className='newPlayer' href="#">New player? Create a new profile</a>
+      <Link to="signup" className="newPlayer">New player? Create a new profile</Link>
+      
     </div>
   );
 };

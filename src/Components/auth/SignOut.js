@@ -1,30 +1,30 @@
 import { auth } from '../../firebase-config';
 import { useNavigate } from 'react-router-dom';
 
-const SignOut = ({
-  setUserProf,
-  setCategory,
-  setDifficulty,
-  setType,
-  setgameId,
-}) => {
+const SignOut = ({ setCategory, setDifficulty, setType }) => {
   const navigate = useNavigate();
 
-  const logout = () => {
-    auth.signOut().then(() => {
-      // Clear the user's profile and game-related states
-      // setUserProf(null);
-      // setCategory(null);
-      // setDifficulty(null);
-      // setType(null);
-      // setgameId('');
+  const quitGame = () => {
+    // Clear the user's profile and game-related states
+    if (setDifficulty) setDifficulty(null);
+    if (setCategory) setCategory(null);
+    if (setType) setType(null);
 
-      // Navigate to the home page
+    // Navigate to the home page
+  };
+
+  const logout = () => {
+    quitGame();
+    auth.signOut().then(() => {
       navigate('/');
     });
   };
 
-  return <button onClick={logout} className="logOutButton">Logout</button>;
+  return (
+    <button onClick={logout} className="logOutButton">
+      Logout
+    </button>
+  );
 };
 
 export default SignOut;

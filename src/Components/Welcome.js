@@ -12,16 +12,16 @@ const Welcome = ({ userProf }) => {
   const [createGameName, setCreateGameName] = useState('');
   const navigate = useNavigate();
 
-  const handleJoinSubmit = (event) => {
-    event.preventDefault();
+  const handleJoinSubmit = (e) => {
+    e.preventDefault();
     // Handle join form submission logic
     console.log('Join form submitted with username:', joinUsername);
     // Navigate to the joined game room
     navigate(`/gameroom/${joinUsername}`);
   };
 
-  const handleCreateSubmit = (event) => {
-    event.preventDefault();
+  const handleCreateSubmit = (e) => {
+    e.preventDefault();
     // Handle create form submission logic
     console.log('Create form submitted with game name:', createGameName);
     // Navigate to the game creation lobby

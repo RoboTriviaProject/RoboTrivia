@@ -9,7 +9,17 @@ import CountdownTimer from '../Components/CountdownTimer';
 import { PacmanLoader } from 'react-spinners';
 import '../App.css';
 
-const GameRoom = ({ category, difficulty, type, score, setScore }) => {
+const GameRoom = ({
+  category,
+  difficulty,
+  type,
+  score,
+  setScore,
+  setUserProf,
+  setCategory,
+  setDifficulty,
+  setType,
+}) => {
   // Array to hold quiz questions
   const [questions, setQuestions] = useState([]);
   // Index for the current question
@@ -104,6 +114,31 @@ const GameRoom = ({ category, difficulty, type, score, setScore }) => {
     }, 3000);
   };
 
+  // function to shuffle the answer using Fisher-Yates Algo to increase player's suffering
+  function shuffle(array) {
+    // variable that holds the length of the array
+    let currentIndex = array.length;
+    let temporaryValue, randomIndex;
+
+    // loop continues until we have processed all elements in the array
+    while (0 !== currentIndex) {
+      // generate a random index in the range of unprocessed elements (from 0 to currentIndex - 1)
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      //Decrease the range of unprocessed elements by
+      currentIndex -= 1;
+
+      // swapping the element at currentIndex with the element at randomIndex
+
+      // save the element at currentIndex in temporaryValue
+      temporaryValue = array[currentIndex];
+      // replace the element at currentIndex with the element at randomIndex
+      array[currentIndex] = array[randomIndex];
+      // replace the element at randomIndex with the value saved in temporaryValue
+      array[randomIndex] = temporaryValue;
+    }
+    return array;
+  }
+
   // Function to fetch data for the game
   const fetchData = (category, difficulty, type) => {
     // Reference to the game session data in Firebase
@@ -123,7 +158,14 @@ const GameRoom = ({ category, difficulty, type, score, setScore }) => {
             )
             .then((response) => {
               const questionsWithUniqueIds = response.data.results.map(
-                (question) => ({ ...question, id: uuidv4() })
+                (question) => ({
+                  ...question,
+                  id: uuidv4(),
+                  options: shuffle([
+                    ...question.incorrect_answers,
+                    question.correct_answer,
+                  ]),
+                })
               );
               // Save the data in Firebase
               set(gameSessionRef, questionsWithUniqueIds)
@@ -163,25 +205,47 @@ const GameRoom = ({ category, difficulty, type, score, setScore }) => {
   if (error) {
     return (
       <div>
-        {error}
+        <div>
+        <div className="spinnerContainer">
+          <PacmanLoader color="#fff" size={50} />
+        </div>
+        <p>{error}</p>
         <button onClick={() => fetchData(category, difficulty, type)}>
-          Retry
+          Please try again
         </button>
+    </div>
       </div>
     );
   }
   // Rendering based on different states
   if (questions.length === 0) {
-    return <p>Loading...</p>;
+    return(
+      <div>
+        <div className="spinnerContainer">
+          <PacmanLoader color="#fff" size={50} />
+        </div>
+        <p>{error}</p>
+        <button onClick={() => fetchData(category, difficulty, type)}>
+          Please try again
+        </button>
+    </div>
+    )
   }
 
   const currentQuestionObj = questions[currentQuestion];
-  const options = [
-    ...currentQuestionObj.incorrect_answers,
-    currentQuestionObj.correct_answer,
-  ];
-  //Its going to shuffle options.We can call the sort() method, which accepts a function that returns a value between -0.5 and 0.5
-  //// options.sort(() => Math.random() - 0.5);
+  const options = currentQuestionObj.options;
+
+  const quitGame = () => {
+    // Clear the user's profile and game-related states
+    setUserProf(null);
+    setCategory(null);
+    setDifficulty(null);
+    setType(null);
+    setScore(0);
+
+    // Navigate to the home page
+    navigate('/');
+  };
 
   return (
     <div>
@@ -222,7 +286,8 @@ const GameRoom = ({ category, difficulty, type, score, setScore }) => {
       {currentQuestion === questions.length - 1 ? (
         <Link to={`/gameroom/${gameId}/result`}>View Score!</Link>
       ) : null}
-      <Link to="/">Quit Game</Link>
+      {/* <Link to="/">Quit Game</Link> */}
+      <button onClick={quitGame}>Quit Game</button>
     </div>
   );
 };

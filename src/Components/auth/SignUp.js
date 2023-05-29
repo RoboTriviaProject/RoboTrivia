@@ -41,9 +41,9 @@ const SignUp = () => {
 
   return (
     <div className='registration'>
-      <h2>Registration</h2>
+      <h2>Sign Up!</h2>
       <form onSubmit={handleRegistration}>
-        <div>
+        <div className="labelInput">
           <label>Email:</label>
           <input
             type="email"
@@ -51,7 +51,7 @@ const SignUp = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div>
+        <div className="labelInput">
           <label>Password</label>
           <input
             type="password"
@@ -59,7 +59,7 @@ const SignUp = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div>
+        <div className="labelInput">
           <label>Please select a name</label>
           <input
             type="text"
