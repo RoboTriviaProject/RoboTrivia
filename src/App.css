@@ -204,6 +204,81 @@ header {
   height: fit-content;
 }
 
+/***************** HOW TO ******************/
+.howContainer {
+  background-color: #fefaf0;
+  margin: 2rem 5rem;
+  /* width: 100vw; */
+  border-radius: 10px;
+  border :7px solid #fcd24f;
+  /* padding: 20px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  left: 150px;
+  top: 70px;
+  width: 800px;
+  height: 80vh;
+}
+
+.instructionContainer {
+  position: relative;
+  width: 50%;
+  min-height: 300px;
+  /* margin: 20px auto; */
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 2rem;
+  
+}
+
+/* .buttonClose {
+  cursor: pointer;
+  border: 1px solid #999;
+  border-radius: 50%;
+  position: fixed;
+  right: calc(25% - 30px);
+  top: 15px;
+  padding: 4px;
+} */
+
+.howContainer h2 {
+  color: #ff0022;
+  margin-bottom: 1rem;
+}
+
+.redRobotImg {
+  width: 200px;
+  position: fixed;
+  top: 200px;
+  right: 300px;
+}
+
+.instructionContainer li {
+  display: flex;
+  margin: 2px;
+  overflow: hidden;
+}
+
+.instructionContainer span {
+  color: #ff0022;
+  font-weight: 700;
+  padding-right: 10px;
+  width: 30px;
+}
+
+.instructionContainer p {
+  margin-left: 1rem;
+  overflow: hidden;
+}
+
+
+
 /********************* WELCOME ***********************/
 
 .welcomeContainer {
