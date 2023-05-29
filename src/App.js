@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import HostGameLobby from './Pages/HostGameLobby';
 import GameRoom from './Pages/GameRoom';
+import Header from './Components/Header';
 import Result from './Pages/Result';
 
 const App = () => {
@@ -31,8 +32,10 @@ const App = () => {
   };
 
   return (
+    
     <div className="hostLobby">
-      <h1>Robo Trivia</h1>
+    <Header />
+
       <Routes>
         <Route
           path="/"
