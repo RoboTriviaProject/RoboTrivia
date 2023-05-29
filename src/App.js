@@ -18,6 +18,7 @@ const App = () => {
   const [category, setCategory] = useState(null);
   const [difficulty, setDifficulty] = useState(null);
   const [type, setType] = useState(null);
+  const [error, sendError] = useState(false);
 
   // adding score here
   const [score, setScore] = useState(0);
@@ -33,9 +34,8 @@ const App = () => {
   };
 
   return (
-    
     <div className="hostLobby">
-    <Header />
+      <Header />
 
       <Routes>
         <Route
@@ -50,7 +50,15 @@ const App = () => {
         />
         <Route
           path="/welcome"
-          element={user && <Welcome userProf={userProf} />}
+          element={
+            user && (
+              <Welcome
+                userProf={userProf}
+                error={error}
+                sendError={sendError}
+              />
+            )
+          }
         />
         <Route
           path="/signout"
@@ -83,6 +91,7 @@ const App = () => {
                 setCategory={setCategory}
                 setDifficulty={setDifficulty}
                 setType={setType}
+                sendError={sendError}
               />
             )
           }
@@ -91,7 +100,7 @@ const App = () => {
           path="/gameroom/:gameId/result"
           element={<Result score={score} />}
         />
-        <Route path="signup" element={<SignUp />}/>
+        <Route path="signup" element={<SignUp />} />
       </Routes>
     </div>
   );
