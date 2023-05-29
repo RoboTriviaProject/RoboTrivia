@@ -1,7 +1,7 @@
 const Footer = () => {
     return(
-        <div>
-          <a href="https://junocollege.com/">Created by ❤️ with Radhika, Rayan, Noelle & Dilpreet at Juno College</a>
+        <div className="footerContainer">
+          <a href="https://junocollege.com/" target="_blank">Created with ❤️ by Radhika, Rayan, Noelle & Dilpreet at Juno College</a>
         </div>
     )
 }
