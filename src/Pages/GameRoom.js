@@ -134,29 +134,27 @@ const GameRoom = ({
   }, [category, difficulty, type, fetchData]);
 
   // function to handle moving to the next question when the countdown timer expires
+  // function to handle moving to the next question when the countdown timer expires
   const handleExpire = useCallback(() => {
-    // Move to the next question when timer expires
-    const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < questions.length) {
-      setCurrentQuestion(nextQuestion);
-    } else {
-      setQuizCompleted(true);
-      navigate(`/gameroom/${gameId}/result`);
-    }
+    // Highlight the correct answer and pause the timer
     setHighlightAnswer(true);
     setPaused(true);
-    // Move to the next question after 3 seconds
+
+    // After 3 seconds, stop highlighting the answer, resume the timer, and move to the next question
     setTimeout(() => {
       setHighlightAnswer(false);
       setPaused(false);
+
       const nextQuestion = currentQuestion + 1;
+
       if (nextQuestion < questions.length) {
         setCurrentQuestion(nextQuestion);
       } else {
         setQuizCompleted(true);
+        navigate(`/gameroom/${gameId}/result`);
       }
     }, 3000);
-  }, [currentQuestion, questions.length]);
+  }, [currentQuestion, questions.length, navigate, gameId]);
 
   // Handler for resetting the timer
   // const handleReset = useCallback((resetFunction) => {

@@ -12,7 +12,7 @@ const CountdownTimer = ({ initialCount, onExpire, paused }) => {
     } else {
       onExpire();
     }
-  }, [counter, paused]);
+  }, [counter, paused, onExpire]);
 
   // useEffect(() => {
   //   if (onReset) {
