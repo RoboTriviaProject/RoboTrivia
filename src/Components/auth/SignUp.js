@@ -49,6 +49,7 @@ const SignUp = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </div>
         <div className="labelInput">
@@ -57,6 +58,7 @@ const SignUp = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </div>
         <div className="labelInput">
@@ -65,6 +67,7 @@ const SignUp = () => {
             type="text"
             value={displayName}
             onChange={(e) => setDisplayname(e.target.value)}
+            required
           />
         </div>
         <button type="submit">Register</button>
