@@ -62,7 +62,7 @@ const Result = ({ score }) => {
   }, [gameId, score, user]);
 
   return (
-    <div>
+    <div className="resultContainer">
       <h2>Score: {score}</h2>
       <h3>User: {user.displayName}</h3>
       <table>
@@ -70,6 +70,7 @@ const Result = ({ score }) => {
           <tr>
             <th>Rank</th>
             <th>Profile Pic</th>
+            <th>Username</th>
             <th>Score</th>
           </tr>
         </thead>
@@ -80,6 +81,7 @@ const Result = ({ score }) => {
               <td>
                 <img src={player.photoURL} alt="Player profile picture" />
               </td>
+              <td>{player.name}</td>
               <td>{player.score}</td>
             </tr>
           ))}
