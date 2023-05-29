@@ -22,7 +22,7 @@ const SignOut = ({ setCategory, setDifficulty, setType }) => {
 
   return (
     <button onClick={logout} className="logOutButton">
-      Logout
+      Log out
     </button>
   );
 };
