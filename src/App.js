@@ -2,13 +2,15 @@ import './App.css';
 import Auth from './Components/auth/Auth';
 import Welcome from './Components/Welcome';
 import SignOut from './Components/auth/SignOut';
+import HostGameLobby from './Pages/HostGameLobby';
+import GameRoom from './Pages/GameRoom';
+import Header from './Components/Header';
+import Result from './Pages/Result';
+import SignUp from './Components/auth/SignUp';
 import { auth } from './firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import HostGameLobby from './Pages/HostGameLobby';
-import GameRoom from './Pages/GameRoom';
-import Result from './Pages/Result';
 
 const App = () => {
   const [user] = useAuthState(auth);
@@ -31,8 +33,10 @@ const App = () => {
   };
 
   return (
+    
     <div className="hostLobby">
-      <h1>Robo Trivia</h1>
+    <Header />
+
       <Routes>
         <Route
           path="/"
@@ -87,6 +91,7 @@ const App = () => {
           path="/gameroom/:gameId/result"
           element={<Result score={score} />}
         />
+        <Route path="signup" element={<SignUp />}/>
       </Routes>
     </div>
   );

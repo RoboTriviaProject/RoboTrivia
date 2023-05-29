@@ -243,7 +243,7 @@ h1 {
   text-align: center;
   font-family: 'Poiret One', cursive;
   overflow: hidden;
-  margin: 2rem;
+  margin: 1rem;
 }
 
 input {
@@ -286,13 +286,34 @@ img {
   off-white: #fefaf0
 */
 
+/******************** Header *********************/
+.logo, 
+.helpIcon {
+  width: 50px;
+  height: 100%;
+  margin: 1rem 2rem;
+  cursor: pointer;
+}
+
+.helpIcon {
+  cursor: pointer;
+}
+
+header {
+  /* margin-top: 2rem; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-content: space-between;
+}
+
 /******************** HOME / SIGN IN ************************/
 .signIn {
   background-color: #fefaf0;
   margin: 2rem 5rem;
   text-align: center;
   /* width: 65%; */
-  /* height: 100%; */
+  /* height: 363px; */
   border-radius: 10px;
   border: 7px solid #41ead4;
 }
@@ -300,7 +321,7 @@ img {
 .userButton {
   background: #000;
   padding: 10px;
-  margin: 2rem 2rem;
+  margin: 1rem 1rem;
   color: #fefaf0;
   border-radius: 50px;
   font-weight: 700;
@@ -353,6 +374,13 @@ img {
   border: none;
   border-radius: 10px;
   padding: 5px;
+  width: 200px;
+}
+
+.logIn input:hover,
+.logIn input:focus {
+  background-color: rgba(252, 209, 79, 0.568);
+  outline: none;
 }
 
 .logIn p {
@@ -365,6 +393,164 @@ img {
   color: #000;
 }
 
+.homeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 400px;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+.robotImg {
+  width: 200px;
+  height: fit-content;
+}
+
+/***************** SIGN UP ******************/
+
+.registration {
+  background-color: #fefaf0;
+  margin: 2rem 5rem;
+  text-align: center;
+  border-radius: 10px;
+  border: 7px solid #41ead4;
+  padding: 2rem;
+}
+
+.registration h2 {
+  color: #b91372;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.registration form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.labelInput {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.registration label {
+  color: #b91372;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.registration input {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #fcd24f;
+  margin-bottom: 1rem;
+  outline: none;
+  
+}
+
+.registration button {
+  background: #b91372;
+  color: #fefaf0;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  box-shadow: 4px 3px 6px rgba(0, 0, 0);
+  margin-bottom: 20px;
+}
+
+.registration button:hover,
+.registration button:focus {
+  background: rgba(185, 19, 113, 0.607);
+  box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.607); /* Increase shadow effect on hover or focus */
+}
+
+/***************** HOW TO ******************/
+.howContainer {
+  background-color: #fefaf0;
+  margin: 2rem 5rem;
+  /* width: 100vw; */
+  border-radius: 10px;
+  border :7px solid #fcd24f;
+  /* padding: 20px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  left: 150px;
+  top: 70px;
+  width: 800px;
+  height: 80vh;
+}
+
+.instructionContainer {
+  position: relative;
+  width: 50%;
+  min-height: 300px;
+  /* margin: 20px auto; */
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 2rem;
+  
+}
+
+/* .buttonClose {
+  cursor: pointer;
+  border: 1px solid #999;
+  border-radius: 50%;
+  position: fixed;
+  right: calc(25% - 30px);
+  top: 15px;
+  padding: 4px;
+} */
+
+.howContainer h2 {
+  color: #ff0022;
+  margin-bottom: 1rem;
+}
+
+.redRobotImg {
+  width: 200px;
+  position: fixed;
+  top: 200px;
+  right: 300px;
+}
+
+.instructionContainer li {
+  display: flex;
+  margin: 2px;
+  overflow: hidden;
+}
+
+.instructionContainer span {
+  color: #ff0022;
+  font-weight: 700;
+  padding-right: 10px;
+  width: 30px;
+}
+
+.instructionContainer p {
+  margin-left: 1rem;
+  overflow: hidden;
+}
+
+
+
 /********************* WELCOME ***********************/
 
 .welcomeContainer {
@@ -376,9 +562,75 @@ img {
 }
 
 .welcome {
-  color: #fefaf0;
+  color: #fcd24f;
   font-family: 'Poiret One', cursive;
+  margin-bottom: 1rem;
 }
+
+.imgContainer {
+  background-color: rgba(255, 251, 240, 0.674);
+  padding: 5px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.gameOptions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #fefaf0;
+  margin: 2rem 5rem;
+  padding: 1rem;
+  border-radius: 10px;
+  border :2px solid #41ead4;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.pinkRobotImg {
+  width: 100px;
+  margin: 0 2rem;
+}
+
+.welcomeForm {
+  margin: 1rem;
+}
+
+.welcomeForm input {
+  background: rgba(64, 235, 212, 0.573);
+  border: none;
+  border-radius: 50px;
+  padding: 7px;
+  width: 200px;
+  outline: none;
+}
+
+.joinButton, 
+.createButton {
+  background: #fcd24f;
+  border: none;
+  border-radius: 50px;
+  padding: 5px;
+  width: 200px;
+  font-weight: 700;
+  text-transform: uppercase;
+  word-spacing: 3px;
+  cursor: pointer;
+}
+
+.createButton:hover,
+.createButton:focus {
+  background: rgba(252, 209, 79, 0.8);
+}
+
+
+
 
 /******************** HOST GAME LOBBY ************************/
 .selectOptions {
