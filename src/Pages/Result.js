@@ -62,6 +62,19 @@ const Result = ({ score }) => {
     }
   }, [gameId, score, user]);
 
+  const handleCopyGameId = () => {
+    // Copy the game ID to the clipboard
+    const gameIdInput = document.createElement('input');
+    gameIdInput.value = gameId;
+    document.body.appendChild(gameIdInput);
+    gameIdInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(gameIdInput);
+
+    // Show a success message or perform any other desired action
+    alert('Game ID copied to clipboard!');
+  };
+
   return (
     <div className="resultFooter">
       <div className="resultContainer">
@@ -89,7 +102,10 @@ const Result = ({ score }) => {
             ))}
           </tbody>
         </table>
+        <div className="twoButtonsContainer">
+        <button className="copyGameIdButton" onClick={handleCopyGameId}>Copy Game ID</button>
         <SignOut />
+        </div>
       </div>
       <Footer />
     </div>
