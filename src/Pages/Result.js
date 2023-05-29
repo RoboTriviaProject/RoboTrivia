@@ -5,6 +5,7 @@ import { auth } from '../firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
 import SignOut from '../Components/auth/SignOut';
+import Footer from '../Components/Footer'
 
 const Result = ({ score }) => {
   const [leaderboard, setLeaderboard] = useState([]);
@@ -62,30 +63,35 @@ const Result = ({ score }) => {
   }, [gameId, score, user]);
 
   return (
-    <div>
-      <h2>Score: {score}</h2>
-      <h3>User: {user.displayName}</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Profile Pic</th>
-            <th>Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          {leaderboard.map((player, index) => (
-            <tr key={player.playerId}>
-              <td>{index + 1}</td>
-              <td>
-                <img src={player.photoURL} alt="Player profile picture" />
-              </td>
-              <td>{player.score}</td>
+    <div className="resultFooter">
+      <div className="resultContainer">
+        <h2>Score: {score}</h2>
+        <h3>User: {user.displayName}</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Avatar</th>
+              <th>Username</th>
+              <th>Score</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <SignOut />
+          </thead>
+          <tbody>
+            {leaderboard.map((player, index) => (
+              <tr key={player.playerId}>
+                <td>{index + 1}</td>
+                <td>
+                  <img src={player.photoURL} alt="Player profile picture" />
+                </td>
+                <td>{player.name}</td>
+                <td>{player.score}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <SignOut />
+      </div>
+      <Footer />
     </div>
   );
 };

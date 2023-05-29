@@ -629,9 +629,6 @@ header {
   background: rgba(252, 209, 79, 0.8);
 }
 
-
-
-
 /******************** HOST GAME LOBBY ************************/
 .selectOptions {
   background: #b91372;
@@ -677,14 +674,23 @@ header {
 /***************** Log Out Button from HostGameLobby ****************************/
 .logOutButton {
   border-radius: 50px;
-  width: 8%;
-  background: #41ead4;
-  box-shadow: #b91372;
+  background: linear-gradient(45deg, #41ead4, #25c8b4);
   padding: 10px;
-  box-shadow: 4px 4px 4px navy;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
   margin: 2% 0 0 45%;
-  font-size: 25px;
-  font-size: bold;
+  font-size: 20px;
+  padding: 12px 20px;
+  font-weight: bold;
+  color: #000;
+  border: none;
+  width: fit-content;
+  transition: background 0.3s ease-in-out;
+  text-transform: uppercase;
+}
+
+.logOutButton:hover {
+  cursor: pointer;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .logOutButton:hover {
@@ -806,4 +812,85 @@ header {
 
 .spinner {
   overflow: hidden;
+}
+
+/************ Result ************/
+
+
+.resultContainer {
+  background-color: #fefaf0;
+  margin: 2rem 5rem;
+  border-radius: 10px;
+  border: 7px solid #41ead4;
+  padding: 2rem;
+  line-height: auto;
+}
+
+.resultContainer h2 {
+  color: #b91372;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.resultContainer h3 {
+  color: #b91372;
+  margin-bottom: 1rem;
+}
+
+.resultContainer table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+
+.resultContainer th {
+  background-color: #b91372;
+  color: #fefaf0;
+  padding: 1rem;
+  text-transform: uppercase;
+}
+
+.resultContainer tr {
+  border-bottom: 1px solid #b91372;
+  text-align: center;
+}
+
+.resultContainer td:first-child {
+  font-weight: bold;
+}
+
+.resultContainer img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.resultContainer td:nth-child(3) {
+  font-weight: bold;
+}
+
+.resultContainer td:last-child {
+  font-weight: bold;
+}
+
+/************ Footer ************/
+
+.footerContainer {
+  background-color: #f2f2f2;
+  padding: 10px;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.footerContainer a {
+  color: #888;
+  text-decoration: none;
+}
+
+.footerContainer a:hover {
+  color: #333;
 }
