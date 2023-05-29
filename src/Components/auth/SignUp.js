@@ -53,7 +53,7 @@ const SignUp = () => {
           />
         </div>
         <div className="labelInput">
-          <label>Password</label>
+          <label>Password:</label>
           <input
             type="password"
             value={password}
@@ -62,7 +62,7 @@ const SignUp = () => {
           />
         </div>
         <div className="labelInput">
-          <label>Please select a name</label>
+          <label>Choose your nickname:</label>
           <input
             type="text"
             value={displayName}

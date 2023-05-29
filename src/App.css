@@ -268,8 +268,8 @@ input {
 }
 
 .imgContainer {
-  width: 140px;
-  height: 140px;
+  width: 120px;
+  height: 120px;
 }
 
 img {
@@ -412,6 +412,8 @@ header {
 .registration {
   background-color: #fefaf0;
   margin: 2rem 5rem;
+  width: 70%;
+  margin: 2rem auto;
   text-align: center;
   border-radius: 10px;
   border: 7px solid #41ead4;
@@ -420,9 +422,11 @@ header {
 
 .registration h2 {
   color: #b91372;
-  font-size: 2rem;
+  font-family: 'Poiret One', cursive;
+  font-size: 30px;
   margin-bottom: 1rem;
   text-transform: uppercase;
+  overflow: hidden;
 }
 
 .registration form {
@@ -555,6 +559,7 @@ header {
   color: #fcd24f;
   font-family: 'Poiret One', cursive;
   margin-bottom: 1rem;
+  font-size: 30px;
 }
 
 .imgContainer {
@@ -571,7 +576,7 @@ header {
   justify-content: space-between;
   align-items: flex-start;
   background-color: #fefaf0;
-  margin: 2rem 5rem;
+  margin: 1rem 5rem;
   padding: 1rem;
   border-radius: 10px;
   border :3px solid #41ead4;
@@ -618,10 +623,17 @@ header {
   text-transform: uppercase;
   word-spacing: 3px;
   cursor: pointer;
+  display: flex;
+  margin-bottom: 20px;
+  /* align-self: center; */
+  justify-content: center;
 }
 
-.createButton:hover,
-.createButton:focus {
+.createButton {
+  margin-top: 15px;
+}
+.welcomeButton:hover,
+.welcomeButton:focus {
   background: rgba(252, 209, 79, 0.8);
 }
 
@@ -641,18 +653,35 @@ header {
 
 }
 
+select {
+  /* background-color: #fcd24f; */
+  background: rgb(254,250,240);
+  background: linear-gradient(90deg, rgba(254,250,240,0.5340335963486957) 0%, rgba(252,210,79,1) 100%); 
+  outline: none;
+  border: none;
+}
+
+option {
+  background-color: lightgoldenrodyellow;
+}
+
+option:hover,
+option:focus {
+  background-color: #fcd24f;
+}
+
 .chooseCategory,
 .chooseDifficulty,
 .chooseType {
-  background: #fcd24f;
+  /* background: #fcd24f; */
+  background: rgb(254,250,240);
+  background: linear-gradient(90deg, rgba(254,250,240,1) 13%, rgba(252,210,79,1) 100%); 
   padding: 15px;
   width: 50%;
   border-radius: 10px;
   margin: 1rem;
-  /* margin: 10px auto 20px 88px; */
-  /* font-size: 25px; */
   font-size: 1.25rem;
-  font-weight: 600;
+  font-weight: 800;
   text-transform: uppercase;
 }
 
@@ -676,26 +705,16 @@ header {
 /***************** Log Out Button from HostGameLobby ****************************/
 .logOutButton {
   border-radius: 50px;
-  /* width: 8%;
-  background: #b91372;
-  padding: 5px;
-  margin-left: 2rem;
+  width: 10%;
+  background: rgb(65,234,212);
+  background: linear-gradient(90deg, rgba(65,234,212,1) 0%, rgba(185,19,114,1) 100%);
   font-size: 1rem;
   font-size: 800;
   font-family: 'Poiret One', cursive;
   border: 2px solid #fefaf0;
-  color: #fefaf0; */
-
-  background: linear-gradient(45deg, #41ead4, #25c8b4);
+  color: #fefaf0;
   padding: 10px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
-  margin: 2% 0 0 45%;
-  font-size: 20px;
-  padding: 12px 20px;
-  font-weight: bold;
-  color: #000;
-  border: none;
-  width: fit-content;
+  margin: 1% 0 0 47%;
   transition: background 0.3s ease-in-out;
   text-transform: uppercase;
 }
@@ -703,9 +722,8 @@ header {
 .logOutButton:hover,
 .logOutButton:focus {
   cursor: pointer;
-  /* background: rgba(185, 19, 113, 0.806); */
-  
-  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+  background: rgb(185,19,114);
+  background: linear-gradient(90deg, rgba(185,19,114,1) 0%, rgba(65,234,212,1) 100%);
 }
 
 /************* GAMEROOM.js CSS *******************/
@@ -714,7 +732,9 @@ header {
   margin: auto;
   border: 10px solid #41ead4;
   padding: 15px;
-  background: #fefaf0;
+  /* background: #fefaf0; */
+  background: rgb(254,250,240);
+  background: radial-gradient(circle, rgba(254,250,240,1) 78%, rgba(148,233,210,1) 100%);
   font-size: 20px;
   width: 75%;
   height: 50%;
@@ -722,52 +742,39 @@ header {
 }
 
 .quizInfo {
-  /* width: 100%; */
   display: flex;
-  justify-content: space-evenly;
-  /* margin: 2% auto 2% auto; */
+  justify-content: space-around;
+  align-items: center;
   margin: 1rem auto;
-  /* color: #fefaf0; */
-  /* font-size: 22px; */
-  /* padding: 0 40px; */
+  font-size: 22px;
+  font-weight: 600;
 }
 
-.quizInfo p {
-  font-size: 33px;
-  font-weight: bold;
-  /* background: #fcd24f; */
-  color: black;
+.quizInfo p, 
+.quizInfo h3 {
+  color: #fefaf0;
   padding: 15px;
-  border-radius: 20%;
+  border-top: 2px solid #b91372;
+  border-bottom: 2px solid #b91372;
 }
 
 .quizInfo h3 {
-  font-size: 20px;
-  font-weight: 600;
-  background: #fcd24f;
-  color: #000;
-  padding: 10px;
-  border-radius: 10px;
   text-transform: uppercase;
   text-align: center;
-  margin: 0;
-  padding: 0;
 }
-
-/* .quizInfo {
-  font-size: 33px;
-  font-weight: bold;
-  background: #fcd24f;
-  color: black;
-  padding: 15px;
-  border-radius: 20%;
-} */
 
 .countDownCounter {
   background: #ff0022;
   border-radius: 50%;
   padding: 20px;
-  min-width: 60px;
+  min-width: 80px;
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+  position: fixed;
+  top: 200px;
+  right: 140px;
+  border: 5px ridge black;
 }
 
 .questionFromAPI h3 {
@@ -803,10 +810,12 @@ header {
   border: 10px solid #fefaf0;
 }
 
-.questionFromAPI li:hover {
+.questionFromAPI li:hover,
+.questionFromAPI li:focus {
   cursor: pointer;
-  background-color: #41ead4;
   color: black;
+  background: rgb(65,234,212);
+  background: radial-gradient(circle, rgba(65,234,212,0.931512570848652) 0%, rgba(185,19,114,0.5312324759005165) 100%); 
   border-radius: 20px;
 }
 
@@ -823,7 +832,7 @@ header {
 
 /* turns the correct answer green */
 .correct-answer {
-  background-color: lightgreen;
+  background-color: #50C878;
 }
 .answer-options {
   background-color: #fcd24f;
@@ -862,6 +871,7 @@ header {
   margin-bottom: 1rem;
   text-transform: uppercase;
   line-height: auto;
+  overflow: hidden;
 }
 
 .resultContainer h3 {
@@ -911,9 +921,9 @@ header {
   background: linear-gradient(45deg, #41ead4, #25c8b4);
   padding: 10px;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
-  font-size: 20px;
+  font-size: 15px;
   padding: 12px 20px;
-  font-weight: bold;
+  font-weight: 600;
   color: #000;
   border: none;
   width: fit-content;
