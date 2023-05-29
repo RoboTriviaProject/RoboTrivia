@@ -19,6 +19,7 @@ const GameRoom = ({
   setCategory,
   setDifficulty,
   setType,
+  sendError,
 }) => {
   // Array to hold quiz questions
   const [questions, setQuestions] = useState([]);
@@ -38,6 +39,8 @@ const GameRoom = ({
   const [resetTimer, setResetTimer] = useState(null);
   // Grabs the game id from the URL
   const { gameId } = useParams();
+
+  const [redirectMessage, setRedirectMessage] = useState('');
 
   const navigate = useNavigate();
 
@@ -206,30 +209,31 @@ const GameRoom = ({
     return (
       <div>
         <div>
-        <div className="spinnerContainer">
-          <PacmanLoader color="#fff" size={50} />
+          <div className="spinnerContainer">
+            <PacmanLoader color="#fff" size={50} />
+          </div>
+          <p>{error}</p>
+          <button onClick={() => fetchData(category, difficulty, type)}>
+            Please try again
+          </button>
         </div>
-        <p>{error}</p>
-        <button onClick={() => fetchData(category, difficulty, type)}>
-          Please try again
-        </button>
-    </div>
       </div>
     );
   }
+
   // Rendering based on different states
   if (questions.length === 0) {
-    return(
-      <div>
-        <div className="spinnerContainer">
-          <PacmanLoader color="#fff" size={50} />
-        </div>
-        <p>{error}</p>
-        <button onClick={() => fetchData(category, difficulty, type)}>
-          Please try again
-        </button>
-    </div>
-    )
+    setTimeout(() => {
+      // Error message for the gamelooby
+      sendError(true);
+      navigate('/');
+    }, 5000);
+
+    return (
+      <div className="spinnerContainer">
+        <PacmanLoader color="#fff" size={50} />
+      </div>
+    );
   }
 
   const currentQuestionObj = questions[currentQuestion];

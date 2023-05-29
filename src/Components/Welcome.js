@@ -3,13 +3,14 @@ import { auth } from '../firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import SignOut from '../Components/auth/SignOut';
-import './../App.css'
+import './../App.css';
 import pinkRobot from './../assets/images/roseRobot-min.png';
 
-const Welcome = ({ userProf }) => {
+const Welcome = ({ userProf, error, sendError }) => {
   const [user] = useAuthState(auth);
   const [joinUsername, setJoinUsername] = useState('');
   const [createGameName, setCreateGameName] = useState('');
+
   const navigate = useNavigate();
 
   const handleJoinSubmit = (e) => {
@@ -28,6 +29,13 @@ const Welcome = ({ userProf }) => {
     navigate('/hostgamelobby');
   };
 
+  // Shows error message for 3 seconds
+  if (error) {
+    setTimeout(() => {
+      sendError(false);
+    }, 3000);
+  }
+
   const handleCreateButtonClick = () => {
     // Handle game creation button click
     // Navigate to the game creation lobby
@@ -37,8 +45,8 @@ const Welcome = ({ userProf }) => {
   return (
     <div>
       {user === null ? (
-        <div className='welcomeContainer'>
-          <h2 className='welcome'>{`Welcome ${userProf.displayName} !`}</h2>
+        <div className="welcomeContainer">
+          <h2 className="welcome">{`Welcome ${userProf.displayName} !`}</h2>
           <div className="imgContainer">
             <img
               src={`${userProf.photoURL}`}
@@ -46,7 +54,7 @@ const Welcome = ({ userProf }) => {
             />
           </div>
 
-          <form className='welcomeForm' onSubmit={handleCreateSubmit}>
+          <form className="welcomeForm" onSubmit={handleCreateSubmit}>
             <input
               type="text"
               name="username"
@@ -55,13 +63,17 @@ const Welcome = ({ userProf }) => {
               onChange={(e) => setJoinUsername(e.target.value)}
               required
             />
-            <input className='welcomeButton joinButton' type="submit" value="Join a Game" />
+            <input
+              className="welcomeButton joinButton"
+              type="submit"
+              value="Join a Game"
+            />
           </form>
-          <button className='welcomeButton createButton'>Create a game</button>
+          <button className="welcomeButton createButton">Create a game</button>
         </div>
       ) : (
-        <div className='welcomeContainer'>
-          <h2 className='welcome'>{`Welcome ${user.displayName} !`}</h2>
+        <div className="welcomeContainer">
+          <h2 className="welcome">{`Welcome ${user.displayName} !`}</h2>
           <div className="imgContainer">
             <img
               src={`${user.photoURL}`}
@@ -71,8 +83,7 @@ const Welcome = ({ userProf }) => {
 
           <div className="gameOptions">
             <div className="formContainer">
-              <button className='welcomeButton joinButton' type="submit" value="Join a Game">Join a Game</button>
-              <form className='welcomeForm' onSubmit={handleJoinSubmit}>
+              <form className="welcomeForm" onSubmit={handleJoinSubmit}>
                 <input
                   type="text"
                   name="username"
@@ -81,15 +92,32 @@ const Welcome = ({ userProf }) => {
                   onChange={(e) => setJoinUsername(e.target.value)}
                   required
                 />
+                <button
+                  className="welcomeButton joinButton"
+                  type="submit"
+                  value="Join a Game"
+                >
+                  Join a Game
+                </button>
               </form>
             </div>
-            <img src={pinkRobot} className="pinkRobotImg" alt="a pink robot standing" />
+            <img
+              src={pinkRobot}
+              className="pinkRobotImg"
+              alt="a pink robot standing"
+            />
             <div className="createOption">
-              <button className='welcomeButton createButton' onClick={handleCreateButtonClick}>Create a game</button>
+              <button
+                className="welcomeButton createButton"
+                onClick={handleCreateButtonClick}
+              >
+                Create a game
+              </button>
             </div>
           </div>
         </div>
       )}
+      {error ? <h2>There was an Error in the API call. Try Again</h2> : null}
       <SignOut />
     </div>
   );
