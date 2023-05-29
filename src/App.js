@@ -49,7 +49,7 @@ const App = () => {
           element={user && <Welcome userProf={userProf} />}
         />
         <Route
-          path="/"
+          path="/signout"
           element={
             user ? (
               <SignOut
@@ -75,6 +75,10 @@ const App = () => {
                 type={type}
                 score={score}
                 setScore={setScore}
+                setUserProf={setUserProf}
+                setCategory={setCategory}
+                setDifficulty={setDifficulty}
+                setType={setType}
               />
             )
           }
