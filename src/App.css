@@ -823,6 +823,7 @@ header {
   border-radius: 10px;
   border: 7px solid #41ead4;
   padding: 2rem;
+  line-height: auto;
 }
 
 .resultContainer h2 {
@@ -872,6 +873,8 @@ header {
 .resultContainer td:last-child {
   font-weight: bold;
 }
+
+/************ Footer ************/
 
 .footerContainer {
   background-color: #f2f2f2;
