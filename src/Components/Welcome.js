@@ -84,6 +84,13 @@ const Welcome = ({ userProf, error, sendError }) => {
           <div className="gameOptions">
             <div className="formContainer">
               <form className="welcomeForm" onSubmit={handleJoinSubmit}>
+                <button
+                  className="welcomeButton joinButton"
+                  type="submit"
+                  value="Join a Game"
+                >
+                  Join a Game
+                </button>
                 <input
                   type="text"
                   name="username"
@@ -92,13 +99,6 @@ const Welcome = ({ userProf, error, sendError }) => {
                   onChange={(e) => setJoinUsername(e.target.value)}
                   required
                 />
-                <button
-                  className="welcomeButton joinButton"
-                  type="submit"
-                  value="Join a Game"
-                >
-                  Join a Game
-                </button>
               </form>
             </div>
             <img
