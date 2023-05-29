@@ -66,6 +66,7 @@ const Result = ({ score }) => {
 
   useEffect(() => {
     if (!user) {
+      console.log('boooom');
       navigate('/');
     }
   }, [user, navigate]);
@@ -87,7 +88,7 @@ const Result = ({ score }) => {
     <div className="resultFooter">
       <div className="resultContainer">
         <h2>Score: {score}</h2>
-        <h3>User: {user.displayName}</h3>
+        <h3>User: {user ? user.displayName : 'Loading...'}</h3>
         <table>
           <thead>
             <tr>
