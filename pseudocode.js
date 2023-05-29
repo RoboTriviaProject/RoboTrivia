@@ -57,3 +57,48 @@
 // Validate the friend's answers and calculate their score.
 // Display the friend's score and compare it to the user's score.
 // Show whether they beat the user's score or not.
+
+/*****************************************************************/
+/* DATA STRUCTURE */
+/*****************************************************************/
+
+// {
+//     "gamek5775Y": {
+//         "host": "user1-UID",
+//         "players": {
+//             "user1UID": {
+//                 "username": "Dilpreet",
+//                 "avatar": "ROBOhash",
+//                 "score": 15
+//             },
+//             "user2UID": {
+//                 "username": "Radhika",
+//                 "avatar": "ROBOhash",
+//                 "score": 20
+//             }
+//         },
+//         "category": "Geography",
+//         "level": "Medium",
+//         "questions": []
+//
+//     },
+//     "game456hso8": {
+//         "host": "user3-UID",
+//         "players": {
+//             "user3UID": {
+//                 "username": "Safi",
+//                 "avatar": "ROBOhash",
+//                 "score": 25
+//             },
+//             "user4UID": {
+//                 "username": "Esther",
+//                 "avatar": "ROBOhash",
+//                 "score": 30
+//             }
+//         },
+//         "category": "Science",
+//         "level": "Hard",
+//         "questions": []
+
+//     }
+// }

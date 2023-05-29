@@ -1,38 +1,964 @@
+html {
+  line-height: 1.15;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+}
+article,
+aside,
+footer,
+header,
+nav,
+section {
+  display: block;
+}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+figcaption,
+figure,
+main {
+  display: block;
+}
+figure {
+  margin: 1em 40px;
+}
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+a {
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+abbr[title] {
+  border-bottom: none;
+  text-decoration: underline;
+  text-decoration: underline dotted;
+}
+b,
+strong {
+  font-weight: inherit;
+}
+b,
+strong {
+  font-weight: bolder;
+}
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+dfn {
+  font-style: italic;
+}
+mark {
+  background-color: #ff0;
+  color: #000;
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+audio,
+video {
+  display: inline-block;
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+img {
+  border-style: none;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+button,
+input {
+  overflow: visible;
+}
+button,
+select {
+  text-transform: none;
+}
+button,
+html [type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+}
+button::-moz-focus-inner,
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+button:-moz-focusring,
+[type='button']:-moz-focusring,
+[type='reset']:-moz-focusring,
+[type='submit']:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+legend {
+  box-sizing: border-box;
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  white-space: normal;
+}
+progress {
+  display: inline-block;
+  vertical-align: baseline;
+}
+textarea {
+  overflow: auto;
+}
+[type='checkbox'],
+[type='radio'] {
+  box-sizing: border-box;
+  padding: 0;
+}
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
+  height: auto;
+}
+[type='search'] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+[type='search']::-webkit-search-cancel-button,
+[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+details,
+menu {
+  display: block;
+}
+summary {
+  display: list-item;
+}
+canvas {
+  display: inline-block;
+}
+template {
+  display: none;
+}
+[hidden] {
+  display: none;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Hind Siliguri', sans-serif;
+  /* font-family: 'Poiret One', cursive; */
+}
+
+/* a {
+  text-decoration: none;
+} */
+
+/************ App.js CSS  ************/
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.hostLobby {
+  background: url('./assets/images/chalkBackground-min.png');
+  height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1 {
+  font-size: 5rem;
+  color: #fefaf0;
+  text-align: center;
+  font-family: 'Poiret One', cursive;
+  overflow: hidden;
+  margin: 1rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+input {
+  width: 50%;
+}
+
+.settingsSelect {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 100%;
+  flex: 0.8;
+  justify-content: space-evenly;
+}
+
+.name {
+  margin-bottom: 50px;
+}
+
+.category {
+  margin-bottom: 30px;
+}
+
+.imgContainer {
+  width: 120px;
+  height: 120px;
+}
+
+img {
+  width: 100%;
+}
+
+/* 
+  COLOUR PALETTE:
+
+  magenta: #b91372
+  teal: #41ead4
+  red: #ff0022
+  yellow: #fcd24f
+  off-white: #fefaf0
+*/
+
+/******************** Header *********************/
+.logo, 
+.helpIcon {
+  width: 50px;
+  height: 100%;
+  margin: 1rem 2rem;
+  cursor: pointer;
+}
+
+.helpIcon {
+  cursor: pointer;
+}
+
+header {
+  /* margin-top: 2rem; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-content: space-between;
+}
+
+/******************** HOME / SIGN IN ************************/
+.signIn {
+  background-color: #fefaf0;
+  margin: 2rem 5rem;
+  text-align: center;
+  /* width: 65%; */
+  /* height: 363px; */
+  border-radius: 10px;
+  border: 7px solid #41ead4;
+}
+
+.userButton {
+  background: #000;
+  padding: 10px;
+  margin: 1rem 1rem;
+  color: #fefaf0;
+  border-radius: 50px;
+  font-weight: 700;
+  border: none;
+}
+
+.userButton:hover,
+.userButton:focus {
+  background: #b91372;
+  color: #fefaf0;
+}
+
+.logIn {
+  margin: 1rem;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logInInput {
+  margin: 1rem;
+}
+
+.logIn button {
+  border-radius: 50px;
+  background: #b91372;
+  color: #fefaf0;
+  padding: 10px 20px;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 3px;
+  border: none;
+}
+
+.logIn button:hover,
+.logIn button:focus {
+  background: rgba(185, 19, 113, 0.607);
+}
+
+.logIn form {
+  margin-bottom: 1rem;
+}
+
+.logIn Input {
+  background: #fcd24f;
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+  width: 200px;
+}
+
+.logIn input:hover,
+.logIn input:focus {
+  background-color: rgba(252, 209, 79, 0.568);
+  outline: none;
+}
+
+.logIn p {
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+.newPlayer {
+  margin-top: 1rem;
+  color: #000;
+}
+
+.homeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 400px;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+.robotImg {
+  width: 200px;
+  height: fit-content;
+}
+
+/***************** SIGN UP ******************/
+
+.registration {
+  background-color: #fefaf0;
+  margin: 2rem 5rem;
+  width: 70%;
+  margin: 2rem auto;
+  text-align: center;
+  border-radius: 10px;
+  border: 7px solid #41ead4;
+  padding: 2rem;
+}
+
+.registration h2 {
+  color: #b91372;
+  font-family: 'Poiret One', cursive;
+  font-size: 30px;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  overflow: hidden;
+}
+
+.registration form {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.labelInput {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.registration label {
+  color: #b91372;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.registration input {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #fcd24f;
+  margin-bottom: 1rem;
+  outline: none;
+  
+}
+
+.registration button {
+  background: #b91372;
+  color: #fefaf0;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  box-shadow: 4px 3px 6px rgba(0, 0, 0);
+  margin-bottom: 20px;
+}
+
+.registration button:hover,
+.registration button:focus {
+  background: rgba(185, 19, 113, 0.607);
+  box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.607); /* Increase shadow effect on hover or focus */
+}
+
+/***************** HOW TO ******************/
+.howContainer {
+  background-color: #fefaf0;
+  margin: 2rem 5rem;
+  /* width: 100vw; */
+  border-radius: 10px;
+  border :7px solid #fcd24f;
+  /* padding: 20px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  left: 150px;
+  top: 70px;
+  width: 800px;
+  height: 80vh;
+}
+
+.instructionContainer {
+  position: relative;
+  width: 50%;
+  min-height: 300px;
+  /* margin: 20px auto; */
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  line-height: 2rem;
+  
 }
 
-.App-link {
-  color: #61dafb;
+.howContainer h2 {
+  color: #ff0022;
+  margin-bottom: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.redRobotImg {
+  width: 200px;
+  position: fixed;
+  top: 200px;
+  right: 300px;
+}
+
+.instructionContainer li {
+  display: flex;
+  margin: 2px;
+  overflow: hidden;
+}
+
+.instructionContainer span {
+  color: #ff0022;
+  font-weight: 700;
+  padding-right: 10px;
+  width: 30px;
+}
+
+.instructionContainer p {
+  margin-left: 1rem;
+  overflow: hidden;
+}
+
+
+
+/********************* WELCOME ***********************/
+
+.welcomeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* text-align: center; */
+}
+
+.welcome {
+  color: #fcd24f;
+  font-family: 'Poiret One', cursive;
+  margin-bottom: 1rem;
+  font-size: 30px;
+}
+
+.imgContainer {
+  background-color: rgba(255, 251, 240);
+  padding: 5px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid #b91372;
+}
+
+.gameOptions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #fefaf0;
+  margin: 1rem 5rem;
+  padding: 1rem;
+  border-radius: 10px;
+  border :3px solid #41ead4;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.pinkRobotImg {
+  width: 100px;
+  margin: 0 2rem;
+}
+
+.welcomeForm {
+  margin: 1rem;
+}
+
+.welcomeForm input {
+  background: rgba(64, 235, 212, 0.573);
+  border: none;
+  border-radius: 50px;
+  padding: 7px;
+  width: 200px;
+  outline: none;
+}
+
+.welcomeForm input:hover,
+.welcomeForm input:focus {
+  background: rgba(64, 235, 212, 0.8);
+}
+
+.joinButton, 
+.createButton {
+  background: #fcd24f;
+  border: none;
+  border-radius: 50px;
+  padding: 5px;
+  width: 200px;
+  font-weight: 700;
+  text-transform: uppercase;
+  word-spacing: 3px;
+  cursor: pointer;
+  display: flex;
+  margin-bottom: 20px;
+  /* align-self: center; */
+  justify-content: center;
+}
+
+.createButton {
+  margin-top: 15px;
+}
+.welcomeButton:hover,
+.welcomeButton:focus {
+  background: rgba(252, 209, 79, 0.8);
+}
+
+/******************** HOST GAME LOBBY ************************/
+.selectOptions {
+  background: rgba(185, 19, 113, 0.8);
+  width: 750px;
+  text-align: center;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border: 7px solid #fefaf0;
+  border-radius: 50px;
+
+}
+
+select {
+  /* background-color: #fcd24f; */
+  background: rgb(254,250,240);
+  background: linear-gradient(90deg, rgba(254,250,240,0.5340335963486957) 0%, rgba(252,210,79,1) 100%); 
+  outline: none;
+  border: none;
+}
+
+option {
+  background-color: lightgoldenrodyellow;
+}
+
+option:hover,
+option:focus {
+  background-color: #fcd24f;
+}
+
+.chooseCategory,
+.chooseDifficulty,
+.chooseType {
+  /* background: #fcd24f; */
+  background: rgb(254,250,240);
+  background: linear-gradient(90deg, rgba(254,250,240,1) 13%, rgba(252,210,79,1) 100%); 
+  padding: 15px;
+  width: 50%;
+  border-radius: 10px;
+  margin: 1rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.startQuizButton {
+  border-radius: 50px;
+  background: #41ead4;
+  padding: 10px;
+  box-shadow: 4px 4px 4px navy;
+  border: none;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.startQuizButton:hover {
+  cursor: pointer;
+  background: rgba(65, 234, 212, 0.8);
+}
+
+/***************** Log Out Button from HostGameLobby ****************************/
+.logOutButton {
+  border-radius: 50px;
+  width: 10%;
+  background: rgb(65,234,212);
+  background: linear-gradient(90deg, rgba(65,234,212,1) 0%, rgba(185,19,114,1) 100%);
+  font-size: 1rem;
+  font-size: 800;
+  font-family: 'Poiret One', cursive;
+  border: 2px solid #fefaf0;
+  color: #fefaf0;
+  padding: 10px;
+  margin: 1% 0 0 47%;
+  transition: background 0.3s ease-in-out;
+  text-transform: uppercase;
+}
+
+.logOutButton:hover,
+.logOutButton:focus {
+  cursor: pointer;
+  background: rgb(185,19,114);
+  background: linear-gradient(90deg, rgba(185,19,114,1) 0%, rgba(65,234,212,1) 100%);
+}
+
+/************* GAMEROOM.js CSS *******************/
+.questionFromAPI {
+  text-align: center;
+  margin: auto;
+  border: 10px solid #41ead4;
+  padding: 15px;
+  /* background: #fefaf0; */
+  background: rgb(254,250,240);
+  background: radial-gradient(circle, rgba(254,250,240,1) 78%, rgba(148,233,210,1) 100%);
+  font-size: 20px;
+  width: 75%;
+  height: 50%;
+  border-radius: 20px;
+}
+
+.quizInfo {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1rem auto;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.quizInfo p, 
+.quizInfo h3 {
+  color: #fefaf0;
+  padding: 15px;
+  border-top: 2px solid #b91372;
+  border-bottom: 2px solid #b91372;
+}
+
+.quizInfo h3 {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.countDownCounter {
+  background: #ff0022;
+  border-radius: 50%;
+  padding: 20px;
+  min-width: 80px;
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+  position: fixed;
+  top: 200px;
+  right: 140px;
+  border: 5px ridge black;
+}
+
+.questionFromAPI h3 {
+  padding: 10px;
+  background: #b91372;
+  color: #fefaf0;
+  width: 25%;
+  border-radius: 10px;
+  margin: auto;
+  font-size: 1.5rem;
+  font-family: 'Poiret One', cursive;
+}
+
+.questionFromAPI p {
+  padding: 10px 10px 0;
+  font-size: 25px;
+  font-weight: 600;
+  overflow: hidden;
+}
+
+.questionFromAPI ul {
+  padding: 21px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 20px;
+}
+
+.questionFromAPI li {
+  padding: 10px;
+  width: 50%;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  border: 10px solid #fefaf0;
+}
+
+.questionFromAPI li:hover,
+.questionFromAPI li:focus {
+  cursor: pointer;
+  color: black;
+  background: rgb(65,234,212);
+  background: radial-gradient(circle, rgba(65,234,212,0.931512570848652) 0%, rgba(185,19,114,0.5312324759005165) 100%); 
+  border-radius: 20px;
+}
+
+.backToHomePage {
+  padding: 10px;
+  background: #b91372;
+  color: black;
+  width: 15%;
+  border-radius: 35px;
+  margin: 10px auto auto 10px;
+  font-size: 32px;
+  text-decoration: none;
+}
+
+/* turns the correct answer green */
+.correct-answer {
+  background-color: #50C878;
+}
+.answer-options {
+  background-color: #fcd24f;
+}
+
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  overflow: hidden;
+}
+
+.spinnerContainer span {
+  overflow: hidden;
+}
+
+.spinner {
+  overflow: hidden;
+}
+
+/************ Result ************/
+
+
+.resultContainer {
+  background-color: #fefaf0;
+  margin: 2rem 5rem;
+  border-radius: 10px;
+  border: 7px solid #41ead4;
+  padding: 2rem;
+}
+
+.resultContainer h2 {
+  color: #b91372;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  line-height: auto;
+  overflow: hidden;
+}
+
+.resultContainer h3 {
+  color: #b91372;
+  margin-bottom: 1rem;
+  line-height: auto;
+}
+
+.resultContainer table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+
+.resultContainer th {
+  background-color: #b91372;
+  color: #fefaf0;
+  padding: 1rem;
+  text-transform: uppercase;
+}
+
+.resultContainer tr {
+  border-bottom: 1px solid #b91372;
+  text-align: center;
+}
+
+.resultContainer td:first-child {
+  font-weight: bold;
+}
+
+.resultContainer img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.resultContainer td:nth-child(3) {
+  font-weight: bold;
+}
+
+.resultContainer td:last-child {
+  font-weight: bold;
+}
+
+.copyGameIdButton {
+  border-radius: 50px;
+  background: linear-gradient(45deg, #41ead4, #25c8b4);
+  padding: 10px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+  font-size: 15px;
+  padding: 12px 20px;
+  font-weight: 600;
+  color: #000;
+  border: none;
+  width: fit-content;
+  transition: background 0.3s ease-in-out;
+  text-transform: uppercase;
+}
+
+.copyGameIdButton:hover {
+  cursor: pointer;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.twoButtonsContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/************ Footer ************/
+
+.footerContainer {
+  background-color: #f2f2f2;
+  padding: 10px;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.footerContainer a {
+  color: #888;
+  text-decoration: none;
+}
+
+.footerContainer a:hover {
+  color: #333;
 }
