@@ -9,7 +9,6 @@ import pinkRobot from './../assets/images/roseRobot-min.png';
 const Welcome = ({ userProf, error, sendError }) => {
   const [user] = useAuthState(auth);
   const [joinUsername, setJoinUsername] = useState('');
-  const [createGameName, setCreateGameName] = useState('');
 
   const navigate = useNavigate();
 
@@ -24,7 +23,7 @@ const Welcome = ({ userProf, error, sendError }) => {
   const handleCreateSubmit = (e) => {
     e.preventDefault();
     // Handle create form submission logic
-    console.log('Create form submitted with game name:', createGameName);
+
     // Navigate to the game creation lobby
     navigate('/hostgamelobby');
   };
