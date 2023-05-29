@@ -693,10 +693,6 @@ header {
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.logOutButton:hover {
-  cursor: pointer;
-}
-
 /************* GAMEROOM.js CSS *******************/
 .questionFromAPI {
   text-align: center;
@@ -823,7 +819,6 @@ header {
   border-radius: 10px;
   border: 7px solid #41ead4;
   padding: 2rem;
-  line-height: auto;
 }
 
 .resultContainer h2 {
@@ -831,11 +826,13 @@ header {
   font-size: 2rem;
   margin-bottom: 1rem;
   text-transform: uppercase;
+  line-height: auto;
 }
 
 .resultContainer h3 {
   color: #b91372;
   margin-bottom: 1rem;
+  line-height: auto;
 }
 
 .resultContainer table {
@@ -872,6 +869,32 @@ header {
 
 .resultContainer td:last-child {
   font-weight: bold;
+}
+
+.copyGameIdButton {
+  border-radius: 50px;
+  background: linear-gradient(45deg, #41ead4, #25c8b4);
+  padding: 10px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+  font-size: 20px;
+  padding: 12px 20px;
+  font-weight: bold;
+  color: #000;
+  border: none;
+  width: fit-content;
+  transition: background 0.3s ease-in-out;
+  text-transform: uppercase;
+}
+
+.copyGameIdButton:hover {
+  cursor: pointer;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.twoButtonsContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 /************ Footer ************/
