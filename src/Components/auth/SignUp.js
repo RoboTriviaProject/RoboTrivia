@@ -31,8 +31,6 @@ const SignUp = () => {
       const user = userCredential.user;
       const photoURL = `http://robohash.org/${displayName}.png?set=any&size=200*200`;
       await updateProfile(user, { displayName, photoURL });
-
-      console.log('Registration successful:', user);
     } catch (error) {
       // Handle registration error
       console.error('Registration error:', error);
@@ -40,7 +38,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className='registration'>
+    <div className="registration">
       <h2>Sign Up!</h2>
       <form onSubmit={handleRegistration}>
         <div className="labelInput">
