@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { ref, set, get } from 'firebase/database';
 import { db } from '../firebase-config';
@@ -284,11 +284,8 @@ const GameRoom = ({
         </ul>
       </div>
 
-      {currentQuestion === questions.length - 1 ? (
-        <Link to={`/gameroom/${gameId}/result`}>View Score!</Link>
-      ) : null}
       {/* <Link to="/">Quit Game</Link> */}
-      <button onClick={quitGame}>Quit Game</button>
+      <button className='quitButton' onClick={quitGame}>Quit Game</button>
     </div>
   );
 };

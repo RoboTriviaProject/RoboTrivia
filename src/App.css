@@ -223,10 +223,6 @@ body {
   /* font-family: 'Poiret One', cursive; */
 }
 
-/* a {
-  text-decoration: none;
-} */
-
 /************ App.js CSS  ************/
 .App {
   text-align: center;
@@ -268,8 +264,8 @@ input {
 }
 
 .imgContainer {
-  width: 140px;
-  height: 140px;
+  width: 120px;
+  height: 120px;
 }
 
 img {
@@ -307,6 +303,20 @@ header {
   justify-content: space-between;
 }
 
+@media (max-width: 768px) {
+  .logo,
+  .helpIcon {
+    margin: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo,
+  .helpIcon {
+    margin: 1rem 0.5rem;
+  }
+}
+
 /******************** HOME / SIGN IN ************************/
 .signIn {
   background-color: #fefaf0;
@@ -316,6 +326,7 @@ header {
   /* height: 363px; */
   border-radius: 10px;
   border: 7px solid #41ead4;
+  flex-shrink: 0;
 }
 
 .userButton {
@@ -391,6 +402,7 @@ header {
 .newPlayer {
   margin-top: 1rem;
   color: #000;
+  overflow: visible;
 }
 
 .homeContainer {
@@ -407,11 +419,25 @@ header {
   height: fit-content;
 }
 
+@media (max-width: 480px) {
+  .userButton {
+    padding: 5px;
+    font-size: 12px;
+  }
+
+  .logIn button {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+}
+
 /***************** SIGN UP ******************/
 
 .registration {
   background-color: #fefaf0;
   margin: 2rem 5rem;
+  width: 70%;
+  margin: 2rem auto;
   text-align: center;
   border-radius: 10px;
   border: 7px solid #41ead4;
@@ -420,9 +446,11 @@ header {
 
 .registration h2 {
   color: #b91372;
-  font-size: 2rem;
+  font-family: 'Poiret One', cursive;
+  font-size: 30px;
   margin-bottom: 1rem;
   text-transform: uppercase;
+  overflow: hidden;
 }
 
 .registration form {
@@ -444,6 +472,7 @@ header {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
   text-align: left;
+  overflow:visible;
 }
 
 .registration input {
@@ -473,7 +502,58 @@ header {
 .registration button:hover,
 .registration button:focus {
   background: rgba(185, 19, 113, 0.607);
-  box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.607); /* Increase shadow effect on hover or focus */
+  box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.607); 
+}
+
+/* SignUp */
+@media (max-width: 768px) {
+  .registration {
+    width: 90%;
+    margin: 2rem auto;
+  }
+
+  .registration h2 {
+    font-size: 24px;
+  }
+
+  .registration label {
+    font-size: 1rem;
+  }
+
+  .registration input {
+    max-width: 250px;
+  }
+
+  .registration button {
+    padding: 8px 16px;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .registration {
+    width: 90%;
+    margin: 2rem auto;
+  }
+
+  .registration h2 {
+    font-size: 20px;
+  }
+
+  .registration label {
+    font-size: 0.9rem;
+  }
+
+  .registration input {
+    max-width: 200px;
+  }
+
+  .registration button {
+    padding: 8px 14px;
+    font-size: 12px;
+    margin-bottom: 15px;
+  }
 }
 
 /***************** HOW TO ******************/
@@ -555,6 +635,8 @@ header {
   color: #fcd24f;
   font-family: 'Poiret One', cursive;
   margin-bottom: 1rem;
+  font-size: 30px;
+  line-height: normal;
 }
 
 .imgContainer {
@@ -571,7 +653,7 @@ header {
   justify-content: space-between;
   align-items: flex-start;
   background-color: #fefaf0;
-  margin: 2rem 5rem;
+  margin: 1rem 5rem;
   padding: 1rem;
   border-radius: 10px;
   border :3px solid #41ead4;
@@ -618,11 +700,55 @@ header {
   text-transform: uppercase;
   word-spacing: 3px;
   cursor: pointer;
+  display: flex;
+  margin-bottom: 20px;
+  /* align-self: center; */
+  justify-content: center;
 }
 
-.createButton:hover,
-.createButton:focus {
+.createButton {
+  margin-top: 15px;
+}
+.welcomeButton:hover,
+.welcomeButton:focus {
   background: rgba(252, 209, 79, 0.8);
+}
+
+/* Welcome Media Queries */
+@media (max-width: 768px) {
+  .gameOptions {
+    margin: 1rem 2rem;
+  }
+
+  .welcomeForm input {
+    width: 150px;
+  }
+
+  .joinButton,
+  .createButton {
+    width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gameOptions {
+    margin: 1rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pinkRobotImg {
+    margin: 1rem 0;
+  }
+
+  .welcomeForm input {
+    width: 100%;
+  }
+
+  .joinButton,
+  .createButton {
+    width: 100%;
+  }
 }
 
 /******************** HOST GAME LOBBY ************************/
@@ -641,18 +767,33 @@ header {
 
 }
 
+select {
+  background: rgb(254,250,240);
+  background: linear-gradient(90deg, rgba(254,250,240,0.5340335963486957) 0%, rgba(252,210,79,1) 100%); 
+  outline: none;
+  border: none;
+}
+
+option {
+  background-color: lightgoldenrodyellow;
+}
+
+option:hover,
+option:focus {
+  background-color: #fcd24f;
+}
+
 .chooseCategory,
 .chooseDifficulty,
 .chooseType {
-  background: #fcd24f;
+  background: rgb(254,250,240);
+  background: linear-gradient(90deg, rgba(254,250,240,1) 13%, rgba(252,210,79,1) 100%); 
   padding: 15px;
   width: 50%;
   border-radius: 10px;
   margin: 1rem;
-  /* margin: 10px auto 20px 88px; */
-  /* font-size: 25px; */
   font-size: 1.25rem;
-  font-weight: 600;
+  font-weight: 800;
   text-transform: uppercase;
 }
 
@@ -673,37 +814,62 @@ header {
   background: rgba(65, 234, 212, 0.8);
 }
 
+@media (max-width: 767px) {
+  .selectOptions {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 580px) {
+  .selectOptions {
+    max-width: 400px;
+  }
+
+  .chooseCategory,
+  .chooseDifficulty,
+  .chooseType {
+    padding: 10px;
+    margin: 1rem;
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: 60px;
+  }
+}
+
 /***************** Log Out Button from HostGameLobby ****************************/
 .logOutButton {
   border-radius: 50px;
-  /* width: 8%;
-  background: #b91372;
-  padding: 5px;
-  margin-left: 2rem;
-  font-size: 1rem;
+  width: 15%;
+  background: rgb(65,234,212);
+  background: linear-gradient(90deg, rgba(65,234,212,1) 0%, rgba(185,19,114,1) 100%);
+  font-size: 1.1rem;
   font-size: 800;
   font-family: 'Poiret One', cursive;
   border: 2px solid #fefaf0;
-  color: #fefaf0; */
-
-  background: linear-gradient(45deg, #41ead4, #25c8b4);
+  color: #fefaf0;
   padding: 10px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
-  margin: 2% 0 0 45%;
-  font-size: 20px;
-  padding: 12px 20px;
-  font-weight: bold;
-  color: #000;
-  border: none;
-  width: fit-content;
+  margin: 1% 0 0 47%;
   transition: background 0.3s ease-in-out;
   text-transform: uppercase;
+  width: fit-content;
 }
 
 .logOutButton:hover,
 .logOutButton:focus {
   cursor: pointer;
-  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+  background: rgb(185,19,114);
+  background: linear-gradient(90deg, rgba(185,19,114,1) 0%, rgba(65,234,212,1) 100%);
+}
+
+@media (max-width: 480px) {
+  .logOutButton {
+    font-size: 0.9rem;
+    padding: 8px;
+    margin: 1% 0 0 40%;
+  }
 }
 
 /************* GAMEROOM.js CSS *******************/
@@ -712,7 +878,9 @@ header {
   margin: auto;
   border: 10px solid #41ead4;
   padding: 15px;
-  background: #fefaf0;
+  /* background: #fefaf0; */
+  background: rgb(254,250,240);
+  background: radial-gradient(circle, rgba(254,250,240,1) 78%, rgba(148,233,210,1) 100%);
   font-size: 20px;
   width: 75%;
   height: 50%;
@@ -721,36 +889,38 @@ header {
 
 .quizInfo {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  align-items: center;
   margin: 1rem auto;
+  font-size: 22px;
+  font-weight: 600;
 }
 
-.quizInfo p {
-  font-size: 33px;
-  font-weight: bold;
-  color: black;
+.quizInfo p, 
+.quizInfo h3 {
+  color: #fefaf0;
   padding: 15px;
-  border-radius: 20%;
+  border-top: 2px solid #b91372;
+  border-bottom: 2px solid #b91372;
 }
 
 .quizInfo h3 {
-  font-size: 20px;
-  font-weight: 600;
-  background: #fcd24f;
-  color: #000;
-  padding: 10px;
-  border-radius: 10px;
   text-transform: uppercase;
   text-align: center;
-  margin: 0;
-  padding: 0;
 }
 
 .countDownCounter {
   background: #ff0022;
   border-radius: 50%;
   padding: 20px;
-  min-width: 60px;
+  min-width: 80px;
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+  position: absolute;
+  top: 200px;
+  right: 110px;
+  border: 5px ridge black;
 }
 
 .questionFromAPI h3 {
@@ -786,10 +956,12 @@ header {
   border: 10px solid #fefaf0;
 }
 
-.questionFromAPI li:hover {
+.questionFromAPI li:hover,
+.questionFromAPI li:focus {
   cursor: pointer;
-  background-color: #41ead4;
   color: black;
+  background: rgb(65,234,212);
+  background: radial-gradient(circle, rgba(65,234,212,0.931512570848652) 0%, rgba(185,19,114,0.5312324759005165) 100%); 
   border-radius: 20px;
 }
 
@@ -804,13 +976,107 @@ header {
   text-decoration: none;
 }
 
+.quitButton {
+  border-radius: 50px;
+  width: 15%;
+  background: rgb(65,234,212);
+  background: linear-gradient(90deg, rgba(65,234,212,1) 0%, rgba(185,19,114,1) 100%);
+  font-size: 1.1rem;
+  font-size: 800;
+  font-family: 'Poiret One', cursive;
+  border: 2px solid #fefaf0;
+  color: #fefaf0;
+  padding: 10px;
+  margin: 1% 0 0 47%;
+  transition: background 0.3s ease-in-out;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.quitButton:hover,
+.quitButton:focus {
+  cursor: pointer;
+  background: rgb(185,19,114);
+  background: linear-gradient(90deg, rgba(185,19,114,1) 0%, rgba(65,234,212,1) 100%);
+}
+
+@media (max-width: 800px) {
+  .quitButton {
+    margin: 1% 0 0 40%;
+  }
+}
+
+@media (max-width: 580px) {
+  .quitButton {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 800px) {
+  .countDownCounter {
+    position: fixed;
+    right: 100px;
+  }
+
+  .questionFromAPI h3,
+  .quizInfo h3 {
+    font-size: 20px;
+  }
+
+  .questionFromAPI p {
+    font-size: 20px;
+  }
+
+  .questionFromAPI ul {
+    padding: 4px;
+  }
+}
+
+@media (max-width: 580px) {
+  .questionFromAPI ul {
+    font-size: 15px;
+  }
+
+  .questionFromAPI h3 {
+    width: 150px;
+  }
+
+  .countDownCounter {
+    position: absolute;
+    left: 450px;
+    top: 175px;
+  }
+}
+
+@media (max-width: 500px) {
+  .questionFromAPI ul {
+    padding: 2px;
+  }
+
+  .quizInfo h3,
+  .quizInfo p {
+    width: 110px;
+    font-size: 15px;
+  }
+
+  .countDownCounter {
+    position: absolute;
+    left: 350px;
+    top: 175px;
+  }
+}
+
+
 /* turns the correct answer green */
 .correct-answer {
-  background-color: lightgreen;
+  background-color: #50C878;
 }
 .answer-options {
   background-color: #fcd24f;
 }
+
+/************* SPINNER / LOADING PAGE *******************/
 
 .spinnerContainer {
   display: flex;
@@ -845,6 +1111,7 @@ header {
   margin-bottom: 1rem;
   text-transform: uppercase;
   line-height: auto;
+  overflow: hidden;
 }
 
 .resultContainer h3 {
@@ -891,28 +1158,81 @@ header {
 
 .copyGameIdButton {
   border-radius: 50px;
-  background: linear-gradient(45deg, #41ead4, #25c8b4);
+  width: 10%;
+  background: rgb(65,234,212);
+  background: linear-gradient(90deg, rgba(65,234,212,1) 0%, rgba(185,19,114,1) 100%);
+  font-size: 1rem;
+  font-size: 800;
+  font-family: 'Poiret One', cursive;
+  border: 2px solid #fefaf0;
+  color: #fefaf0;
   padding: 10px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
-  font-size: 20px;
-  padding: 12px 20px;
-  font-weight: bold;
-  color: #000;
-  border: none;
-  width: fit-content;
   transition: background 0.3s ease-in-out;
   text-transform: uppercase;
+  width: fit-content;
 }
 
-.copyGameIdButton:hover {
+.copyGameIdButton:hover,
+.copyGameIdButton:focus {
   cursor: pointer;
-  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+  background: rgb(185,19,114);
+  background: linear-gradient(90deg, rgba(185,19,114,1) 0%, rgba(65,234,212,1) 100%);
 }
 
 .twoButtonsContainer {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+/* Result */
+@media (max-width: 767px) {
+  .resultContainer {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .resultContainer h2 {
+    font-size: 1.5rem;
+  }
+
+  .resultContainer table {
+    margin-top: 1rem;
+  }
+
+  .twoButtonsContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .copyGameIdButton {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+
+  .footerContainer {
+    padding: 8px;
+  }
+
+  .twoButtonsContainer .logOutButton {
+    margin: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .resultContainer table {
+    font-size: 14px;
+  }
+
+  .resultContainer th,
+  .resultContainer td {
+    padding: 0.5rem;
+  }
+
+  .resultContainer img {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 /************ Footer ************/
@@ -935,3 +1255,4 @@ header {
 .footerContainer a:hover {
   color: #333;
 }
+
