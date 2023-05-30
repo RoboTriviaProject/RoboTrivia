@@ -307,6 +307,20 @@ header {
   justify-content: space-between;
 }
 
+@media (max-width: 768px) {
+  .logo,
+  .helpIcon {
+    margin: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo,
+  .helpIcon {
+    margin: 1rem 0.5rem;
+  }
+}
+
 /******************** HOME / SIGN IN ************************/
 .signIn {
   background-color: #fefaf0;
@@ -316,6 +330,7 @@ header {
   /* height: 363px; */
   border-radius: 10px;
   border: 7px solid #41ead4;
+  flex-shrink: 0;
 }
 
 .userButton {
@@ -391,6 +406,7 @@ header {
 .newPlayer {
   margin-top: 1rem;
   color: #000;
+  overflow: visible;
 }
 
 .homeContainer {
@@ -405,6 +421,18 @@ header {
 .robotImg {
   width: 200px;
   height: fit-content;
+}
+
+@media (max-width: 480px) {
+  .userButton {
+    padding: 5px;
+    font-size: 12px;
+  }
+
+  .logIn button {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
 }
 
 /***************** SIGN UP ******************/
@@ -448,6 +476,7 @@ header {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
   text-align: left;
+  overflow:visible;
 }
 
 .registration input {
@@ -477,7 +506,58 @@ header {
 .registration button:hover,
 .registration button:focus {
   background: rgba(185, 19, 113, 0.607);
-  box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.607); /* Increase shadow effect on hover or focus */
+  box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.607); 
+}
+
+/* SignUp */
+@media (max-width: 768px) {
+  .registration {
+    width: 90%;
+    margin: 2rem auto;
+  }
+
+  .registration h2 {
+    font-size: 24px;
+  }
+
+  .registration label {
+    font-size: 1rem;
+  }
+
+  .registration input {
+    max-width: 250px;
+  }
+
+  .registration button {
+    padding: 8px 16px;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .registration {
+    width: 90%;
+    margin: 2rem auto;
+  }
+
+  .registration h2 {
+    font-size: 20px;
+  }
+
+  .registration label {
+    font-size: 0.9rem;
+  }
+
+  .registration input {
+    max-width: 200px;
+  }
+
+  .registration button {
+    padding: 8px 14px;
+    font-size: 12px;
+    margin-bottom: 15px;
+  }
 }
 
 /***************** HOW TO ******************/
@@ -560,6 +640,7 @@ header {
   font-family: 'Poiret One', cursive;
   margin-bottom: 1rem;
   font-size: 30px;
+  line-height: normal;
 }
 
 .imgContainer {
@@ -637,6 +718,43 @@ header {
   background: rgba(252, 209, 79, 0.8);
 }
 
+/* Welcome Media Queries */
+@media (max-width: 768px) {
+  .gameOptions {
+    margin: 1rem 2rem;
+  }
+
+  .welcomeForm input {
+    width: 150px;
+  }
+
+  .joinButton,
+  .createButton {
+    width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gameOptions {
+    margin: 1rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pinkRobotImg {
+    margin: 1rem 0;
+  }
+
+  .welcomeForm input {
+    width: 100%;
+  }
+
+  .joinButton,
+  .createButton {
+    width: 100%;
+  }
+}
+
 /******************** HOST GAME LOBBY ************************/
 .selectOptions {
   background: rgba(185, 19, 113, 0.8);
@@ -705,10 +823,10 @@ option:focus {
 /***************** Log Out Button from HostGameLobby ****************************/
 .logOutButton {
   border-radius: 50px;
-  width: 10%;
+  width: 15%;
   background: rgb(65,234,212);
   background: linear-gradient(90deg, rgba(65,234,212,1) 0%, rgba(185,19,114,1) 100%);
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-size: 800;
   font-family: 'Poiret One', cursive;
   border: 2px solid #fefaf0;
@@ -717,6 +835,7 @@ option:focus {
   margin: 1% 0 0 47%;
   transition: background 0.3s ease-in-out;
   text-transform: uppercase;
+  width: fit-content;
 }
 
 .logOutButton:hover,
@@ -918,28 +1037,81 @@ option:focus {
 
 .copyGameIdButton {
   border-radius: 50px;
-  background: linear-gradient(45deg, #41ead4, #25c8b4);
+  width: 10%;
+  background: rgb(65,234,212);
+  background: linear-gradient(90deg, rgba(65,234,212,1) 0%, rgba(185,19,114,1) 100%);
+  font-size: 1rem;
+  font-size: 800;
+  font-family: 'Poiret One', cursive;
+  border: 2px solid #fefaf0;
+  color: #fefaf0;
   padding: 10px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
-  font-size: 15px;
-  padding: 12px 20px;
-  font-weight: 600;
-  color: #000;
-  border: none;
-  width: fit-content;
   transition: background 0.3s ease-in-out;
   text-transform: uppercase;
+  width: fit-content;
 }
 
-.copyGameIdButton:hover {
+.copyGameIdButton:hover,
+.copyGameIdButton:focus {
   cursor: pointer;
-  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+  background: rgb(185,19,114);
+  background: linear-gradient(90deg, rgba(185,19,114,1) 0%, rgba(65,234,212,1) 100%);
 }
 
 .twoButtonsContainer {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+/* Result */
+@media (max-width: 767px) {
+  .resultContainer {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .resultContainer h2 {
+    font-size: 1.5rem;
+  }
+
+  .resultContainer table {
+    margin-top: 1rem;
+  }
+
+  .twoButtonsContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .copyGameIdButton {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+
+  .footerContainer {
+    padding: 8px;
+  }
+
+  .twoButtonsContainer .logOutButton {
+    margin: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .resultContainer table {
+    font-size: 14px;
+  }
+
+  .resultContainer th,
+  .resultContainer td {
+    padding: 0.5rem;
+  }
+
+  .resultContainer img {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 /************ Footer ************/
@@ -962,3 +1134,4 @@ option:focus {
 .footerContainer a:hover {
   color: #333;
 }
+
