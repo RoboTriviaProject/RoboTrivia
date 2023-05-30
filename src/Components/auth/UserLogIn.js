@@ -19,37 +19,35 @@ const UserLogIn = () => {
   };
 
   const userSignIn = async (email, password) => {
+    // eslint-disable-next-line
     const userCredential = await signInWithEmailAndPassword(
       auth,
       email,
       password
     );
-
-    const user = userCredential.user;
-    console.log('Login successful:', user);
   };
 
   return (
-    <div className='logIn'>
+    <div className="logIn">
       <p>Please login in to play the game</p>
       <form onSubmit={handleLogin}>
-        <div className='logInInput'>
-          <label className='sr-only'>Email</label>
+        <div className="logInInput">
+          <label className="sr-only">Email</label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder=' Email'
+            placeholder=" Email"
             required
           />
         </div>
-        <div className='logInInput'>
-          <label className='sr-only'>Password: </label>
+        <div className="logInInput">
+          <label className="sr-only">Password: </label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder=' Password'
+            placeholder=" Password"
             required
           />
         </div>
@@ -57,8 +55,9 @@ const UserLogIn = () => {
         <button type="submit">Next</button>
       </form>
 
-      <Link to="signup" className="newPlayer">New player? Create a new profile</Link>
-      
+      <Link to="signup" className="newPlayer">
+        New player? Create a new profile
+      </Link>
     </div>
   );
 };

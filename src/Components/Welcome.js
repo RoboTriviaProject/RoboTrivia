@@ -14,15 +14,13 @@ const Welcome = ({ userProf, error, sendError }) => {
 
   const handleJoinSubmit = (e) => {
     e.preventDefault();
-    // Handle join form submission logic
-    console.log('Join form submitted with username:', joinUsername);
+
     // Navigate to the joined game room
     navigate(`/gameroom/${joinUsername}`);
   };
 
   const handleCreateSubmit = (e) => {
     e.preventDefault();
-    // Handle create form submission logic
 
     // Navigate to the game creation lobby
     navigate('/hostgamelobby');

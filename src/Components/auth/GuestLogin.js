@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { auth } from '../../firebase-config';
 import { signInAnonymously, updateProfile } from 'firebase/auth';
-import './../../App.css'
+import './../../App.css';
 
 const GuestLogin = ({ setUserProf }) => {
   const [input, setInput] = useState('');
@@ -19,7 +19,7 @@ const GuestLogin = ({ setUserProf }) => {
       const displayName = input;
       const photoURL = `http://robohash.org/${input}.png?set=any&size=200x200`;
       await updateProfile(user, { displayName, photoURL });
-      console.log(' guest Login successful:', user);
+
       setUserProf(user);
     } catch (error) {
       console.error('Error during login:', error);
@@ -27,16 +27,18 @@ const GuestLogin = ({ setUserProf }) => {
   };
 
   return (
-    <div className='logIn'>
-      <p>Please create a nickname <br></br>to play the game</p>
+    <div className="logIn">
+      <p>
+        Please create a nickname <br></br>to play the game
+      </p>
       <form onSubmit={handleLogin}>
         <div>
-          <label className='sr-only'>Choose a name</label>
+          <label className="sr-only">Choose a name</label>
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder='Choose a nickname'
+            placeholder="Choose a nickname"
           />
         </div>
 

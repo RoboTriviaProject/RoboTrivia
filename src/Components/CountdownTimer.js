@@ -4,7 +4,7 @@ const CountdownTimer = ({ initialCount, onExpire, paused }) => {
   const [counter, setCounter] = useState(initialCount);
 
   useEffect(() => {
-    if (paused) return; // if paused, do not continue
+    if (paused) return;
 
     if (counter > 0) {
       const timer = setTimeout(() => setCounter(counter - 1), 1000);
@@ -13,12 +13,6 @@ const CountdownTimer = ({ initialCount, onExpire, paused }) => {
       onExpire();
     }
   }, [counter, paused, onExpire]);
-
-  // useEffect(() => {
-  //   if (onReset) {
-  //     onReset(() => setCounter(initialCount));
-  //   }
-  // }, [onReset, initialCount]);
 
   return <div className="countDownCounter">{counter} </div>;
 };

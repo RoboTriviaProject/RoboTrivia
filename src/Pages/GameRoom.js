@@ -24,26 +24,16 @@ const GameRoom = ({
   // Array to hold quiz questions
   const [questions, setQuestions] = useState([]);
   // Index for the current question
-
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  // Score of the game
-
   // Loading status
   const [loading, setLoading] = useState(true);
   // Error message
   const [error, setError] = useState('');
   // Status of the quiz
-
   const [quizCompleted, setQuizCompleted] = useState(false);
-  // State to control timer reset
-  // const [resetTimer, setResetTimer] = useState(null);
   // Grabs the game id from the URL
   const { gameId } = useParams();
-
-  // const [redirectMessage, setRedirectMessage] = useState('');
-
   const navigate = useNavigate();
-
   // Effect hook to fetch data on initial render and on changes to category, difficulty, type
   // State for highlighting correct answer
   const [highlightAnswer, setHighlightAnswer] = useState(false);
@@ -56,7 +46,7 @@ const GameRoom = ({
     let currentIndex = array.length;
     let temporaryValue, randomIndex;
 
-    // loop continues until we have processed all elements in the array
+    // loop continues until we have processed (almost) all elements in the array
     while (0 !== currentIndex) {
       // generate a random index in the range of unprocessed elements (from 0 to currentIndex - 1)
       randomIndex = Math.floor(Math.random() * currentIndex);
@@ -134,7 +124,6 @@ const GameRoom = ({
   }, [category, difficulty, type, fetchData]);
 
   // function to handle moving to the next question when the countdown timer expires
-  // function to handle moving to the next question when the countdown timer expires
   const handleExpire = useCallback(() => {
     // Highlight the correct answer and pause the timer
     setHighlightAnswer(true);
@@ -155,11 +144,6 @@ const GameRoom = ({
       }
     }, 3000);
   }, [currentQuestion, questions.length, navigate, gameId]);
-
-  // Handler for resetting the timer
-  // const handleReset = useCallback((resetFunction) => {
-  //   setResetTimer(() => resetFunction);
-  // }, []);
 
   // Handler for when an answer is selected
   const handleAnswer = (answer) => {
@@ -257,7 +241,6 @@ const GameRoom = ({
           key={currentQuestion}
           initialCount={15}
           onExpire={handleExpire}
-          // onReset={handleReset}
           paused={paused}
         />
       </div>
