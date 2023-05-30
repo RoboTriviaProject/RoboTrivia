@@ -568,10 +568,10 @@ header {
   flex-direction: row;
   justify-content: space-between;
   position: fixed;
-  left: 150px;
+  /* left: 150px; */
   top: 70px;
-  width: 800px;
-  height: 80vh;
+  width: 700px;
+  height: 45vh;
 }
 
 .instructionContainer {
@@ -596,9 +596,9 @@ header {
 
 .redRobotImg {
   width: 200px;
-  position: fixed;
-  top: 200px;
-  right: 300px;
+  position: absolute;
+  top: 65px;
+  right: 140px;
 }
 
 .instructionContainer li {
@@ -619,7 +619,25 @@ header {
   overflow: hidden;
 }
 
+.closeIcon{
+  position: absolute;
+  width: 55px;
+  top: 15px;
+  left: 83%;
+}
+.closeIcon:hover{
+  cursor: pointer;
+}
 
+@media(max-width:780px){
+  .howContainer{
+    width: auto;
+  }
+  .instructionContainer{
+    
+  }
+
+}
 
 /********************* WELCOME ***********************/
 
