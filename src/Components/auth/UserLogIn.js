@@ -19,6 +19,7 @@ const UserLogIn = () => {
   };
 
   const userSignIn = async (email, password) => {
+    // eslint-disable-next-line
     const userCredential = await signInWithEmailAndPassword(
       auth,
       email,
