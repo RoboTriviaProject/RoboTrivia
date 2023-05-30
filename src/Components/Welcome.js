@@ -79,15 +79,22 @@ const Welcome = ({ userProf, error, sendError }) => {
           </div>
 
           <div className="gameOptions">
+          <div className="createOption">
+              <button
+                className="welcomeButton createButton"
+                onClick={handleCreateButtonClick}
+              >
+                Create a game
+              </button>
+            </div>
+            <img
+              src={pinkRobot}
+              className="pinkRobotImg"
+              alt="a pink robot standing"
+            />
             <div className="formContainer">
               <form className="welcomeForm" onSubmit={handleJoinSubmit}>
-                <button
-                  className="welcomeButton joinButton"
-                  type="submit"
-                  value="Join a Game"
-                >
-                  Join a Game
-                </button>
+                <p className='joinText'>Join Existing Game</p>
                 <input
                   type="text"
                   name="username"
@@ -96,20 +103,14 @@ const Welcome = ({ userProf, error, sendError }) => {
                   onChange={(e) => setJoinUsername(e.target.value)}
                   required
                 />
+                <button
+                  className="welcomeButton joinButton"
+                  type="submit"
+                  value="Join a Game"
+                >
+                  Play
+                </button>
               </form>
-            </div>
-            <img
-              src={pinkRobot}
-              className="pinkRobotImg"
-              alt="a pink robot standing"
-            />
-            <div className="createOption">
-              <button
-                className="welcomeButton createButton"
-                onClick={handleCreateButtonClick}
-              >
-                Create a game
-              </button>
             </div>
           </div>
         </div>
