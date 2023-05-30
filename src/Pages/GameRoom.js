@@ -284,9 +284,6 @@ const GameRoom = ({
         </ul>
       </div>
 
-      {currentQuestion === questions.length - 1 ? (
-        <Link to={`/gameroom/${gameId}/result`}>View Score!</Link>
-      ) : null}
       {/* <Link to="/">Quit Game</Link> */}
       <button onClick={quitGame}>Quit Game</button>
     </div>
