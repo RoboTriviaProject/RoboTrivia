@@ -703,8 +703,6 @@ header {
 .logOutButton:hover,
 .logOutButton:focus {
   cursor: pointer;
-  /* background: rgba(185, 19, 113, 0.806); */
-  
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -722,20 +720,14 @@ header {
 }
 
 .quizInfo {
-  /* width: 100%; */
   display: flex;
   justify-content: space-evenly;
-  /* margin: 2% auto 2% auto; */
   margin: 1rem auto;
-  /* color: #fefaf0; */
-  /* font-size: 22px; */
-  /* padding: 0 40px; */
 }
 
 .quizInfo p {
   font-size: 33px;
   font-weight: bold;
-  /* background: #fcd24f; */
   color: black;
   padding: 15px;
   border-radius: 20%;
@@ -753,15 +745,6 @@ header {
   margin: 0;
   padding: 0;
 }
-
-/* .quizInfo {
-  font-size: 33px;
-  font-weight: bold;
-  background: #fcd24f;
-  color: black;
-  padding: 15px;
-  border-radius: 20%;
-} */
 
 .countDownCounter {
   background: #ff0022;
