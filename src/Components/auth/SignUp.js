@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { auth } from '../../firebase-config';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import './../../App.css';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [displayName, setDisplayname] = useState('');
+  const navigate = useNavigate();
 
   const handleRegistration = (e) => {
     e.preventDefault();
@@ -29,8 +31,9 @@ const SignUp = () => {
       );
       // Registration successful, handle the response or navigate to another page
       const user = userCredential.user;
-      const photoURL = `http://robohash.org/${displayName}.png?set=any&size=200*200`;
+      const photoURL = `http://robohash.org/${displayName}.png?set=any&size=200x200`;
       await updateProfile(user, { displayName, photoURL });
+      navigate('/');
     } catch (error) {
       // Handle registration error
       console.error('Registration error:', error);
