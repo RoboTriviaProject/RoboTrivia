@@ -845,6 +845,14 @@ option:focus {
   background: linear-gradient(90deg, rgba(185,19,114,1) 0%, rgba(65,234,212,1) 100%);
 }
 
+@media (max-width: 480px) {
+  .logOutButton {
+    font-size: 0.9rem;
+    padding: 8px;
+    margin: 1% 0 0 40%;
+  }
+}
+
 /************* GAMEROOM.js CSS *******************/
 .questionFromAPI {
   text-align: center;
