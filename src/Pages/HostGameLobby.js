@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-const HostGameLobby = ({ handleStartQuiz }) => {
+const HostGameLobby = ({ handleStartQuiz, setScore }) => {
   const [user] = useAuthState(auth);
   // storing the user's id in uid variable
   const uid = user.uid;
@@ -16,6 +16,7 @@ const HostGameLobby = ({ handleStartQuiz }) => {
   const [selectedType, setSelectedType] = useState('multiple');
   const [subject, setSubject] = useState('');
   const navigate = useNavigate();
+  setScore(0);
 
   const handleCategoryChange = (e) => {
     const category = e.target.value;

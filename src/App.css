@@ -295,8 +295,16 @@ img {
   cursor: pointer;
 }
 
+.homeText {
+  color: #fefaf0;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+
 header {
-  /* margin-top: 2rem; */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -483,11 +491,16 @@ header {
   border: 2px solid #fcd24f;
   margin-bottom: 1rem;
   outline: none;
-  
+}
+
+.registration input:hover,
+.registration input:focus {
+  background-color: rgba(252, 209, 79, 0.1);
 }
 
 .registration button {
-  background: #b91372;
+  background: rgb(185,19,114);
+  background: linear-gradient(90deg, rgba(185,19,114,1) 0%, rgba(65,234,212,1) 100%);
   color: #fefaf0;
   padding: 10px 20px;
   border-radius: 50px;
@@ -495,14 +508,12 @@ header {
   text-transform: uppercase;
   border: none;
   cursor: pointer;
-  box-shadow: 4px 3px 6px rgba(0, 0, 0);
   margin-bottom: 20px;
 }
 
 .registration button:hover,
 .registration button:focus {
   background: rgba(185, 19, 113, 0.607);
-  box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.607); 
 }
 
 /* SignUp */
@@ -700,6 +711,7 @@ header {
   padding: 7px;
   width: 200px;
   outline: none;
+  font-size: 13px;
 }
 
 .welcomeForm input:hover,
@@ -714,19 +726,27 @@ header {
   border-radius: 50px;
   padding: 5px;
   width: 200px;
+  font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
   word-spacing: 3px;
   cursor: pointer;
   display: flex;
-  margin-bottom: 20px;
-  /* align-self: center; */
+  /* margin-bottom: 20px; */
   justify-content: center;
-}
-
-.createButton {
   margin-top: 15px;
 }
+
+.joinText {
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* .createButton {
+  margin-top: 15px;
+} */
+
 .welcomeButton:hover,
 .welcomeButton:focus {
   background: rgba(252, 209, 79, 0.8);
@@ -840,7 +860,7 @@ option:focus {
 
 @media (max-width: 580px) {
   .selectOptions {
-    max-width: 400px;
+    max-width: 350px;
   }
 
   .chooseCategory,
@@ -853,7 +873,7 @@ option:focus {
   }
 
   h1 {
-    font-size: 60px;
+    font-size: 50px;
   }
 }
 
@@ -869,7 +889,7 @@ option:focus {
   border: 2px solid #fefaf0;
   color: #fefaf0;
   padding: 10px;
-  margin: 1% 0 0 47%;
+  margin: 1% 0 0 45%;
   transition: background 0.3s ease-in-out;
   text-transform: uppercase;
   width: fit-content;
@@ -882,11 +902,17 @@ option:focus {
   background: linear-gradient(90deg, rgba(185,19,114,1) 0%, rgba(65,234,212,1) 100%);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 690px) {
+  .logOutButton {
+    margin-left: 42%;
+  }
+}
+
+@media (max-width: 580px) {
   .logOutButton {
     font-size: 0.9rem;
     padding: 8px;
-    margin: 1% 0 0 40%;
+    margin: 1% 0 0 41%;
   }
 }
 

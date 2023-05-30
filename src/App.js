@@ -75,7 +75,14 @@ const App = () => {
         />
         <Route
           path="/hostgamelobby"
-          element={user && <HostGameLobby handleStartQuiz={handleStartQuiz} />}
+          element={
+            user && (
+              <HostGameLobby
+                handleStartQuiz={handleStartQuiz}
+                setScore={setScore}
+              />
+            )
+          }
         />
         <Route
           path="/gameroom/:gameId"

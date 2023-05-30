@@ -16,6 +16,7 @@ const Header = () => {
         <header>
             <Link to="/" className='logo'>
                 <img src={logo} className="" alt="a yellow robot head" />
+                <p className='homeText'>Home</p>
             </Link>
             <h1>Robo Trivia</h1>
             <img src={helpIcon} className="helpIcon" alt="circular help icon " onClick={handlePopUp}/>
