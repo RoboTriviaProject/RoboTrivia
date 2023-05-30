@@ -223,10 +223,6 @@ body {
   /* font-family: 'Poiret One', cursive; */
 }
 
-/* a {
-  text-decoration: none;
-} */
-
 /************ App.js CSS  ************/
 .App {
   text-align: center;
@@ -772,7 +768,6 @@ header {
 }
 
 select {
-  /* background-color: #fcd24f; */
   background: rgb(254,250,240);
   background: linear-gradient(90deg, rgba(254,250,240,0.5340335963486957) 0%, rgba(252,210,79,1) 100%); 
   outline: none;
@@ -791,7 +786,6 @@ option:focus {
 .chooseCategory,
 .chooseDifficulty,
 .chooseType {
-  /* background: #fcd24f; */
   background: rgb(254,250,240);
   background: linear-gradient(90deg, rgba(254,250,240,1) 13%, rgba(252,210,79,1) 100%); 
   padding: 15px;
@@ -818,6 +812,31 @@ option:focus {
 .startQuizButton:hover {
   cursor: pointer;
   background: rgba(65, 234, 212, 0.8);
+}
+
+@media (max-width: 767px) {
+  .selectOptions {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 580px) {
+  .selectOptions {
+    max-width: 400px;
+  }
+
+  .chooseCategory,
+  .chooseDifficulty,
+  .chooseType {
+    padding: 10px;
+    margin: 1rem;
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: 60px;
+  }
 }
 
 /***************** Log Out Button from HostGameLobby ****************************/
@@ -898,9 +917,9 @@ option:focus {
   font-size: 30px;
   font-weight: 600;
   text-align: center;
-  position: fixed;
+  position: absolute;
   top: 200px;
-  right: 140px;
+  right: 110px;
   border: 5px ridge black;
 }
 
@@ -957,6 +976,98 @@ option:focus {
   text-decoration: none;
 }
 
+.quitButton {
+  border-radius: 50px;
+  width: 15%;
+  background: rgb(65,234,212);
+  background: linear-gradient(90deg, rgba(65,234,212,1) 0%, rgba(185,19,114,1) 100%);
+  font-size: 1.1rem;
+  font-size: 800;
+  font-family: 'Poiret One', cursive;
+  border: 2px solid #fefaf0;
+  color: #fefaf0;
+  padding: 10px;
+  margin: 1% 0 0 47%;
+  transition: background 0.3s ease-in-out;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.quitButton:hover,
+.quitButton:focus {
+  cursor: pointer;
+  background: rgb(185,19,114);
+  background: linear-gradient(90deg, rgba(185,19,114,1) 0%, rgba(65,234,212,1) 100%);
+}
+
+@media (max-width: 800px) {
+  .quitButton {
+    margin: 1% 0 0 40%;
+  }
+}
+
+@media (max-width: 580px) {
+  .quitButton {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 800px) {
+  .countDownCounter {
+    position: fixed;
+    right: 100px;
+  }
+
+  .questionFromAPI h3,
+  .quizInfo h3 {
+    font-size: 20px;
+  }
+
+  .questionFromAPI p {
+    font-size: 20px;
+  }
+
+  .questionFromAPI ul {
+    padding: 4px;
+  }
+}
+
+@media (max-width: 580px) {
+  .questionFromAPI ul {
+    font-size: 15px;
+  }
+
+  .questionFromAPI h3 {
+    width: 150px;
+  }
+
+  .countDownCounter {
+    position: absolute;
+    left: 450px;
+    top: 175px;
+  }
+}
+
+@media (max-width: 500px) {
+  .questionFromAPI ul {
+    padding: 2px;
+  }
+
+  .quizInfo h3,
+  .quizInfo p {
+    width: 110px;
+    font-size: 15px;
+  }
+
+  .countDownCounter {
+    position: absolute;
+    left: 350px;
+    top: 175px;
+  }
+}
+
+
 /* turns the correct answer green */
 .correct-answer {
   background-color: #50C878;
@@ -964,6 +1075,8 @@ option:focus {
 .answer-options {
   background-color: #fcd24f;
 }
+
+/************* SPINNER / LOADING PAGE *******************/
 
 .spinnerContainer {
   display: flex;

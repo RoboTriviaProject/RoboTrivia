@@ -267,7 +267,8 @@ const GameRoom = ({
         </ul>
       </div>
 
-      <button onClick={quitGame}>Quit Game</button>
+      {/* <Link to="/">Quit Game</Link> */}
+      <button className='quitButton' onClick={quitGame}>Quit Game</button>
     </div>
   );
 };
