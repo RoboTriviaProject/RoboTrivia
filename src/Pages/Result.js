@@ -66,7 +66,6 @@ const Result = ({ score }) => {
 
   useEffect(() => {
     if (!user) {
-      console.log('boooom');
       navigate('/');
     }
   }, [user, navigate]);

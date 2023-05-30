@@ -17,25 +17,25 @@ const HostGameLobby = ({ handleStartQuiz }) => {
   const [subject, setSubject] = useState('');
   const navigate = useNavigate();
 
-  const handleCategoryChange = (event) => {
-    const category = event.target.value;
+  const handleCategoryChange = (e) => {
+    const category = e.target.value;
     // This gives me the index number of the category
-    const selectedIndex = event.target.options.selectedIndex;
+    const selectedIndex = e.target.options.selectedIndex;
     // I use that to access the text of the category
-    const categoryText = event.target.options[selectedIndex].text;
+    const categoryText = e.target.options[selectedIndex].text;
 
     setSelectedCategory(category);
     // Save the category text in a state so I can display it later
     setSubject(categoryText);
   };
 
-  const handleDifficultyChange = (event) => {
-    const difficulty = event.target.value;
+  const handleDifficultyChange = (e) => {
+    const difficulty = e.target.value;
     setSelectedDifficulty(difficulty);
   };
 
-  const handleTypeChange = (event) => {
-    const type = event.target.value;
+  const handleTypeChange = (e) => {
+    const type = e.target.value;
     setSelectedType(type);
   };
 
@@ -53,8 +53,7 @@ const HostGameLobby = ({ handleStartQuiz }) => {
       players: {
         [uid]: {
           username: user.displayName,
-          avatar: 'ROBOhere',
-          score: 0,
+          avatar: user.photoURL,
         },
       },
       category: subject,
@@ -127,11 +126,10 @@ const HostGameLobby = ({ handleStartQuiz }) => {
             <option value="boolean">True/False</option>
           </select>
         </div>
-        {/* <Link to="/quiz"> */}
+
         <button onClick={handleQuizStart} className="startQuizButton">
           Start ➤
         </button>
-        {/* </Link> */}
       </div>
       <SignOut />
     </div>
