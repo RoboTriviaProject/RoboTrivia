@@ -12,9 +12,6 @@ const Header = () => {
     const handlePopUp = () => {
         setIsOpen(!isOpen);
     };
-
-    
-
     return(
         <header>
             <Link to="/" className='logo'>
@@ -25,7 +22,7 @@ const Header = () => {
             <img src={helpIcon} className="helpIcon" alt="circular help icon " onClick={handlePopUp}/>
             {
                 isOpen && <HowTo 
-                    handleClose={handlePopUp}
+                    handleClose={handlePopUp} 
                 /> 
             }
         </header>

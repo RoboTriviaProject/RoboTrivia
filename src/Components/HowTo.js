@@ -1,9 +1,14 @@
 import redRobot from './../assets/images/redRobot-min.png';
 import './../App.css';
+import closeIcon from './../assets/images/icons8-close-window-48.png';
 
-const HowTo = (props) => {
+
+const HowTo = ({handleClose}) => {
+ 
+
   return (
     <section className="howContainer">
+      <img src={closeIcon} className="closeIcon" alt="close icon" onClick={handleClose}/>
       <div className="instructionContainer">
         <h2>How to play</h2>
         <ul>
