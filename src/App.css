@@ -579,10 +579,10 @@ header {
   flex-direction: row;
   justify-content: space-between;
   position: fixed;
-  left: 150px;
+  /* left: 150px; */
   top: 70px;
-  width: 800px;
-  height: 80vh;
+  width: 700px;
+  height: 65vh;
 }
 
 .instructionContainer {
@@ -607,9 +607,9 @@ header {
 
 .redRobotImg {
   width: 200px;
-  position: fixed;
-  top: 200px;
-  right: 300px;
+  position: absolute;
+  top: 65px;
+  right: 140px;
 }
 
 .instructionContainer li {
@@ -630,7 +630,61 @@ header {
   overflow: hidden;
 }
 
+.closeIcon{
+  position: absolute;
+  width: 55px;
+  top: 15px;
+  left: 83%;
+}
+.closeIcon:hover{
+  cursor: pointer;
+}
 
+@media(max-width:780px){
+  .howContainer{
+    width: auto;
+  }
+  .instructionContainer{
+    width: auto;
+  }
+
+  .imageContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+  }
+  .instructionContainer{
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+  .redRobotImg{
+    width: 100px;
+    position: absolute;
+    top: 70%;
+    right: 45%;
+  }
+}
+
+@media(max-width:500px){
+  .redRobotImg{
+    width: 80px;
+    position: absolute;
+    top: 80%;
+  }
+  .howContainer{
+    position: absolute;
+    right: -20%;
+    top: 14%;
+    overflow-y: hidden;
+  }
+  
+  .closeIcon{
+    position: absolute;
+    left: 75%;
+  
+  }
+}
 
 /********************* WELCOME ***********************/
 
