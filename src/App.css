@@ -777,11 +777,8 @@ header {
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 10px;
+  overflow: hidden;
 }
-
-/* .createButton {
-  margin-top: 15px;
-} */
 
 .welcomeButton:hover,
 .welcomeButton:focus {
